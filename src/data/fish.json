@@ -1,53 +1,936 @@
 {
-  "_comment": "Fish species. rarity: common|uncommon|rare|legendary. time: any|day|night|dawn|dusk|twilight. weather: any|rain|clear|fog|storm|snow. habitats: river|lake|rapids|confluence|deep|sea|pool|starwater (empty = any). size in cm, value in coins at base price.",
-  "rarityWeights": { "common": 60, "uncommon": 26, "rare": 8, "legendary": 1.1 },
-  "species": [
-    { "id": "river_minnow", "name": "River Minnow", "rarity": "common", "biomes": ["any"], "time": "any", "weather": "any", "habitats": [], "value": 3, "size": [5, 12], "difficulty": 0.05, "desc": "Quick silver slivers that flash in every shallow. Everyone's first catch." },
-    { "id": "silver_dace", "name": "Silver Dace", "rarity": "common", "biomes": ["spring", "autumn", "northern", "crystal"], "time": "day", "weather": "any", "habitats": ["river", "confluence"], "value": 5, "size": [12, 25], "difficulty": 0.1, "desc": "Bright and restless, happiest where currents meet." },
-    { "id": "river_perch", "name": "River Perch", "rarity": "common", "biomes": ["autumn", "spring", "northern", "autumnMountain"], "time": "day", "weather": "any", "habitats": [], "value": 7, "size": [15, 35], "difficulty": 0.15, "desc": "Striped like reeds in low sun. Bites readily, fights honestly." },
-    { "id": "willow_tench", "name": "Willow Tench", "rarity": "common", "biomes": ["spring", "swamp"], "time": "day", "weather": "any", "habitats": ["lake", "river"], "value": 9, "size": [20, 45], "difficulty": 0.15, "desc": "Olive-gold and unhurried, found under trailing willow branches." },
-    { "id": "cherry_dace", "name": "Blossom Dace", "rarity": "uncommon", "biomes": ["spring"], "time": "day", "weather": "clear", "habitats": [], "value": 14, "size": [14, 28], "difficulty": 0.25, "desc": "Pink-finned; the old folk say it only rises when petals are on the water." },
-    { "id": "golden_carp", "name": "Golden Carp", "rarity": "uncommon", "biomes": ["spring", "swamp", "monsoon"], "time": "day", "weather": "any", "habitats": ["lake"], "value": 18, "size": [30, 70], "difficulty": 0.35, "desc": "A lazy glint of gold in still water." },
-    { "id": "moonlit_carp", "name": "Moonlit Carp", "rarity": "rare", "biomes": ["spring", "autumn", "swamp"], "time": "night", "weather": "clear", "habitats": ["lake"], "value": 40, "size": [40, 80], "difficulty": 0.45, "desc": "Its scales hold a faint silver light, as if it swallowed the moon's reflection." },
-    { "id": "maple_minnow", "name": "Maple Minnow", "rarity": "common", "biomes": ["autumn"], "time": "day", "weather": "any", "habitats": [], "value": 5, "size": [6, 14], "difficulty": 0.05, "desc": "Rust-red and tiny, schooling under floating leaves." },
-    { "id": "amber_bream", "name": "Amber Bream", "rarity": "common", "biomes": ["autumn", "autumnMountain"], "time": "day", "weather": "any", "habitats": ["river", "lake"], "value": 8, "size": [20, 40], "difficulty": 0.15, "desc": "Deep-bodied and bronze, a harvest-table favourite." },
-    { "id": "ember_trout", "name": "Ember Trout", "rarity": "uncommon", "biomes": ["autumnMountain", "autumn"], "time": "dusk", "weather": "any", "habitats": ["rapids", "river"], "value": 22, "size": [25, 50], "difficulty": 0.4, "desc": "Its red flanks seem to glow at sunset." },
-    { "id": "pike", "name": "Reed Pike", "rarity": "uncommon", "biomes": ["northern", "swamp", "autumn"], "time": "dusk", "weather": "any", "habitats": [], "value": 22, "size": [40, 100], "difficulty": 0.5, "desc": "An ambusher of the reed beds. Mind the teeth." },
-    { "id": "brown_trout", "name": "Brown Trout", "rarity": "uncommon", "biomes": ["misty", "northern", "autumnMountain", "crystal"], "time": "dawn", "weather": "any", "habitats": ["rapids", "river"], "value": 16, "size": [20, 55], "difficulty": 0.4, "desc": "Speckled and wary; rises to the first light." },
-    { "id": "rainbow_trout", "name": "Rainbow Trout", "rarity": "uncommon", "biomes": ["crystal", "misty", "spring"], "time": "day", "weather": "any", "habitats": [], "value": 18, "size": [25, 60], "difficulty": 0.4, "desc": "A streak of colour in clear, cold water." },
-    { "id": "mist_eel", "name": "Mist Eel", "rarity": "uncommon", "biomes": ["misty", "swamp"], "time": "any", "weather": "fog", "habitats": [], "value": 25, "size": [50, 110], "difficulty": 0.45, "desc": "Only seems to feed when the valley fills with fog." },
-    { "id": "cloud_trout", "name": "Cloud Trout", "rarity": "rare", "biomes": ["misty"], "time": "dawn", "weather": "fog", "habitats": ["rapids", "pool"], "value": 65, "size": [35, 70], "difficulty": 0.6, "desc": "Pale as low cloud. Anglers climb for days for a glimpse." },
-    { "id": "glacier_char", "name": "Glacier Char", "rarity": "uncommon", "biomes": ["snow", "crystal"], "time": "day", "weather": "any", "habitats": ["lake", "deep"], "value": 26, "size": [30, 65], "difficulty": 0.45, "desc": "Deep blue on the back, fiery orange beneath." },
-    { "id": "ice_whitefish", "name": "Ice Whitefish", "rarity": "common", "biomes": ["snow", "northern"], "time": "any", "weather": "any", "habitats": [], "value": 9, "size": [20, 40], "difficulty": 0.15, "desc": "A cold-water staple, delicious smoked." },
-    { "id": "crystal_grayling", "name": "Crystal Grayling", "rarity": "rare", "biomes": ["crystal"], "time": "dawn", "weather": "clear", "habitats": ["lake", "river"], "value": 50, "size": [25, 45], "difficulty": 0.55, "desc": "Its sail-like fin is almost transparent, like thin glass." },
-    { "id": "frost_salmon", "name": "Frost Salmon", "rarity": "rare", "biomes": ["snow", "northern"], "time": "dusk", "weather": "any", "habitats": ["rapids"], "value": 70, "size": [50, 95], "difficulty": 0.65, "desc": "Leaps the icy rapids on its long journey upstream." },
-    { "id": "pine_burbot", "name": "Pine Burbot", "rarity": "uncommon", "biomes": ["northern"], "time": "night", "weather": "any", "habitats": ["deep", "lake"], "value": 18, "size": [30, 70], "difficulty": 0.35, "desc": "A bearded bottom-dweller that prefers the dark." },
-    { "id": "ghost_pike", "name": "Ghost Pike", "rarity": "legendary", "biomes": ["northern", "snow"], "time": "night", "weather": "fog", "habitats": [], "value": 300, "size": [100, 160], "difficulty": 0.85, "desc": "Nearly white, nearly silent. Some say it is only a story." },
-    { "id": "jungle_tetra", "name": "Jungle Tetra", "rarity": "common", "biomes": ["jungle", "monsoon"], "time": "day", "weather": "any", "habitats": [], "value": 4, "size": [4, 9], "difficulty": 0.05, "desc": "A neon flicker in the tea-coloured shallows." },
-    { "id": "peacock_bass", "name": "Peacock Bass", "rarity": "uncommon", "biomes": ["jungle"], "time": "day", "weather": "clear", "habitats": [], "value": 24, "size": [30, 70], "difficulty": 0.5, "desc": "Bold patterns and a bolder temper." },
-    { "id": "arowana", "name": "Silver Arowana", "rarity": "rare", "biomes": ["jungle", "swamp"], "time": "dawn", "weather": "any", "habitats": ["lake", "river"], "value": 60, "size": [50, 100], "difficulty": 0.6, "desc": "Leaps clear of the water to snatch insects from low branches." },
-    { "id": "catfish", "name": "Whiskered Catfish", "rarity": "uncommon", "biomes": ["swamp", "jungle", "monsoon"], "time": "night", "weather": "any", "habitats": ["deep"], "value": 20, "size": [40, 110], "difficulty": 0.45, "desc": "Feels its way along the bottom with long whiskers." },
-    { "id": "bamboo_loach", "name": "Bamboo Loach", "rarity": "common", "biomes": ["monsoon"], "time": "any", "weather": "rain", "habitats": [], "value": 8, "size": [8, 18], "difficulty": 0.1, "desc": "Wriggles out from the roots whenever the rain drums the water." },
-    { "id": "rain_gourami", "name": "Rain Gourami", "rarity": "uncommon", "biomes": ["monsoon", "jungle"], "time": "day", "weather": "rain", "habitats": [], "value": 20, "size": [12, 25], "difficulty": 0.3, "desc": "Blushes blue and violet during downpours." },
-    { "id": "lotus_koi", "name": "Lotus Koi", "rarity": "rare", "biomes": ["monsoon", "spring"], "time": "day", "weather": "any", "habitats": ["lake", "pool"], "value": 55, "size": [35, 75], "difficulty": 0.55, "desc": "White and vermilion, drifting beneath lotus pads." },
-    { "id": "mudskipper", "name": "Mudskipper", "rarity": "common", "biomes": ["swamp", "coast"], "time": "day", "weather": "any", "habitats": [], "value": 6, "size": [8, 20], "difficulty": 0.1, "desc": "A fish that would rather be walking." },
-    { "id": "bog_bowfin", "name": "Bog Bowfin", "rarity": "uncommon", "biomes": ["swamp"], "time": "night", "weather": "any", "habitats": [], "value": 21, "size": [35, 80], "difficulty": 0.45, "desc": "An old design of fish, unchanged since the river was young." },
-    { "id": "lantern_eel", "name": "Lantern Eel", "rarity": "rare", "biomes": ["swamp", "jungle"], "time": "night", "weather": "any", "habitats": [], "value": 58, "size": [60, 120], "difficulty": 0.6, "desc": "Glowing spots run down its length like a string of tiny lanterns." },
-    { "id": "canyon_chub", "name": "Canyon Chub", "rarity": "common", "biomes": ["canyon"], "time": "day", "weather": "any", "habitats": [], "value": 6, "size": [10, 25], "difficulty": 0.1, "desc": "Sturdy little fish of warm, fast water." },
-    { "id": "red_shiner", "name": "Red Shiner", "rarity": "uncommon", "biomes": ["canyon"], "time": "dusk", "weather": "clear", "habitats": [], "value": 15, "size": [8, 16], "difficulty": 0.25, "desc": "Turns the colour of the canyon walls at sunset." },
-    { "id": "sandstone_sturgeon", "name": "Sandstone Sturgeon", "rarity": "rare", "biomes": ["canyon", "coast"], "time": "night", "weather": "any", "habitats": ["deep"], "value": 80, "size": [90, 180], "difficulty": 0.7, "desc": "Armoured and ancient, it can live longer than a village." },
-    { "id": "mangrove_snapper", "name": "Mangrove Snapper", "rarity": "uncommon", "biomes": ["coast"], "time": "day", "weather": "any", "habitats": ["river", "sea"], "value": 26, "size": [25, 60], "difficulty": 0.4, "desc": "Hides among mangrove roots and darts out for a meal." },
-    { "id": "tidal_mullet", "name": "Tidal Mullet", "rarity": "common", "biomes": ["coast"], "time": "any", "weather": "any", "habitats": [], "value": 8, "size": [20, 45], "difficulty": 0.15, "desc": "Travels in and out with the tide in great silver shoals." },
-    { "id": "sea_bass", "name": "Sea Bass", "rarity": "uncommon", "biomes": ["coast"], "time": "dusk", "weather": "any", "habitats": ["sea"], "value": 30, "size": [35, 80], "difficulty": 0.45, "desc": "Hunts the surf line as the light fades." },
-    { "id": "silver_tarpon", "name": "Silver Tarpon", "rarity": "rare", "biomes": ["coast"], "time": "dawn", "weather": "clear", "habitats": ["sea"], "value": 90, "size": [100, 200], "difficulty": 0.75, "desc": "Great mirrored scales and acrobatic leaps." },
-    { "id": "star_koi", "name": "Star Koi", "rarity": "legendary", "biomes": ["starwater"], "time": "night", "weather": "any", "habitats": ["starwater", "lake"], "value": 250, "size": [40, 80], "difficulty": 0.75, "desc": "Its pattern matches no constellation you know. Yet." },
-    { "id": "lumen_ray", "name": "Lumen Ray", "rarity": "rare", "biomes": ["starwater"], "time": "any", "weather": "any", "habitats": [], "value": 120, "size": [60, 140], "difficulty": 0.6, "desc": "A soft glowing kite gliding over the bright lake bed." },
-    { "id": "sunscale", "name": "Sunscale", "rarity": "legendary", "biomes": ["any"], "time": "dusk", "weather": "clear", "habitats": ["lake", "deep"], "value": 350, "size": [60, 120], "difficulty": 0.85, "desc": "Said to surface only in the golden hour, when the whole river turns to fire." },
-    { "id": "old_whiskers", "name": "Old Whiskers", "rarity": "legendary", "biomes": ["any"], "time": "night", "weather": "storm", "habitats": ["deep"], "value": 400, "size": [180, 260], "difficulty": 0.95, "desc": "The river king. Every settlement tells a different story of the one that got away." }
-  ],
-  "junk": [
-    { "id": "old_boot", "chance": 0.03 },
-    { "id": "driftwood", "chance": 0.04 },
-    { "id": "message_bottle", "chance": 0.012 }
-  ]
+ "_comment": "Fish species. rarity: common|uncommon|rare|legendary. time: any|day|night|dawn|dusk|twilight. weather: any|rain|clear|fog|storm|snow. habitats: river|lake|rapids|confluence|deep|sea|pool|starwater (empty = any). size in cm, value in coins at base price.",
+ "rarityWeights": {
+  "common": 60,
+  "uncommon": 26,
+  "rare": 8,
+  "legendary": 1.1
+ },
+ "species": [
+  {
+   "id": "river_minnow",
+   "name": "River Minnow",
+   "rarity": "common",
+   "biomes": [
+    "any"
+   ],
+   "time": "any",
+   "weather": "any",
+   "habitats": [],
+   "value": 3,
+   "size": [
+    5,
+    12
+   ],
+   "difficulty": 0.05,
+   "desc": "Quick silver slivers that flash in every shallow. Everyone's first catch."
+  },
+  {
+   "id": "silver_dace",
+   "name": "Silver Dace",
+   "rarity": "common",
+   "biomes": [
+    "spring",
+    "autumn",
+    "northern",
+    "crystal"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [
+    "river",
+    "confluence"
+   ],
+   "value": 5,
+   "size": [
+    12,
+    25
+   ],
+   "difficulty": 0.1,
+   "desc": "Bright and restless, happiest where currents meet."
+  },
+  {
+   "id": "river_perch",
+   "name": "River Perch",
+   "rarity": "common",
+   "biomes": [
+    "autumn",
+    "spring",
+    "northern",
+    "autumnMountain"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [],
+   "value": 7,
+   "size": [
+    15,
+    35
+   ],
+   "difficulty": 0.15,
+   "desc": "Striped like reeds in low sun. Bites readily, fights honestly."
+  },
+  {
+   "id": "willow_tench",
+   "name": "Willow Tench",
+   "rarity": "common",
+   "biomes": [
+    "spring",
+    "swamp"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [
+    "lake",
+    "river"
+   ],
+   "value": 9,
+   "size": [
+    20,
+    45
+   ],
+   "difficulty": 0.15,
+   "desc": "Olive-gold and unhurried, found under trailing willow branches."
+  },
+  {
+   "id": "cherry_dace",
+   "name": "Blossom Dace",
+   "rarity": "uncommon",
+   "biomes": [
+    "spring"
+   ],
+   "time": "day",
+   "weather": "clear",
+   "habitats": [],
+   "value": 14,
+   "size": [
+    14,
+    28
+   ],
+   "difficulty": 0.25,
+   "desc": "Pink-finned; the old folk say it only rises when petals are on the water."
+  },
+  {
+   "id": "golden_carp",
+   "name": "Golden Carp",
+   "rarity": "uncommon",
+   "biomes": [
+    "spring",
+    "swamp",
+    "monsoon"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [
+    "lake"
+   ],
+   "value": 18,
+   "size": [
+    30,
+    70
+   ],
+   "difficulty": 0.35,
+   "desc": "A lazy glint of gold in still water."
+  },
+  {
+   "id": "moonlit_carp",
+   "name": "Moonlit Carp",
+   "rarity": "rare",
+   "biomes": [
+    "spring",
+    "autumn",
+    "swamp"
+   ],
+   "time": "night",
+   "weather": "clear",
+   "habitats": [
+    "lake"
+   ],
+   "value": 40,
+   "size": [
+    40,
+    80
+   ],
+   "difficulty": 0.45,
+   "desc": "Its scales hold a faint silver light, as if it swallowed the moon's reflection."
+  },
+  {
+   "id": "maple_minnow",
+   "name": "Maple Minnow",
+   "rarity": "common",
+   "biomes": [
+    "autumn"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [],
+   "value": 5,
+   "size": [
+    6,
+    14
+   ],
+   "difficulty": 0.05,
+   "desc": "Rust-red and tiny, schooling under floating leaves."
+  },
+  {
+   "id": "amber_bream",
+   "name": "Amber Bream",
+   "rarity": "common",
+   "biomes": [
+    "autumn",
+    "autumnMountain"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [
+    "river",
+    "lake"
+   ],
+   "value": 8,
+   "size": [
+    20,
+    40
+   ],
+   "difficulty": 0.15,
+   "desc": "Deep-bodied and bronze, a harvest-table favourite."
+  },
+  {
+   "id": "ember_trout",
+   "name": "Ember Trout",
+   "rarity": "uncommon",
+   "biomes": [
+    "autumnMountain",
+    "autumn"
+   ],
+   "time": "dusk",
+   "weather": "any",
+   "habitats": [
+    "rapids",
+    "river"
+   ],
+   "value": 22,
+   "size": [
+    25,
+    50
+   ],
+   "difficulty": 0.4,
+   "desc": "Its red flanks seem to glow at sunset."
+  },
+  {
+   "id": "pike",
+   "name": "Reed Pike",
+   "rarity": "uncommon",
+   "biomes": [
+    "northern",
+    "swamp",
+    "autumn"
+   ],
+   "time": "dusk",
+   "weather": "any",
+   "habitats": [],
+   "value": 22,
+   "size": [
+    40,
+    100
+   ],
+   "difficulty": 0.5,
+   "desc": "An ambusher of the reed beds. Mind the teeth."
+  },
+  {
+   "id": "brown_trout",
+   "name": "Brown Trout",
+   "rarity": "uncommon",
+   "biomes": [
+    "misty",
+    "northern",
+    "autumnMountain",
+    "crystal"
+   ],
+   "time": "dawn",
+   "weather": "any",
+   "habitats": [
+    "rapids",
+    "river"
+   ],
+   "value": 16,
+   "size": [
+    20,
+    55
+   ],
+   "difficulty": 0.4,
+   "desc": "Speckled and wary; rises to the first light."
+  },
+  {
+   "id": "rainbow_trout",
+   "name": "Rainbow Trout",
+   "rarity": "uncommon",
+   "biomes": [
+    "crystal",
+    "misty",
+    "spring"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [],
+   "value": 18,
+   "size": [
+    25,
+    60
+   ],
+   "difficulty": 0.4,
+   "desc": "A streak of colour in clear, cold water."
+  },
+  {
+   "id": "mist_eel",
+   "name": "Mist Eel",
+   "rarity": "uncommon",
+   "biomes": [
+    "misty",
+    "swamp"
+   ],
+   "time": "any",
+   "weather": "fog",
+   "habitats": [],
+   "value": 25,
+   "size": [
+    50,
+    110
+   ],
+   "difficulty": 0.45,
+   "desc": "Only seems to feed when the valley fills with fog."
+  },
+  {
+   "id": "cloud_trout",
+   "name": "Cloud Trout",
+   "rarity": "rare",
+   "biomes": [
+    "misty"
+   ],
+   "time": "dawn",
+   "weather": "fog",
+   "habitats": [
+    "rapids",
+    "pool"
+   ],
+   "value": 65,
+   "size": [
+    35,
+    70
+   ],
+   "difficulty": 0.6,
+   "desc": "Pale as low cloud. Anglers climb for days for a glimpse."
+  },
+  {
+   "id": "glacier_char",
+   "name": "Glacier Char",
+   "rarity": "uncommon",
+   "biomes": [
+    "snow",
+    "crystal"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [
+    "lake",
+    "deep"
+   ],
+   "value": 26,
+   "size": [
+    30,
+    65
+   ],
+   "difficulty": 0.45,
+   "desc": "Deep blue on the back, fiery orange beneath."
+  },
+  {
+   "id": "ice_whitefish",
+   "name": "Ice Whitefish",
+   "rarity": "common",
+   "biomes": [
+    "snow",
+    "northern"
+   ],
+   "time": "any",
+   "weather": "any",
+   "habitats": [],
+   "value": 9,
+   "size": [
+    20,
+    40
+   ],
+   "difficulty": 0.15,
+   "desc": "A cold-water staple, delicious smoked."
+  },
+  {
+   "id": "crystal_grayling",
+   "name": "Crystal Grayling",
+   "rarity": "rare",
+   "biomes": [
+    "crystal"
+   ],
+   "time": "dawn",
+   "weather": "clear",
+   "habitats": [
+    "lake",
+    "river"
+   ],
+   "value": 50,
+   "size": [
+    25,
+    45
+   ],
+   "difficulty": 0.55,
+   "desc": "Its sail-like fin is almost transparent, like thin glass."
+  },
+  {
+   "id": "frost_salmon",
+   "name": "Frost Salmon",
+   "rarity": "rare",
+   "biomes": [
+    "snow",
+    "northern"
+   ],
+   "time": "dusk",
+   "weather": "any",
+   "habitats": [
+    "rapids"
+   ],
+   "value": 70,
+   "size": [
+    50,
+    95
+   ],
+   "difficulty": 0.65,
+   "desc": "Leaps the icy rapids on its long journey upstream."
+  },
+  {
+   "id": "pine_burbot",
+   "name": "Pine Burbot",
+   "rarity": "uncommon",
+   "biomes": [
+    "northern"
+   ],
+   "time": "night",
+   "weather": "any",
+   "habitats": [
+    "deep",
+    "lake"
+   ],
+   "value": 18,
+   "size": [
+    30,
+    70
+   ],
+   "difficulty": 0.35,
+   "desc": "A bearded bottom-dweller that prefers the dark."
+  },
+  {
+   "id": "ghost_pike",
+   "name": "Ghost Pike",
+   "rarity": "legendary",
+   "biomes": [
+    "northern",
+    "snow"
+   ],
+   "time": "night",
+   "weather": "fog",
+   "habitats": [],
+   "value": 300,
+   "size": [
+    100,
+    160
+   ],
+   "difficulty": 0.85,
+   "desc": "Nearly white, nearly silent. Some say it is only a story."
+  },
+  {
+   "id": "jungle_tetra",
+   "name": "Jungle Tetra",
+   "rarity": "common",
+   "biomes": [
+    "jungle",
+    "monsoon"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [],
+   "value": 4,
+   "size": [
+    4,
+    9
+   ],
+   "difficulty": 0.05,
+   "desc": "A neon flicker in the tea-coloured shallows."
+  },
+  {
+   "id": "peacock_bass",
+   "name": "Peacock Bass",
+   "rarity": "uncommon",
+   "biomes": [
+    "jungle"
+   ],
+   "time": "day",
+   "weather": "clear",
+   "habitats": [],
+   "value": 24,
+   "size": [
+    30,
+    70
+   ],
+   "difficulty": 0.5,
+   "desc": "Bold patterns and a bolder temper."
+  },
+  {
+   "id": "arowana",
+   "name": "Silver Arowana",
+   "rarity": "rare",
+   "biomes": [
+    "jungle",
+    "swamp"
+   ],
+   "time": "dawn",
+   "weather": "any",
+   "habitats": [
+    "lake",
+    "river"
+   ],
+   "value": 60,
+   "size": [
+    50,
+    100
+   ],
+   "difficulty": 0.6,
+   "desc": "Leaps clear of the water to snatch insects from low branches."
+  },
+  {
+   "id": "catfish",
+   "name": "Whiskered Catfish",
+   "rarity": "uncommon",
+   "biomes": [
+    "swamp",
+    "jungle",
+    "monsoon"
+   ],
+   "time": "night",
+   "weather": "any",
+   "habitats": [
+    "deep"
+   ],
+   "value": 20,
+   "size": [
+    40,
+    110
+   ],
+   "difficulty": 0.45,
+   "desc": "Feels its way along the bottom with long whiskers."
+  },
+  {
+   "id": "bamboo_loach",
+   "name": "Bamboo Loach",
+   "rarity": "common",
+   "biomes": [
+    "monsoon"
+   ],
+   "time": "any",
+   "weather": "rain",
+   "habitats": [],
+   "value": 8,
+   "size": [
+    8,
+    18
+   ],
+   "difficulty": 0.1,
+   "desc": "Wriggles out from the roots whenever the rain drums the water."
+  },
+  {
+   "id": "rain_gourami",
+   "name": "Rain Gourami",
+   "rarity": "uncommon",
+   "biomes": [
+    "monsoon",
+    "jungle"
+   ],
+   "time": "day",
+   "weather": "rain",
+   "habitats": [],
+   "value": 20,
+   "size": [
+    12,
+    25
+   ],
+   "difficulty": 0.3,
+   "desc": "Blushes blue and violet during downpours."
+  },
+  {
+   "id": "lotus_koi",
+   "name": "Lotus Koi",
+   "rarity": "rare",
+   "biomes": [
+    "monsoon",
+    "spring"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [
+    "lake",
+    "pool"
+   ],
+   "value": 55,
+   "size": [
+    35,
+    75
+   ],
+   "difficulty": 0.55,
+   "desc": "White and vermilion, drifting beneath lotus pads."
+  },
+  {
+   "id": "mudskipper",
+   "name": "Mudskipper",
+   "rarity": "common",
+   "biomes": [
+    "swamp",
+    "coast"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [],
+   "value": 6,
+   "size": [
+    8,
+    20
+   ],
+   "difficulty": 0.1,
+   "desc": "A fish that would rather be walking."
+  },
+  {
+   "id": "bog_bowfin",
+   "name": "Bog Bowfin",
+   "rarity": "uncommon",
+   "biomes": [
+    "swamp"
+   ],
+   "time": "night",
+   "weather": "any",
+   "habitats": [],
+   "value": 21,
+   "size": [
+    35,
+    80
+   ],
+   "difficulty": 0.45,
+   "desc": "An old design of fish, unchanged since the river was young."
+  },
+  {
+   "id": "lantern_eel",
+   "name": "Lantern Eel",
+   "rarity": "rare",
+   "biomes": [
+    "swamp",
+    "jungle"
+   ],
+   "time": "night",
+   "weather": "any",
+   "habitats": [],
+   "value": 58,
+   "size": [
+    60,
+    120
+   ],
+   "difficulty": 0.6,
+   "desc": "Glowing spots run down its length like a string of tiny lanterns."
+  },
+  {
+   "id": "canyon_chub",
+   "name": "Canyon Chub",
+   "rarity": "common",
+   "biomes": [
+    "canyon"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [],
+   "value": 6,
+   "size": [
+    10,
+    25
+   ],
+   "difficulty": 0.1,
+   "desc": "Sturdy little fish of warm, fast water."
+  },
+  {
+   "id": "red_shiner",
+   "name": "Red Shiner",
+   "rarity": "uncommon",
+   "biomes": [
+    "canyon"
+   ],
+   "time": "dusk",
+   "weather": "clear",
+   "habitats": [],
+   "value": 15,
+   "size": [
+    8,
+    16
+   ],
+   "difficulty": 0.25,
+   "desc": "Turns the colour of the canyon walls at sunset."
+  },
+  {
+   "id": "sandstone_sturgeon",
+   "name": "Sandstone Sturgeon",
+   "rarity": "rare",
+   "biomes": [
+    "canyon",
+    "coast"
+   ],
+   "time": "night",
+   "weather": "any",
+   "habitats": [
+    "deep"
+   ],
+   "value": 80,
+   "size": [
+    90,
+    180
+   ],
+   "difficulty": 0.7,
+   "desc": "Armoured and ancient, it can live longer than a village."
+  },
+  {
+   "id": "mangrove_snapper",
+   "name": "Mangrove Snapper",
+   "rarity": "uncommon",
+   "biomes": [
+    "coast"
+   ],
+   "time": "day",
+   "weather": "any",
+   "habitats": [
+    "river",
+    "sea"
+   ],
+   "value": 26,
+   "size": [
+    25,
+    60
+   ],
+   "difficulty": 0.4,
+   "desc": "Hides among mangrove roots and darts out for a meal."
+  },
+  {
+   "id": "tidal_mullet",
+   "name": "Tidal Mullet",
+   "rarity": "common",
+   "biomes": [
+    "coast"
+   ],
+   "time": "any",
+   "weather": "any",
+   "habitats": [],
+   "value": 8,
+   "size": [
+    20,
+    45
+   ],
+   "difficulty": 0.15,
+   "desc": "Travels in and out with the tide in great silver shoals."
+  },
+  {
+   "id": "sea_bass",
+   "name": "Sea Bass",
+   "rarity": "uncommon",
+   "biomes": [
+    "coast"
+   ],
+   "time": "dusk",
+   "weather": "any",
+   "habitats": [
+    "sea"
+   ],
+   "value": 30,
+   "size": [
+    35,
+    80
+   ],
+   "difficulty": 0.45,
+   "desc": "Hunts the surf line as the light fades."
+  },
+  {
+   "id": "silver_tarpon",
+   "name": "Silver Tarpon",
+   "rarity": "rare",
+   "biomes": [
+    "coast"
+   ],
+   "time": "dawn",
+   "weather": "clear",
+   "habitats": [
+    "sea"
+   ],
+   "value": 90,
+   "size": [
+    100,
+    200
+   ],
+   "difficulty": 0.75,
+   "desc": "Great mirrored scales and acrobatic leaps."
+  },
+  {
+   "id": "star_koi",
+   "name": "Star Koi",
+   "rarity": "legendary",
+   "biomes": [
+    "starwater"
+   ],
+   "time": "night",
+   "weather": "any",
+   "habitats": [
+    "starwater",
+    "lake"
+   ],
+   "value": 250,
+   "size": [
+    40,
+    80
+   ],
+   "difficulty": 0.75,
+   "desc": "Its pattern matches no constellation you know. Yet."
+  },
+  {
+   "id": "lumen_ray",
+   "name": "Lumen Ray",
+   "rarity": "rare",
+   "biomes": [
+    "starwater"
+   ],
+   "time": "any",
+   "weather": "any",
+   "habitats": [],
+   "value": 120,
+   "size": [
+    60,
+    140
+   ],
+   "difficulty": 0.6,
+   "desc": "A soft glowing kite gliding over the bright lake bed."
+  },
+  {
+   "id": "sunscale",
+   "name": "Sunscale",
+   "rarity": "legendary",
+   "biomes": [
+    "any"
+   ],
+   "time": "dusk",
+   "weather": "clear",
+   "habitats": [
+    "lake",
+    "deep"
+   ],
+   "value": 350,
+   "size": [
+    60,
+    120
+   ],
+   "difficulty": 0.85,
+   "desc": "Said to surface only in the golden hour, when the whole river turns to fire."
+  },
+  {
+   "id": "old_whiskers",
+   "name": "Old Whiskers",
+   "rarity": "legendary",
+   "biomes": [
+    "any"
+   ],
+   "time": "night",
+   "weather": "storm",
+   "habitats": [
+    "deep"
+   ],
+   "value": 400,
+   "size": [
+    180,
+    260
+   ],
+   "difficulty": 0.95,
+   "desc": "The river king. Every settlement tells a different story of the one that got away."
+  },
+  {
+   "id": "night_bream",
+   "name": "Night Bream",
+   "rarity": "common",
+   "biomes": [
+    "spring",
+    "autumn",
+    "crystal",
+    "misty",
+    "autumnMountain",
+    "monsoon",
+    "coast"
+   ],
+   "time": "night",
+   "weather": "any",
+   "habitats": [],
+   "value": 6,
+   "size": [
+    18,
+    38
+   ],
+   "difficulty": 0.15,
+   "desc": "Deep-bodied and bronze, it rises to feed once the light has gone."
+  },
+  {
+   "id": "glass_eel",
+   "name": "Glass Eel",
+   "rarity": "uncommon",
+   "biomes": [
+    "any"
+   ],
+   "time": "night",
+   "weather": "any",
+   "habitats": [
+    "river",
+    "rapids"
+   ],
+   "value": 14,
+   "size": [
+    12,
+    28
+   ],
+   "difficulty": 0.35,
+   "desc": "So clear you can see the moon through it. Travels upriver on dark nights."
+  },
+  {
+   "id": "dusk_roach",
+   "name": "Dusk Roach",
+   "rarity": "common",
+   "biomes": [
+    "any"
+   ],
+   "time": "dusk",
+   "weather": "any",
+   "habitats": [],
+   "value": 4,
+   "size": [
+    10,
+    24
+   ],
+   "difficulty": 0.1,
+   "desc": "Red-finned and restless, it rings the water with little rises at sunset."
+  }
+ ],
+ "junk": [
+  {
+   "id": "old_boot",
+   "chance": 0.03
+  },
+  {
+   "id": "driftwood",
+   "chance": 0.04
+  },
+  {
+   "id": "message_bottle",
+   "chance": 0.012
+  }
+ ]
 }

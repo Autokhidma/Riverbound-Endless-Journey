@@ -75,6 +75,7 @@ export const DEFAULT_SETTINGS = {
     showObjectiveMarkers: true,
     autosaveMinutes: 3,
     showSeed: false,
+    devConsole: false,
   },
 };
 

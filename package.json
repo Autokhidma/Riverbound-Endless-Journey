@@ -1,7 +1,7 @@
 {
   "name": "riverbound",
   "productName": "Riverbound",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Riverbound - an infinite cozy river journey. A 3D exploration game.",
   "main": "electron/main.cjs",
   "type": "module",
@@ -11,12 +11,14 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
-    "test": "node --test tests/unit/",
+    "test": "node --test tests/unit/*.test.mjs",
     "test:e2e": "node tests/e2e/run-e2e.mjs",
     "electron": "electron .",
     "package:win": "node scripts/package.mjs win32",
     "package:linux": "node scripts/package.mjs linux",
-    "benchmark": "node tests/e2e/benchmark.mjs"
+    "benchmark": "node tests/e2e/benchmark.mjs",
+    "icon": "node scripts/make-icon.mjs",
+    "smoke:electron": "node tests/e2e/electron-smoke.mjs"
   },
   "devDependencies": {
     "@electron/packager": "^20.3.0",
@@ -26,5 +28,6 @@
     "playwright": "^1.63.0",
     "three": "^0.186.1",
     "vite": "^8.3.1"
-  }
+  },
+  "author": "Riverbound contributors"
 }

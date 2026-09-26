@@ -23,10 +23,15 @@ export class DebugTools {
     window.addEventListener('keydown', (e) => {
       const b = game.settings.get('controls.bindings');
       if (b.perf?.includes(e.code)) { e.preventDefault(); this.togglePerf(); }
-      else if (b.console?.includes(e.code) && !(this.open && e.target === this.input)) { e.preventDefault(); this.toggleConsole(); }
+      else if (b.console?.includes(e.code) && !(this.open && e.target === this.input) && this.consoleAllowed()) { e.preventDefault(); this.toggleConsole(); }
       else if (this.open && e.code === 'Escape') { e.stopImmediatePropagation(); this.toggleConsole(false); }
     }, true);
     this.commands = this.buildCommands();
+  }
+
+  /** The console is always on in development; in shipping builds it is opt-in (setting or ?debug=1). */
+  consoleAllowed() {
+    return !!(import.meta.env?.DEV || this.game.settings.get('gameplay.devConsole') || new URLSearchParams(location.search).has('debug'));
   }
 
   // ------------------------------------------------------------ overlay

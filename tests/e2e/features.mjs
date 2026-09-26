@@ -18,7 +18,7 @@ const G = (fn, arg) => page.evaluate(fn, arg);
 const step = (n = 10, dt = 1 / 30) => G(({ n, dt }) => { const g = window.__RB__.game; for (let i = 0; i < n; i++) g.step(dt, dt * 1000, { render: i === n - 1 }); }, { n, dt });
 
 try {
-  await page.goto(`${url}?quality=veryLow&laptop=1&autostart=1&mode=free&seed=4242`);
+  await page.goto(`${url}?quality=veryLow&laptop=1&autostart=1&mode=free&seed=4242&debug=1`);
   await waitReady(page);
   await page.mouse.click(640, 360); // user gesture unlocks audio
   await page.waitForTimeout(500);

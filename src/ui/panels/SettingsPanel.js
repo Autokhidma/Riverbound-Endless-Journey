@@ -137,6 +137,7 @@ export class SettingsPanel extends Panel {
       this.toggle('Compass', 'gameplay.showCompass'),
       this.toggle('Objective markers on the compass', 'gameplay.showObjectiveMarkers'),
       this.toggle('Show world seed in the HUD', 'gameplay.showSeed'),
+      this.toggle('Developer console (` key)', 'gameplay.devConsole', false, 'Commands for teleporting, time, weather, presets and diagnostics. F3 (performance overlay) always works.'),
       this.select('Autosave', 'gameplay.autosaveMinutes', [1, 3, 5, 10].map((v) => ({ value: v, label: `every ${v} min` }))),
       h('div.hint', {}, `This world's seed: ${game.world.seed}. Enter it under Free Exploration to visit the same river again.`),
     ];

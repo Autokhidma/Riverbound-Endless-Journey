@@ -1,0 +1,69 @@
+name: Build, test and package
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Unit + browser E2E (Linux)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Unit tests
+        run: npm test
+      - name: Shipping web build
+        run: npm run build
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+      - name: Browser end-to-end tests (software WebGL)
+        run: npm run test:e2e
+        env:
+          RB_DRIVE_SECONDS: '90'
+      - name: Package + smoke-test the Linux desktop build
+        run: |
+          sudo apt-get install -y xvfb zip
+          node scripts/package.mjs linux x64 --no-build
+          node tests/e2e/electron-smoke.mjs
+        env:
+          RB_SOFTWARE_GL: '1'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-screenshots
+          path: tests/e2e/output
+          retention-days: 14
+
+  windows:
+    name: Windows Shipping build (Riverbound.exe)
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Unit tests
+        run: npm test
+      - name: Build and package (Vite production build + Electron, asar)
+        run: node scripts/package.mjs win32 x64
+      - name: Smoke-test the packaged Riverbound.exe
+        run: node tests/e2e/electron-smoke.mjs release/Riverbound-win32-x64/Riverbound.exe
+        env:
+          RB_SOFTWARE_GL: '1'
+          RB_SMOKE_TIMEOUT: '300'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Riverbound-Windows-x64
+          path: release/Riverbound-win32-x64
+          retention-days: 30
