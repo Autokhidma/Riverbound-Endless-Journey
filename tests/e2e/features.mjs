@@ -58,12 +58,15 @@ try {
     const p = g.boat.physics;
     const h0 = p.heading;
     const ahead = { x: p.x + Math.cos(p.heading) * 40, z: p.z + Math.sin(p.heading) * 40, y: p.y };
+    // Bearing of that world point in camera space (positive = right of centre).
+    const bearing = () => { g.camera3.updateMatrixWorld(); const v = g.toScene(ahead.x, ahead.y, ahead.z).applyMatrix4(g.camera3.matrixWorldInverse); return Math.atan2(v.x, -v.z); };
+    const b0 = bearing();
     g.input.keys.add('KeyD');
     for (let i = 0; i < 30; i++) g.step(1 / 30, 33, { render: false });
     g.input.keys.delete('KeyD');
     let dh = p.heading - h0; while (dh > Math.PI) dh -= Math.PI * 2; while (dh < -Math.PI) dh += Math.PI * 2;
     out.turnRate = dh;
-    out.bowScreenDx = -g.toScene(ahead.x, ahead.y, ahead.z).project(g.camera3).x;
+    out.bowScreenDx = b0 - bearing(); // the point slides left when the boat turns right
     // Mouse look, per camera mode: a point straight ahead must move left on screen.
     out.look = {};
     for (const mode of ['third', 'first', 'close']) {
@@ -80,7 +83,7 @@ try {
     g.cameraRig.setMode('third');
     return out;
   });
-  check(ctl.turnRate > 0.4 && ctl.bowScreenDx > 0.05, `holding D turns the boat right, quickly (${JSON.stringify({ rate: ctl.turnRate.toFixed(2), bowDx: ctl.bowScreenDx.toFixed(3) })})`);
+  check(ctl.turnRate > 0.4 && ctl.bowScreenDx > 0.1, `holding D turns the boat right, quickly (${JSON.stringify({ rate: ctl.turnRate.toFixed(2), bowDx: ctl.bowScreenDx.toFixed(3) })})`);
   check(Object.values(ctl.look).every((x) => x < -0.02), `moving the mouse right turns the view right in every camera mode (${JSON.stringify(ctl.look)})`);
 
   // Camera modes.
