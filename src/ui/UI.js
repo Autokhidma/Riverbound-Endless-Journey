@@ -14,7 +14,7 @@ import { FishingHUD } from './FishingHUD.js';
 import { formatDistance } from '../core/math.js';
 import { PAD_BINDINGS, PAD } from '../core/Input.js';
 
-const WEATHER_ICON = { clear: '☀', cloudy: '☁', lightRain: '🌦', heavyRain: '🌧', storm: '⛈', mist: '🌫', fog: '🌫', haze: '◌', snow: '❄' };
+const WEATHER_ICON = { clear: '☀', cloudy: '☁', lightRain: '🌦', heavyRain: '🌧', storm: '⛈', mist: '🌫', fog: '🌫', haze: '◌', snow: '❄', calmNight: '☾' };
 
 export class UI {
   constructor(game) {
@@ -33,6 +33,7 @@ export class UI {
     ev.on('story:chapter', ({ chapter }) => this.chapterCard(chapter));
     ev.on('region:enter', ({ region }) => this.regionTitle(region));
     ev.on('saved', ({ slot }) => { if (slot !== 'autosave') this.toast({ text: 'Journey saved.' }); });
+    ev.on('caption', ({ text }) => this.showCaption(text));
     ev.on('lantern', ({ on }) => this.toast({ text: on ? 'Lantern lit' : 'Lantern out', kind: 'camera', life: 1.6 }));
     window.addEventListener('keydown', (e) => this.onKey(e));
     this.applyAccessibility();
@@ -104,6 +105,13 @@ export class UI {
     this.regionTimer = setTimeout(() => this.regionEl.classList.remove('show'), 5000);
   }
 
+  showCaption(text) {
+    this.subtitleEl.textContent = text;
+    this.subtitleEl.classList.add('show');
+    clearTimeout(this.captionTimer);
+    this.captionTimer = setTimeout(() => this.subtitleEl.classList.remove('show'), 3200);
+  }
+
   chapterCard(ch) {
     this.chapterEl.querySelector('.num').textContent = ch.number;
     this.chapterEl.querySelector('.title').textContent = ch.title;
@@ -126,6 +134,7 @@ export class UI {
   /** Per-frame HUD refresh (cheap, throttled). */
   update(dt, game) {
     this.padNav(game);
+    if (game.input.autoLock !== (game.state === 'playing' && !this.modalOpen && game.cameraRig.mode !== 'photo')) this.syncPointer();
     this.fishingHUD.update(dt);
     const playing = game.state === 'playing';
     this.hud.classList.toggle('hidden', !this.hudVisible || !playing || game.cameraRig.mode === 'photo');
@@ -282,7 +291,17 @@ export class UI {
     const locked = this.modalOpen || this.game.state !== 'playing';
     this.game.controlLocked = !!this.dialogueEl;
     this.game.input.enabled = !this.modal && this.game.state === 'playing';
+    this.syncPointer();
     if (locked) this.game.input.exitPointerLock();
+  }
+
+  /** Mouse capture only while freely playing (not in menus, dialogue or photo mode). */
+  syncPointer() {
+    const g = this.game;
+    const free = g.state === 'playing' && !this.modalOpen && g.cameraRig.mode !== 'photo';
+    g.input.autoLock = free;
+    g.input.leftDragLook = g.cameraRig.mode === 'photo';
+    if (!free) g.input.exitPointerLock();
   }
 
   openPanel(Panel, ...args) {
@@ -418,6 +437,22 @@ export class UI {
       this.updateInputLock();
       this.toast({ text: 'Welcome back to the river.' });
     }, 700);
+  }
+
+  showBenchmark(r) {
+    const row = (k, v) => h('div.list-item.row', {}, h('div', { style: { flex: 1 } }, k), h('b', {}, v));
+    this.openModal(() => h('div.panel', { style: { width: 'min(640px, 92vw)' } },
+      h('div.panel-header', {}, h('div.panel-title', {}, 'Benchmark result'), h('div.spacer'), h('button.close-x', { onclick: () => this.closeModal() }, '×')),
+      h('div.panel-body', {}, h('div.list', {},
+        row('Preset', `${r.preset}${r.laptopMode ? ' + Laptop Mode' : ''}`),
+        row('GPU', r.gpu),
+        row('Average', `${r.avgFps.toFixed(1)} FPS (${r.avgFrameMs.toFixed(1)} ms)`),
+        row('1% low', `${r.onePercentLowFps.toFixed(1)} FPS`),
+        row('Frame time p50 / p95 / p99', `${r.p50Ms.toFixed(1)} / ${r.p95Ms.toFixed(1)} / ${r.p99Ms.toFixed(1)} ms`),
+        row('Average render scale', `${Math.round(r.avgRenderScale * 100)}%`),
+        row('Draw calls / triangles', `${r.avgDrawCalls.toFixed(0)} / ${(r.avgTriangles / 1000).toFixed(0)}k`),
+        row('Biomes crossed', r.biomes.join(', '))),
+      h('div.hint', { style: { marginTop: '10px' } }, 'If the average is below your target, try a lower preset or Laptop Mode; dynamic resolution keeps the frame rate steady by lowering the 3D resolution first.'))), { pause: true });
   }
 
   showCredits() {

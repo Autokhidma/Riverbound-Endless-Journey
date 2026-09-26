@@ -15,6 +15,9 @@ import { Dialogue } from './gameplay/Dialogue.js';
 import { EventDirector } from './gameplay/EventDirector.js';
 import { OnFoot } from './gameplay/OnFoot.js';
 import { UI } from './ui/UI.js';
+import { PhotoMode } from './ui/PhotoMode.js';
+import { AudioSystem } from './audio/AudioSystem.js';
+import { DebugTools } from './debug/DebugTools.js';
 
 export function installSystems(game) {
   game.weatherSystem = game.addSystem(new WeatherSystem(game));
@@ -46,6 +49,10 @@ export function installSystems(game) {
 
   game.ui = new UI(game);
   game.addSystem({ lateUpdate: (dt, g) => g.ui.update(dt, g) });
+  game.photo = game.addSystem(new PhotoMode(game));
+  game.audio = game.addSystem(new AudioSystem(game));
+  game.debug = game.addSystem(new DebugTools(game));
+  game.console = game.debug;
 
   // Compass hint for the navigation upgrade: nearest undiscovered wonder ahead.
   game.findNearestUndiscovered = () => {

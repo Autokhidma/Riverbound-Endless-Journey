@@ -76,11 +76,15 @@ export function installAtmosphereChunks() {
 #endif`;
   THREE.ShaderChunk.fog_vertex = /* glsl */ `
 #ifdef USE_FOG
-  vec4 rbFogWP = vec4(transformed, 1.0);
-  #ifdef USE_INSTANCING
-    rbFogWP = instanceMatrix * rbFogWP;
+  #ifdef RB_SPRITE
+    vFogWorldPos = (modelMatrix * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+  #else
+    vec4 rbFogWP = vec4(transformed, 1.0);
+    #ifdef USE_INSTANCING
+      rbFogWP = instanceMatrix * rbFogWP;
+    #endif
+    vFogWorldPos = (modelMatrix * rbFogWP).xyz;
   #endif
-  vFogWorldPos = (modelMatrix * rbFogWP).xyz;
 #endif`;
   THREE.ShaderChunk.fog_pars_fragment = /* glsl */ `
 #ifdef USE_FOG
@@ -95,6 +99,7 @@ export function installAtmosphereChunks() {
   const original = THREE.Material.prototype.onBeforeCompile;
   THREE.Material.prototype.onBeforeCompile = function onBeforeCompile(shader, renderer) {
     attachGlobals(shader);
+    if (this.isSpriteMaterial) shader.vertexShader = `#define RB_SPRITE\n${shader.vertexShader}`;
     if (original && original !== onBeforeCompile) original.call(this, shader, renderer);
   };
 }

@@ -216,12 +216,12 @@ export class Game {
     const input = this.input;
     input.poll();
     const gameplay = !this.paused && this.state === 'playing' && input.enabled;
-    const simDt = this.paused ? 0 : dt;
+    const simDt = this.paused || this.timeFrozen ? 0 : dt;
     this.elapsed += simDt;
     G.uTime.value = this.elapsed;
 
     // Global actions.
-    if (gameplay) {
+    if (gameplay && this.cameraRig.mode !== 'photo') {
       if (input.pressed('camera')) {
         const mode = this.cameraRig.cycle();
         this.events.emit('toast', { text: CAMERA_LABELS[mode], kind: 'camera' });
@@ -272,7 +272,7 @@ export class Game {
     headPos.y += 0.12;
     const target = this.onFoot && this.walker ? this.toScene(this.walker.pos.x, this.walker.pos.y, this.walker.pos.z) : this.toScene(p.x, p.y, p.z);
     const photoMove = { x: 0, y: 0, z: 0 };
-    if (this.cameraRig.mode === 'photo' && !this.paused) {
+    if (this.cameraRig.mode === 'photo' && !this.paused && !this.ui?.modalOpen) {
       if (input.keyDown('KeyW')) photoMove.z += 1;
       if (input.keyDown('KeyS')) photoMove.z -= 1;
       if (input.keyDown('KeyD')) photoMove.x += 1;

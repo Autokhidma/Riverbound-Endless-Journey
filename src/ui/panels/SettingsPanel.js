@@ -110,6 +110,7 @@ export class SettingsPanel extends Panel {
         this.slider('Gamepad sensitivity', 'controls.gamepadSensitivity', 0.2, 3, 0.05, (v) => v.toFixed(2)),
         this.toggle('Invert vertical look', 'controls.invertY'),
         this.toggle('Camera drifts back behind the boat', 'controls.autoRecenter'),
+        this.toggle('Capture the mouse for free look (click the world; Esc releases)', 'controls.pointerLock', false, 'When off, hold the right mouse button to look around.'),
         h('div.section-title', {}, 'Keyboard'),
         h('div.list', {}, ...rows),
         h('div.row', { style: { marginTop: '10px' } }, h('button.btn', { onclick: () => this.set('controls.bindings', structuredClone(DEFAULT_BINDINGS)) }, 'Reset to defaults')),

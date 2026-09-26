@@ -60,6 +60,8 @@ export class WeatherSystem {
     const dawn = hour > 4.5 && hour < 8.5;
     return this.rng.weighted(cands, (c) => {
       let w = lerp(wa[c] ?? 0, wb[c] ?? 0, bl.t);
+      // Calm, windless nights with mirror water: a night-only variant of clear skies.
+      if (c === 'calmNight') w = game.time.sunElevation < -4 || hour > 18 ? lerp(wa.clear ?? 0, wb.clear ?? 0, bl.t) * 1.1 : 0;
       if (c === 'snow' && cold < 0.55) w = 0;
       if ((c === 'lightRain' || c === 'heavyRain' || c === 'storm') && cold > 0.85) w *= 0.1;
       if ((c === 'mist' || c === 'fog') && dawn) w *= 3;

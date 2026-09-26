@@ -1,14 +1,178 @@
 {
-  "_comment": "Weather archetypes. Parameters are targets the weather system blends towards. 'next' lists coherent follow-up states.",
-  "types": {
-    "clear":     { "label": "Clear",       "cloud": 0.15, "rain": 0,    "snow": 0, "fog": 0,    "mist": 0.1, "wind": 0.2,  "storm": 0,   "haze": 0.1, "lightning": 0,    "next": ["cloudy", "haze", "mist", "clear"] },
-    "cloudy":    { "label": "Cloudy",      "cloud": 0.62, "rain": 0,    "snow": 0, "fog": 0.05, "mist": 0.2, "wind": 0.4,  "storm": 0,   "haze": 0.1, "lightning": 0,    "next": ["clear", "lightRain", "mist", "fog", "snow"] },
-    "lightRain": { "label": "Light Rain",  "cloud": 0.8,  "rain": 0.35, "snow": 0, "fog": 0.12, "mist": 0.35, "wind": 0.35, "storm": 0,  "haze": 0,   "lightning": 0,    "next": ["cloudy", "heavyRain", "mist"] },
-    "heavyRain": { "label": "Heavy Rain",  "cloud": 0.95, "rain": 0.85, "snow": 0, "fog": 0.25, "mist": 0.4, "wind": 0.6,  "storm": 0.3, "haze": 0,   "lightning": 0.01, "next": ["lightRain", "storm", "cloudy"] },
-    "storm":     { "label": "Storm",       "cloud": 1.0,  "rain": 1.0,  "snow": 0, "fog": 0.2,  "mist": 0.3, "wind": 1.0,  "storm": 1.0, "haze": 0,   "lightning": 0.08, "next": ["heavyRain"] },
-    "mist":      { "label": "Mist",        "cloud": 0.3,  "rain": 0,    "snow": 0, "fog": 0.2,  "mist": 1.0, "wind": 0.08, "storm": 0,   "haze": 0,   "lightning": 0,    "next": ["clear", "fog", "cloudy"] },
-    "fog":       { "label": "Fog",         "cloud": 0.5,  "rain": 0,    "snow": 0, "fog": 0.75, "mist": 1.0, "wind": 0.05, "storm": 0,   "haze": 0,   "lightning": 0,    "next": ["mist", "cloudy"] },
-    "haze":      { "label": "Haze",        "cloud": 0.2,  "rain": 0,    "snow": 0, "fog": 0.08, "mist": 0.1, "wind": 0.15, "storm": 0,   "haze": 1.0, "lightning": 0,    "next": ["clear", "cloudy"] },
-    "snow":      { "label": "Snowfall",    "cloud": 0.85, "rain": 0,    "snow": 0.8, "fog": 0.2, "mist": 0.3, "wind": 0.35, "storm": 0,  "haze": 0,   "lightning": 0,    "next": ["cloudy", "clear", "snow"] }
+ "_comment": "Weather archetypes. Parameters are targets the weather system blends towards. 'next' lists coherent follow-up states.",
+ "types": {
+  "clear": {
+   "label": "Clear",
+   "cloud": 0.15,
+   "rain": 0,
+   "snow": 0,
+   "fog": 0,
+   "mist": 0.1,
+   "wind": 0.2,
+   "storm": 0,
+   "haze": 0.1,
+   "lightning": 0,
+   "next": [
+    "cloudy",
+    "haze",
+    "mist",
+    "clear",
+    "calmNight"
+   ]
+  },
+  "cloudy": {
+   "label": "Cloudy",
+   "cloud": 0.62,
+   "rain": 0,
+   "snow": 0,
+   "fog": 0.05,
+   "mist": 0.2,
+   "wind": 0.4,
+   "storm": 0,
+   "haze": 0.1,
+   "lightning": 0,
+   "next": [
+    "clear",
+    "lightRain",
+    "mist",
+    "fog",
+    "snow",
+    "calmNight"
+   ]
+  },
+  "lightRain": {
+   "label": "Light Rain",
+   "cloud": 0.8,
+   "rain": 0.35,
+   "snow": 0,
+   "fog": 0.12,
+   "mist": 0.35,
+   "wind": 0.35,
+   "storm": 0,
+   "haze": 0,
+   "lightning": 0,
+   "next": [
+    "cloudy",
+    "heavyRain",
+    "mist"
+   ]
+  },
+  "heavyRain": {
+   "label": "Heavy Rain",
+   "cloud": 0.95,
+   "rain": 0.85,
+   "snow": 0,
+   "fog": 0.25,
+   "mist": 0.4,
+   "wind": 0.6,
+   "storm": 0.3,
+   "haze": 0,
+   "lightning": 0.01,
+   "next": [
+    "lightRain",
+    "storm",
+    "cloudy"
+   ]
+  },
+  "storm": {
+   "label": "Storm",
+   "cloud": 1.0,
+   "rain": 1.0,
+   "snow": 0,
+   "fog": 0.2,
+   "mist": 0.3,
+   "wind": 1.0,
+   "storm": 1.0,
+   "haze": 0,
+   "lightning": 0.08,
+   "next": [
+    "heavyRain"
+   ]
+  },
+  "mist": {
+   "label": "Mist",
+   "cloud": 0.3,
+   "rain": 0,
+   "snow": 0,
+   "fog": 0.2,
+   "mist": 1.0,
+   "wind": 0.08,
+   "storm": 0,
+   "haze": 0,
+   "lightning": 0,
+   "next": [
+    "clear",
+    "fog",
+    "cloudy",
+    "calmNight"
+   ]
+  },
+  "fog": {
+   "label": "Fog",
+   "cloud": 0.5,
+   "rain": 0,
+   "snow": 0,
+   "fog": 0.75,
+   "mist": 1.0,
+   "wind": 0.05,
+   "storm": 0,
+   "haze": 0,
+   "lightning": 0,
+   "next": [
+    "mist",
+    "cloudy"
+   ]
+  },
+  "haze": {
+   "label": "Haze",
+   "cloud": 0.2,
+   "rain": 0,
+   "snow": 0,
+   "fog": 0.08,
+   "mist": 0.1,
+   "wind": 0.15,
+   "storm": 0,
+   "haze": 1.0,
+   "lightning": 0,
+   "next": [
+    "clear",
+    "cloudy",
+    "calmNight"
+   ]
+  },
+  "snow": {
+   "label": "Snowfall",
+   "cloud": 0.85,
+   "rain": 0,
+   "snow": 0.8,
+   "fog": 0.2,
+   "mist": 0.3,
+   "wind": 0.35,
+   "storm": 0,
+   "haze": 0,
+   "lightning": 0,
+   "next": [
+    "cloudy",
+    "clear",
+    "snow"
+   ]
+  },
+  "calmNight": {
+   "label": "Calm Night",
+   "cloud": 0.04,
+   "rain": 0,
+   "snow": 0,
+   "fog": 0,
+   "mist": 0.3,
+   "wind": 0.03,
+   "storm": 0,
+   "haze": 0,
+   "lightning": 0,
+   "next": [
+    "clear",
+    "mist",
+    "calmNight"
+   ]
   }
+ }
 }

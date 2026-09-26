@@ -57,6 +57,7 @@ export const DEFAULT_SETTINGS = {
     gamepadSensitivity: 1.0,
     invertY: false,
     autoRecenter: true,
+    pointerLock: true,
   },
   accessibility: {
     subtitles: true,

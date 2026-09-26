@@ -204,7 +204,7 @@ void main() {
   vec3 spec = uSunColor * (pow(nh, 2400.0) * 45.0 + pow(nh, 380.0) * 0.9) * sunUp * (1.0 - uCloudCover * 0.8);
   vec3 Hm = normalize(uMoonDir + V);
   float nhm = max(dot(N, Hm), 0.0);
-  spec += uMoonColor * (pow(nhm, 900.0) * 40.0 + pow(nhm, 90.0) * 1.8) * smoothstep(-0.02, 0.1, uMoonDir.y) * (1.0 - uCloudCover * 0.8);
+  spec += uMoonColor * (pow(nhm, 900.0) * 24.0 + pow(nhm, 120.0) * 0.4) * smoothstep(-0.02, 0.1, uMoonDir.y) * (1.0 - uCloudCover * 0.92);
   vec3 Ll = uLanternPos - vWorld;
   float dl = length(Ll);
   Ll /= max(dl, 1e-3);

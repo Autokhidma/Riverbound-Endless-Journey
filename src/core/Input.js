@@ -20,6 +20,8 @@ export class Input {
     this.enabled = true; // gameplay input
     this.captureNext = null;
     this.usingGamepad = false;
+    this.autoLock = false; // set by the UI while playing with no menus open
+    this.leftDragLook = false; // photo mode: drag with either button to look
     this.listeners = [];
     const on = (el, ev, fn, opt) => { el.addEventListener(ev, fn, opt); this.listeners.push([el, ev, fn, opt]); };
     on(window, 'keydown', (e) => {
@@ -33,6 +35,8 @@ export class Input {
     on(window, 'keyup', (e) => this.keys.delete(e.code));
     on(window, 'blur', () => { this.keys.clear(); this.mouse.buttons = 0; });
     on(target, 'mousedown', (e) => {
+      // First click in play captures the mouse for free look instead of acting.
+      if (this.autoLock && !this.mouse.locked && e.button === 0 && this.settings.get('controls.pointerLock') !== false) { this.requestPointerLock(); return; }
       this.mouse.buttons |= 1 << e.button;
       if (e.button === 0) this.mouse.clicked = true;
       if (e.button === 2) this.mouse.rightDown = true;
@@ -44,7 +48,7 @@ export class Input {
     });
     on(target, 'contextmenu', (e) => e.preventDefault());
     on(window, 'mousemove', (e) => {
-      if (this.mouse.locked || this.mouse.rightDown) {
+      if (this.mouse.locked || this.mouse.rightDown || (this.leftDragLook && (this.mouse.buttons & 1))) {
         this.mouse.dx += e.movementX || 0;
         this.mouse.dy += e.movementY || 0;
       }

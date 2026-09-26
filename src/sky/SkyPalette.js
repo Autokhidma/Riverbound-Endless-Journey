@@ -110,16 +110,20 @@ export function evaluatePalette({ sunElevation, isMorning, atmosphere, weather }
   const overcast = saturate(cloud * 0.85 + (w.rain ?? 0) * 0.5 + storm * 0.6);
   if (overcast > 0) {
     const greyDay = [0.34, 0.37, 0.41];
-    const greyNight = [0.012, 0.014, 0.02];
-    const grey = [lerp(greyNight[0], greyDay[0], smoothstep(-8, 20, el)), lerp(greyNight[1], greyDay[1], smoothstep(-8, 20, el)), lerp(greyNight[2], greyDay[2], smoothstep(-8, 20, el))];
-    const stormGrey = [grey[0] * 0.55, grey[1] * 0.6, grey[2] * 0.72];
+    // Overcast nights keep a faint blue-grey cloud glow so the world stays readable.
+    const greyNight = [0.034, 0.041, 0.058];
+    const day = smoothstep(-8, 20, el);
+    const grey = [lerp(greyNight[0], greyDay[0], day), lerp(greyNight[1], greyDay[1], day), lerp(greyNight[2], greyDay[2], day)];
+    const dim = lerp(0.9, 0.58, day);
+    const stormGrey = [grey[0] * dim, grey[1] * (dim + 0.03), grey[2] * (dim + 0.1)];
     const g = storm > 0 ? [lerp(grey[0], stormGrey[0], storm), lerp(grey[1], stormGrey[1], storm), lerp(grey[2], stormGrey[2], storm)] : grey;
     for (const k of ['zenith', 'horizon', 'sunward', 'anti', 'fog']) mixInto(out[k], g, overcast * 0.8);
     mixInto(out.glow, g, overcast * 0.6);
     mixInto(out.cloudLit, [g[0] * 1.8, g[1] * 1.8, g[2] * 1.8], overcast * 0.7);
     mixInto(out.cloudShade, [g[0] * 0.8, g[1] * 0.8, g[2] * 0.85], overcast * 0.7);
     out.sunI *= 1 - overcast * 0.78;
-    out.ambI *= 1 - overcast * 0.2;
+    out.ambI *= 1 - overcast * 0.2 * day;
+    if (day < 1) mixInto(out.ambSky, [0.16, 0.2, 0.3], overcast * 0.5 * (1 - day));
     out.stars *= 1 - overcast;
   }
   out.stars *= 1 - saturate(w.fog ?? 0) * 0.7;
