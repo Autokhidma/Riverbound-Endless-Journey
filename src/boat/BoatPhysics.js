@@ -155,7 +155,7 @@ export class BoatPhysics {
 
     this.vx += (Fx / this.mass) * dt;
     this.vz += (Fz / this.mass) * dt;
-    if (this.anchored) { this.vx *= 0.97; this.vz *= 0.97; }
+    if (this.anchored) { this.vx *= 0.9; this.vz *= 0.9; this.yawRate = (this.yawRate ?? 0) * 0.9; }
     this.x += this.vx * dt;
     this.z += this.vz * dt;
 

@@ -122,6 +122,19 @@ export class Game {
     this.pipeline.updateEnvironment(this.sky.envScene, true);
   }
 
+  /** Re-resolve the quality config from the graphics settings and apply it. */
+  applyGraphics() {
+    this.setQuality(resolveQuality(this.settings.get('graphics')));
+  }
+
+  setFullscreen(on) {
+    if (window.riverboundNative?.setFullscreen) { window.riverboundNative.setFullscreen(on); return; }
+    try {
+      if (on && !document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else if (!on && document.fullscreenElement) document.exitFullscreen?.();
+    } catch (e) { /* not allowed without a user gesture */ }
+  }
+
   // ---------------------------------------------------------------- origin
   setOrigin(x, z) {
     const ox = Math.round(x / ORIGIN_STEP) * ORIGIN_STEP;
@@ -334,8 +347,8 @@ export class Game {
     const fogBase = lerp(A.fog, B.fog, t);
     const mist = lerp(A.mist, B.mist, t);
     const morning = this.time.isMorning ? smoothstep(-8, 2, this.time.sunElevation) * (1 - smoothstep(10, 25, this.time.sunElevation)) : 0;
-    G.uFogDensity.value = fogBase * (0.55 + w.fog * 5 + w.rain * 1.5 + w.storm * 2 + (w.haze ?? 0) * 1.5) * (this.fogScale ?? 1);
-    G.uFogHeightDensity.value = (0.0015 + mist * 0.004 * (0.35 + morning * 1.6 + w.mist * 2 + w.fog * 2.5)) * (this.fogScale ?? 1);
+    G.uFogDensity.value = fogBase * (0.55 + w.fog * 9 + w.rain * 1.8 + w.storm * 2 + (w.haze ?? 0) * 1.6) * (this.fogScale ?? 1);
+    G.uFogHeightDensity.value = (0.0012 + mist * 0.0035 * (0.3 + morning * 1.6 + w.mist * 1.5) + w.fog * 0.02 + w.mist * 0.003) * (this.fogScale ?? 1);
     G.uFogHeightFalloff.value = 0.06;
     G.uFogBaseHeight.value = this.boat.physics.waterLevel;
     G.uRain.value = w.rain;
@@ -363,7 +376,7 @@ export class Game {
     const post = this.pipeline.post;
     const pp = post.params;
     if (!this.photoGrade) {
-      pp.exposure = lerp(1.0, 1.55, night) * (1 + (w.cloud > 0.6 ? 0.15 : 0));
+      pp.exposure = lerp(1.0, 1.65, night) * (1 + (w.cloud > 0.6 ? 0.15 : 0));
       pp.saturation = lerp(1.08, 0.72, night) * (1 - w.storm * 0.2);
       pp.contrast = 1.05;
       pp.temperature = lerp(0, -0.25, night) + (pal.sunward[0] > pal.sunward[2] * 1.5 && this.time.sunElevation < 12 ? 0.08 : 0);

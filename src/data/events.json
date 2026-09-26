@@ -1,0 +1,19 @@
+{
+  "_comment": "Procedural events. biomes: 'any' or list. time: any|day|night|dusk|dawn. where: water|bank|fishing|sky|settlement. chance: relative weight when eligible. cooldown in seconds.",
+  "events": [
+    { "id": "stranded", "name": "Stranded Traveller", "biomes": ["any"], "time": "day", "where": "bank", "chance": 1.0, "cooldown": 600, "desc": "Someone is waving from the bank. Their canoe has a hole in it.", "reward": { "coins": 35, "items": { "honey_cake": 1 } } },
+    { "id": "lostBoat", "name": "Drifting Boat", "biomes": ["any"], "time": "any", "where": "water", "chance": 0.8, "cooldown": 700, "desc": "An empty little boat drifts past, rope trailing. Someone upstream will be missing it.", "reward": { "coins": 50 } },
+    { "id": "fishRun", "name": "Fish Run", "biomes": ["any"], "time": "any", "where": "fishing", "chance": 1.0, "cooldown": 500, "desc": "The water boils with rising fish. For a while, every cast here is lucky.", "effect": { "biteSpeed": 3, "rareBonus": 2 } },
+    { "id": "goldenRun", "name": "Golden Hour Run", "biomes": ["any"], "time": "dusk", "where": "fishing", "chance": 0.4, "cooldown": 1800, "desc": "The river turns to fire, and something gold is rising with it.", "effect": { "biteSpeed": 2, "legendary": "sunscale" } },
+    { "id": "merchant", "name": "Travelling Merchant", "biomes": ["any"], "time": "day", "where": "water", "chance": 0.7, "cooldown": 900, "desc": "A merchant's raft, stacked with curiosities, drifts alongside. Rare goods at fair prices." },
+    { "id": "wisp", "name": "Mysterious Light", "biomes": ["swamp", "jungle", "starwater", "northern", "misty"], "time": "night", "where": "bank", "chance": 0.6, "cooldown": 900, "desc": "A small light bobs among the trees, just out of reach. When you come close, it leaves something behind.", "reward": { "items": { "old_coin": 1, "glowcap": 2 } } },
+    { "id": "meteorShower", "name": "Meteor Shower", "biomes": ["any"], "time": "night", "where": "sky", "chance": 0.35, "cooldown": 2400, "desc": "Shooting stars streak across the sky, dozens of them." },
+    { "id": "aurora", "name": "Aurora", "biomes": ["northern", "snow", "crystal", "misty"], "time": "night", "where": "sky", "chance": 0.8, "cooldown": 1800, "desc": "Green and violet curtains ripple across the northern sky." },
+    { "id": "glowBloom", "name": "Glowing Water", "biomes": ["coast", "swamp", "jungle", "starwater", "crystal"], "time": "night", "where": "water", "chance": 0.6, "cooldown": 1500, "desc": "The water lights up blue wherever your oars touch it." },
+    { "id": "festival", "name": "Lantern Festival", "biomes": ["any"], "time": "dusk", "where": "settlement", "chance": 0.6, "cooldown": 2400, "desc": "The village is floating lanterns on the river tonight. Everyone is invited." },
+    { "id": "race", "name": "Boat Race", "biomes": ["any"], "time": "day", "where": "settlement", "chance": 0.5, "cooldown": 1800, "desc": "A local rower challenges you to a race to the next bend.", "reward": { "coins": 60 } },
+    { "id": "migration", "name": "Heron Migration", "biomes": ["swamp", "coast", "spring", "autumn", "monsoon"], "time": "dawn", "where": "sky", "chance": 0.5, "cooldown": 2400, "desc": "Great flocks pass overhead, calling to each other." },
+    { "id": "bottle", "name": "Message in a Bottle", "biomes": ["any"], "time": "any", "where": "water", "chance": 0.7, "cooldown": 500, "desc": "Something glints in the water: a bottle with a note inside." },
+    { "id": "campfire", "name": "Abandoned Campsite", "biomes": ["any"], "time": "any", "where": "bank", "chance": 0.5, "cooldown": 900, "desc": "A cold fire ring, a forgotten pack. Whoever was here left in a hurry, or didn't need these things anymore.", "reward": { "items": { "river_tea": 2, "bait_worms": 5 } } }
+  ]
+}

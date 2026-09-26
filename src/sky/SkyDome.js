@@ -74,7 +74,7 @@ vec3 starLayer(vec3 c, float cells, float density, float seed) {
   float d = length(g - center);
   float px = max(fwidth(g.x), fwidth(g.y));
   float sigma = max(px * 0.55, 0.02);
-  float b = pow(fract(h.z * 91.7), 9.0) * 4.0 + 0.03;
+  float b = pow(fract(h.z * 91.7), 9.0) * 2.2 + 0.03;
   float star = exp(-d * d / (2.0 * sigma * sigma)) * b * (0.035 / sigma);
   float temp = fract(h.x * 17.3 + h.y * 3.1);
   vec3 col = mix(vec3(0.65, 0.78, 1.0), vec3(1.0, 0.85, 0.65), temp);
@@ -199,6 +199,9 @@ void main() {
   col += sunCol;
 #endif
 
+  // Fog and mist wash out the sky towards the horizon.
+  float fogK = 1.0 - exp(-(uFogDensity * 2500.0 + uFogHeightDensity * 120.0) * pow(1.0 - max(dir.y, 0.0), 3.0));
+  col = mix(col, uFogColor, clamp(fogK, 0.0, 0.97));
   gl_FragColor = vec4(col, 1.0);
 }
 `;

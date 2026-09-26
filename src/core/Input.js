@@ -23,7 +23,7 @@ export class Input {
     this.listeners = [];
     const on = (el, ev, fn, opt) => { el.addEventListener(ev, fn, opt); this.listeners.push([el, ev, fn, opt]); };
     on(window, 'keydown', (e) => {
-      if (this.captureNext) { e.preventDefault(); const cb = this.captureNext; this.captureNext = null; cb(e.code); return; }
+      if (this.captureNext) { e.preventDefault(); e.stopImmediatePropagation(); const cb = this.captureNext; this.captureNext = null; cb(e.code); return; }
       if (e.target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
       if (['Tab', 'F12', 'F3', 'Backquote', 'Space', 'ArrowUp', 'ArrowDown'].includes(e.code)) e.preventDefault();
       if (!this.keys.has(e.code)) this.pressedKeys.add(e.code);

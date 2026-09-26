@@ -1,0 +1,79 @@
+{
+  "_comment": "Boat upgrade tracks. Tier 0 is the starting state. cost: coins + materials. requires: story step id or discovered biome. Kept gentle: no grind.",
+  "tracks": {
+    "propulsion": {
+      "label": "Propulsion",
+      "tiers": [
+        { "id": "oars", "name": "Old Oars", "desc": "Your grandmother's oars. They know the way." },
+        { "id": "sculling", "name": "Sculling Oars", "desc": "Longer, lighter blades. A little faster and easier to turn.", "cost": { "coins": 90, "driftwood": 3 } },
+        { "id": "sail", "name": "Little Sail", "desc": "A patched canvas sail. The wind helps you along.", "cost": { "coins": 220, "reeds_bundle": 4, "pine_resin": 2 } },
+        { "id": "paddlewheel", "name": "Clockwork Paddle", "desc": "A wind-up paddle wheel from a canyon tinkerer. Steady cruising without rowing.", "cost": { "coins": 520, "slate_flake": 4, "amber_resin": 2 } }
+      ]
+    },
+    "storage": {
+      "label": "Storage",
+      "tiers": [
+        { "id": "basket", "name": "Wicker Basket", "slots": 12, "desc": "Room for the essentials." },
+        { "id": "crate", "name": "Stout Crate", "slots": 18, "desc": "A proper crate lashed under the stern seat.", "cost": { "coins": 60, "driftwood": 4 } },
+        { "id": "crates", "name": "Twin Crates", "slots": 26, "desc": "Two crates, neatly stacked.", "cost": { "coins": 150, "driftwood": 6, "reeds_bundle": 3 } },
+        { "id": "hold", "name": "Traveller's Hold", "slots": 36, "desc": "Three crates and clever netting. Carry anything.", "cost": { "coins": 320, "driftwood": 8, "pine_resin": 3 } }
+      ]
+    },
+    "lantern": {
+      "label": "Lantern",
+      "tiers": [
+        { "id": "oil", "name": "Oil Lantern", "desc": "A small warm light for dark evenings." },
+        { "id": "brass", "name": "Brass Lantern", "desc": "Brighter and further-reaching.", "cost": { "coins": 110, "amber_resin": 1 } },
+        { "id": "lamplighter", "name": "Lamplighter's Lantern", "desc": "Cool starlight. Reveals the old glowmarks and parts the hidden veil.", "requires": "ch2", "cost": { "coins": 0 } }
+      ]
+    },
+    "hull": {
+      "label": "Hull",
+      "tiers": [
+        { "id": "planks", "name": "Worn Planks", "desc": "Sound enough, if a little creaky." },
+        { "id": "reinforced", "name": "Reinforced Hull", "desc": "Steadier in rapids and storms; bumps hardly slow you.", "cost": { "coins": 140, "driftwood": 5, "pine_resin": 2 } },
+        { "id": "riverwright", "name": "Riverwright Hull", "desc": "Master-built. Glides through rough water.", "cost": { "coins": 380, "driftwood": 6, "amber_resin": 3, "slate_flake": 3 } }
+      ]
+    },
+    "fishing": {
+      "label": "Fishing Rod",
+      "tiers": [
+        { "id": "willow", "name": "Willow Rod", "desc": "Simple and dependable." },
+        { "id": "cane", "name": "Split-Cane Rod", "desc": "Fish bite sooner.", "cost": { "coins": 70, "reeds_bundle": 3 } },
+        { "id": "lacquer", "name": "Lacquered Rod", "desc": "Rare fish are more tempted, and the line is gentler to hold.", "cost": { "coins": 200, "amber_resin": 2, "bamboo_shoot": 2 } },
+        { "id": "star", "name": "Star Rod", "desc": "Legends seem to notice it.", "requires": "ch5", "cost": { "coins": 450, "star_shard": 1 } }
+      ]
+    },
+    "navigation": {
+      "label": "Navigation",
+      "tiers": [
+        { "id": "compass", "name": "Pocket Compass", "desc": "North is where it always was." },
+        { "id": "chart", "name": "River Chart", "desc": "Your map hints at landmarks you haven't found yet.", "cost": { "coins": 120, "blue_lichen": 1 } },
+        { "id": "starcompass", "name": "Star Compass", "desc": "A needle that points to the nearest undiscovered wonder.", "cost": { "coins": 340, "clear_quartz": 2 } }
+      ]
+    },
+    "comfort": {
+      "label": "Comfort",
+      "tiers": [
+        { "id": "cushion", "name": "Flat Cushion", "desc": "Better than a bare plank." },
+        { "id": "awning", "name": "Canvas Awning", "desc": "Keeps the rain off your head.", "cost": { "coins": 80, "reeds_bundle": 4 } },
+        { "id": "kettle", "name": "Awning & Kettle", "desc": "Brew tea on board and rest until the next time of day.", "cost": { "coins": 160, "river_clay": 3, "wild_mint": 2 } }
+      ]
+    },
+    "exploration": {
+      "label": "Exploration",
+      "tiers": [
+        { "id": "none", "name": "Keen Eyes", "desc": "You notice more than most." },
+        { "id": "spyglass", "name": "Spyglass", "desc": "Zoom in (hold right mouse / LT in exploration camera) and identify distant landmarks.", "cost": { "coins": 100, "sea_glass": 1 } },
+        { "id": "camera", "name": "Field Camera", "desc": "Unlocks photo filters and a wider focus range.", "cost": { "coins": 180, "clear_quartz": 1 } }
+      ]
+    },
+    "figurehead": {
+      "label": "Figurehead",
+      "tiers": [
+        { "id": "none", "name": "Bare Bow", "desc": "Nothing but a stem post." },
+        { "id": "heron", "name": "Carved Heron", "desc": "A proud little heron watches the way ahead.", "cost": { "coins": 150, "driftwood": 4 } }
+      ]
+    }
+  }
+}

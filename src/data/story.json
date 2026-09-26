@@ -1,0 +1,127 @@
+{
+  "_comment": "Main story. Steps reference world anchors (storyPlan.json keys). Step types: talk (npc role at settlement key), reach (feature key, radius), light (lamp feature key at night), catch (any|species), sell, discover (feature key), read (letter id), photo (subject), upgrade (track), leave (distance from home).",
+  "title": "Riverbound",
+  "chapters": [
+    {
+      "id": "prologue", "number": "Prologue", "title": "The Wren",
+      "intro": "Grandmother Oona's boat has waited at Willowmere for a long time. This morning, it waits for you.",
+      "steps": [
+        { "id": "p1", "type": "talk", "settlement": "home", "role": "elder", "objective": "Speak with Tamsin at the Willowmere dock", "reward": { "items": { "lamplighter_medallion": 1, "bait_worms": 5 } }, "letter": "letter1" },
+        { "id": "p2", "type": "reach", "feature": "homeFalls", "radius": 70, "objective": "Row to the Headwater Falls at the head of the lake", "hint": "Hold W to row, A and D to turn. Press C to change camera." },
+        { "id": "p3", "type": "leave", "distance": 700, "objective": "Set off downstream", "hint": "Press R to cruise: the Wren will follow the river while you enjoy the view." }
+      ]
+    },
+    {
+      "id": "ch1", "number": "Chapter One", "title": "The First Current",
+      "intro": "The river is wider than it looked from the dock. Somewhere ahead, Oona's first lamp is waiting.",
+      "steps": [
+        { "id": "c1a", "type": "reach", "feature": "firstTown", "radius": 60, "objective": "Follow the river to the next village" },
+        { "id": "c1b", "type": "talk", "settlement": "firstTown", "role": "fisher", "objective": "Ask the fisher on the dock about the river", "reward": { "items": { "bait_worms": 8 }, "flags": ["canFish"] } },
+        { "id": "c1c", "type": "catch", "species": "any", "objective": "Catch a fish", "hint": "Press F to ready your rod, hold and release the left mouse button to cast." },
+        { "id": "c1d", "type": "sell", "objective": "Sell something at the trader's stall", "hint": "Traders buy fish and anything you gather along the banks." },
+        { "id": "c1e", "type": "reach", "feature": "lamp1", "radius": 40, "objective": "Find the Reedlight Stone downstream" },
+        { "id": "c1f", "type": "light", "feature": "lamp1", "objective": "Light the Reedlight Stone after dark", "hint": "Lamps only take a flame at night. Rest with tea, or simply wait for dusk.", "letter": "letter2" }
+      ]
+    },
+    {
+      "id": "ch2", "number": "Chapter Two", "title": "Into the Wilderness",
+      "intro": "The banks grow wild and green. The air smells of rain that hasn't fallen yet.",
+      "steps": [
+        { "id": "c2a", "type": "reach", "feature": "wildTown", "radius": 60, "objective": "Find the village in the wild country" },
+        { "id": "c2b", "type": "talk", "settlement": "wildTown", "role": "elder", "objective": "Speak with the village elder" },
+        { "id": "c2c", "type": "reach", "feature": "lamp2", "radius": 40, "objective": "Find the Falling Lamp beside the waterfall" },
+        { "id": "c2d", "type": "light", "feature": "lamp2", "objective": "Light the Falling Lamp", "reward": { "upgrade": { "lantern": 2 } }, "letter": "letter3" }
+      ]
+    },
+    {
+      "id": "ch3", "number": "Chapter Three", "title": "The Old Settlements",
+      "intro": "People lived along this stretch once, a great many of them. The river remembers even if the maps don't.",
+      "steps": [
+        { "id": "c3a", "type": "discover", "feature": "oldSettlement", "objective": "Find the abandoned settlement" },
+        { "id": "c3b", "type": "read", "letter": "hollowmere", "feature": "oldSettlement", "objective": "Search the ruins for a record of what happened", "hint": "Look for a sparkle among the old stones." },
+        { "id": "c3c", "type": "talk", "settlement": "archiveTown", "role": "elder", "objective": "Take the record to the archivist" },
+        { "id": "c3d", "type": "light", "feature": "lamp3", "objective": "Light the Drowned Lamp", "letter": "letter4" }
+      ]
+    },
+    {
+      "id": "ch4", "number": "Chapter Four", "title": "Beyond the Mountains",
+      "intro": "The mountains close in until the sky is a ribbon above you. The water runs cold and clear.",
+      "steps": [
+        { "id": "c4a", "type": "reach", "feature": "highTown", "radius": 60, "objective": "Reach the highland village" },
+        { "id": "c4b", "type": "talk", "settlement": "highTown", "role": "elder", "objective": "Speak with the mountain guide" },
+        { "id": "c4c", "type": "photo", "subject": "landscape", "objective": "Take a photograph of the high country for the guide", "hint": "Press P for photo mode, then Space to take a picture." },
+        { "id": "c4d", "type": "light", "feature": "lamp4", "objective": "Light the Mountain Lamp", "letter": "letter5" }
+      ]
+    },
+    {
+      "id": "ch5", "number": "Chapter Five", "title": "The Hidden River",
+      "intro": "Four lamps burn behind you. The Lamplighter's lantern hums with a quiet, patient light.",
+      "steps": [
+        { "id": "c5a", "type": "reach", "feature": "hiddenRiver", "radius": 60, "objective": "Find the veil of vines at the mouth of the Hidden River" },
+        { "id": "c5b", "type": "veil", "feature": "hiddenRiver", "objective": "Part the veil with the Lamplighter's lantern after dark", "hint": "Light your lantern (L) and approach the veil at night." },
+        { "id": "c5c", "type": "reach", "feature": "grandmaCamp", "radius": 50, "objective": "Follow the Hidden River upstream" },
+        { "id": "c5d", "type": "read", "letter": "letter6", "feature": "grandmaCamp", "objective": "Read the notebook at the old camp" },
+        { "id": "c5e", "type": "light", "feature": "lamp5", "objective": "Light the Star Lamp by the Starwater" }
+      ]
+    },
+    {
+      "id": "ch6", "number": "Chapter Six", "title": "The Journey",
+      "intro": "Salt on the wind. Gulls. The river spreads its arms and the sea listens.",
+      "steps": [
+        { "id": "c6a", "type": "reach", "feature": "coastTown", "radius": 60, "objective": "Reach the coast" },
+        { "id": "c6b", "type": "talk", "settlement": "coastTown", "role": "elder", "objective": "Ask about the old lighthouse" },
+        { "id": "c6c", "type": "reach", "feature": "lighthouse", "radius": 60, "objective": "Find the Last Lamp" },
+        { "id": "c6d", "type": "light", "feature": "lighthouse", "objective": "Light the Last Lamp", "letter": "letter7" }
+      ]
+    },
+    {
+      "id": "epilogue", "number": "Epilogue", "title": "The River Goes On",
+      "intro": "The lamps are lit. The river keeps going, the way rivers do.",
+      "steps": [
+        { "id": "e1", "type": "leave", "distance": 300, "objective": "Keep going", "hint": "The story is complete, but the river is endless. Explore, fish, trade and wander as long as you like." }
+      ]
+    }
+  ],
+  "npcs": {
+    "home.elder": { "name": "Tamsin", "lines": [
+      "There you are. I've kept the Wren dry and her oars oiled, just like your grandmother asked.",
+      "Oona left this for you. Her medallion, and a letter. She said you'd know when to read it.",
+      "The river starts right here, at the falls. Take her round the lake first, get a feel for her. Then go where the water goes."
+    ], "idle": ["Mind the reeds by the outlet. Oona always said the Wren likes deep water and good company.", "Every lamp you light, I'll hear about it. News travels upstream, slowly."] },
+    "firstTown.fisher": { "name": "Pell", "lines": [
+      "An Oona boat! I'd know that stripe anywhere. She taught my mother to cast, you know.",
+      "Here, take some worms. Ready your rod with F, hold the button to swing it back, let go to cast.",
+      "When the float dips, strike. Then keep the fish in the green. Gentle, like you're holding a bird."
+    ], "idle": ["Fish rise at dawn and dusk. The rare ones keep their own hours.", "See a fish jump? That's the river pointing."] },
+    "wildTown.elder": { "name": "Amaru", "lines": [
+      "You carry her medallion. Then you are looking for the lamps, like she was.",
+      "The second lamp is where the water falls. She sat by it for three days, waiting for the right dark.",
+      "Light it, and your lantern will change. It will see what the Lamplighters left for each other."
+    ], "idle": ["The forest is loud by day and louder by night. Listen and you'll never be alone.", "Rain is only the river visiting from above."] },
+    "archiveTown.elder": { "name": "Archivist Wenna", "lines": [
+      "Hollowmere's last record! We thought it was lost with the flood.",
+      "So they didn't vanish. They moved on, downstream, and kept the lamps burning as they went. The river wasn't their home. The journey was.",
+      "The third lamp stands in the water now. Light it, and write their names in your journal. Someone should."
+    ], "idle": ["Every settlement keeps a book. Most of them only remember the good parts.", "Your grandmother read here for a whole winter."] },
+    "highTown.elder": { "name": "Guide Brannoch", "lines": [
+      "Lowlanders always look up the first day. Their necks are sore by the second.",
+      "Oona came through years ago. She asked me to keep this: 'The veil opens for one who carries four lights.' Make of that what you will.",
+      "Bring me a picture of these mountains, would you? I've never seen them the way a stranger does."
+    ], "idle": ["Snow on the peaks means cold nights and clear skies. Best stars you'll ever see.", "The mountain lamp is up where the path gets honest."] },
+    "coastTown.elder": { "name": "Keeper Isla", "lines": [
+      "The Last Lamp hasn't burned in my lifetime, nor my mother's.",
+      "An old woman came asking about it, oh, years back. Wore a medallion like yours. She sat on the steps all night and then... kept rowing. Along the coast, and beyond.",
+      "If you mean to light it, wait for dark. The tower is just along the shore."
+    ], "idle": ["The sea's just a river that forgot where it was going.", "Gulls know every boat on this coast. They'll know yours soon."] }
+  },
+  "letters": {
+    "letter1": { "title": "A letter from Oona", "text": "My dear,\n\nIf Tamsin has given you this, then the Wren is yours, and I am somewhere far downstream, probably with wet socks.\n\nWhen I was young I found an old book about the Lamplighters, the people who built stone lamps all along the river so that no traveller would ever be alone in the dark. They're long gone, but their lamps aren't. I've been lighting them, one by one.\n\nI never reached the last one. Maybe you will. Maybe you'll find something better.\n\nTake the lake slowly. Watch the falls. Then let the river decide.\n\nWith love,\nOona" },
+    "letter2": { "title": "Tucked beneath the Reedlight Stone", "text": "The first lamp! Did it sing a little when it caught? Mine did.\n\nLook at the medallion now. One star is warm.\n\nThe Lamplighters didn't just light the way; they kept each other company, lamp to lamp, all down the river. When I lit this one, I swear I saw another answer, very faint, far away.\n\nFollow the green country. The next lamp is where the water falls.\n\nO." },
+    "letter3": { "title": "Carved into the stone by the Falling Lamp", "text": "Two lamps. Your lantern will be seeing differently now: cooler, clearer. The Lamplighters marked their paths with signs only that light can find.\n\nI am told there were people here once, whole towns of them, and then there weren't. I'm going to find out why.\n\nO." },
+    "hollowmere": { "title": "The last record of Hollowmere", "text": "Autumn, the forty-first year of the lamps.\n\nThe water rises again. The council has decided: we will not rebuild. We will take the boats and the lamp-oil and go downstream, as our grandparents came downstream before us.\n\nWe leave the lamp burning. Whoever comes after, it is for you.\n\nThe river was never our home. The journey was." },
+    "letter4": { "title": "A letter in Oona's hand, left at the archive", "text": "They didn't disappear. They simply kept going. I find I like that more than any ending.\n\nI'm heading into the mountains next. A guide there says the fifth lamp can't be reached by any road on any map. I told him I don't use roads.\n\nO." },
+    "letter5": { "title": "Tied to the Mountain Lamp with red thread", "text": "Four lights, my love. Four.\n\nThere is a river that doesn't show itself to strangers. It flows into the big one somewhere beyond these peaks, behind a curtain of vines. I've seen it twice now: only at night, and only when the lantern was bright with Lamplighter light.\n\nI'm going up it. If I don't come back down, don't worry. Some rivers are worth staying on.\n\nO." },
+    "letter6": { "title": "Oona's notebook, wrapped in oilcloth", "text": "Day one hundred and something. I have stopped counting, which is a very good sign.\n\nThe Starwater. I can't draw it; I've tried eleven times. The lake glows from underneath, and on clear nights you cannot tell where the water stops and the sky begins.\n\nThe Lamplighters' last lamp isn't here. It's at the sea, where every river ends and doesn't. I'll go there next, or perhaps I'll stay a while longer. The fish here are extraordinary.\n\nIf you're reading this, you came further than anyone. I am so proud of you. Light the lamp here, then go and see the sea.\n\nO." },
+    "letter7": { "title": "Oona's final letter, left at the Last Lamp", "text": "My dear,\n\nIf the Last Lamp is burning, then you did what I couldn't, or perhaps what I didn't want to, because finishing things has never been my talent.\n\nHere's the secret the Lamplighters knew: the lamps were never meant to lead anywhere. They were meant to keep someone company while they travelled.\n\nI've gone on along the coast. There's always another bend, another river mouth, another village with somebody's grandmother on the dock.\n\nThe river doesn't end. It only keeps being found.\n\nKeep going, if you like. I'll see your light.\n\nAll my love,\nOona" }
+  }
+}

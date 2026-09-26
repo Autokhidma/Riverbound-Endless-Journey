@@ -18,20 +18,21 @@ function rt(w, h, type = THREE.HalfFloatType, opts = {}) {
 const DOWN_FRAG = /* glsl */ `
 uniform sampler2D tInput; uniform vec2 uTexel; uniform float uThreshold; uniform bool uPrefilter;
 varying vec2 vUv;
+vec3 s(vec2 o) { return texture2D(tInput, vUv + o * uTexel).rgb; }
 void main() {
-  vec3 c = texture2D(tInput, vUv).rgb * 4.0;
-  c += texture2D(tInput, vUv + vec2(-1.0, -1.0) * uTexel).rgb;
-  c += texture2D(tInput, vUv + vec2( 1.0, -1.0) * uTexel).rgb;
-  c += texture2D(tInput, vUv + vec2(-1.0,  1.0) * uTexel).rgb;
-  c += texture2D(tInput, vUv + vec2( 1.0,  1.0) * uTexel).rgb;
-  c /= 8.0;
+  // 13-tap downsample (smooth, no diagonal cross artefacts on point lights)
+  vec3 a = s(vec2(-2.0, 2.0)), b = s(vec2(0.0, 2.0)), c = s(vec2(2.0, 2.0));
+  vec3 d = s(vec2(-2.0, 0.0)), e = s(vec2(0.0, 0.0)), f = s(vec2(2.0, 0.0));
+  vec3 g = s(vec2(-2.0, -2.0)), h = s(vec2(0.0, -2.0)), i = s(vec2(2.0, -2.0));
+  vec3 j = s(vec2(-1.0, 1.0)), k = s(vec2(1.0, 1.0)), l = s(vec2(-1.0, -1.0)), m = s(vec2(1.0, -1.0));
+  vec3 col = e * 0.125 + (a + c + g + i) * 0.03125 + (b + d + f + h) * 0.0625 + (j + k + l + m) * 0.125;
   if (uPrefilter) {
-    float l = max(c.r, max(c.g, c.b));
-    float k = max(l - uThreshold, 0.0) / max(l, 1e-4);
-    c *= k;
-    c = min(c, vec3(60.0));
+    float br = max(col.r, max(col.g, col.b));
+    float kk = max(br - uThreshold, 0.0) / max(br, 1e-4);
+    col *= kk;
+    col = min(col, vec3(40.0));
   }
-  gl_FragColor = vec4(c, 1.0);
+  gl_FragColor = vec4(col, 1.0);
 }`;
 
 const UP_FRAG = /* glsl */ `

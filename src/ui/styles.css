@@ -25,7 +25,7 @@
 html, body { margin: 0; height: 100%; overflow: hidden; background: #05070b; color: var(--ink); font-family: var(--font-body); }
 #game { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; outline: none; }
 #ui { position: fixed; inset: 0; pointer-events: none; font-size: calc(16px * var(--ui-scale)); }
-#ui > * { pointer-events: auto; }
+#ui > :is(.overlay, .menu, .dialogue, .panel, .console, .photo-panel) { pointer-events: auto; }
 #ui .passthrough { pointer-events: none; }
 
 /* Loading */
@@ -75,7 +75,7 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #05070b; col
 .speed-hint { position: absolute; bottom: 20px; left: 22px; font-size: 12px; opacity: 0.7; }
 
 /* Panels (journal, inventory, trading...) */
-.overlay { position: fixed; inset: 0; background: rgba(8, 10, 14, 0.45); backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; z-index: 20; animation: fadeIn 0.25s ease; }
+.overlay { position: fixed; inset: 0; background: rgba(8, 10, 14, 0.45); backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; z-index: 40; animation: fadeIn 0.25s ease; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .panel { background: linear-gradient(180deg, var(--parchment) 0%, var(--parchment-2) 100%); border: 1px solid var(--paper-edge); border-radius: 14px; box-shadow: var(--shadow); width: min(1040px, 92vw); max-height: 86vh; display: flex; flex-direction: column; overflow: hidden; color: var(--ink); font-size: calc(15px * var(--ui-scale)); }
 .panel-header { display: flex; align-items: baseline; justify-content: space-between; padding: 18px 26px 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
@@ -124,9 +124,11 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #05070b; col
 .menu-sub { font-size: 13px; opacity: 0.7; margin-left: 2px; font-family: var(--font-body); }
 
 /* Forms */
-.field { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.08); }
+.field { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 16px; row-gap: 4px; padding: 9px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.08); }
 .field label { font-weight: 700; }
-.field .hint { font-size: 12px; color: var(--muted); }
+.field label.toggle { display: flex; align-items: center; gap: 10px; width: auto; height: auto; cursor: pointer; }
+.field label.toggle input { width: 18px; height: 18px; accent-color: var(--teal); }
+.field .hint { grid-column: 1 / -1; font-size: 12px; color: var(--muted); max-width: 70ch; }
 .field input[type='range'] { width: 220px; accent-color: var(--teal); }
 .field select, .field input[type='text'] { font-family: inherit; font-size: 14px; padding: 6px 8px; border-radius: 6px; border: 1px solid rgba(0, 0, 0, 0.2); background: #fffaf0; }
 .toggle { accent-color: var(--teal); width: 18px; height: 18px; }
@@ -177,3 +179,4 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #05070b; col
 .chapter-card.show { opacity: 1; }
 .chapter-card .num { letter-spacing: 0.4em; font-size: 14px; text-transform: uppercase; opacity: 0.8; }
 .chapter-card .title { font-family: var(--font-title); font-size: 58px; font-weight: 600; margin-top: 8px; }
+#ui button:focus-visible, #ui select:focus-visible, #ui input:focus-visible { outline: 3px solid rgba(47, 111, 115, 0.85); outline-offset: 2px; }

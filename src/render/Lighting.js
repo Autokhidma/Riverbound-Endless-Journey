@@ -63,7 +63,7 @@ export class Lighting {
       dir = md;
       const moonUp = time.moonElevation > 0;
       color = [0.55, 0.65, 0.95];
-      intensity = moonUp && moonVisible ? 0.2 * (0.25 + 0.75 * time.moonLight) * Math.min(1, time.moonElevation / 10) * (1 - palette.overcast * 0.8) : 0;
+      intensity = moonUp && moonVisible ? 0.26 * (0.25 + 0.75 * time.moonLight) * Math.min(1, time.moonElevation / 10) * (1 - palette.overcast * 0.8) : 0;
     }
     this.dir.color.setRGB(color[0], color[1], color[2]);
     this.dir.intensity = intensity;

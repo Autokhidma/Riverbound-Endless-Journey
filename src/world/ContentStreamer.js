@@ -37,7 +37,7 @@ export class ContentStreamer {
   }
 
   isCollected(it) {
-    return this.game.state?.collected?.has?.(it.id) ?? false;
+    return this.game.session?.isCollected(it.id) ?? false;
   }
 
   update(dt, game) {

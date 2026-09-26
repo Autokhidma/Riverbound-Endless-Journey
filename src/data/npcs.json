@@ -1,0 +1,48 @@
+{
+  "_comment": "NPC generation data. Names by settlement style; lines by role. {settlement}, {biome}, {region}, {name} are substituted.",
+  "names": {
+    "cottage": ["Maren", "Hollis", "Edda", "Fenn", "Rosalind", "Tobin", "Ivy", "Wendel", "Clem", "Posy", "Arlo", "Birdie"],
+    "stilt": ["Anaya", "Koru", "Lela", "Tamu", "Imani", "Suri", "Rafi", "Nia", "Oto", "Kiri", "Mahe", "Tavi"],
+    "stone": ["Brann", "Morag", "Eskil", "Hild", "Torin", "Ailsa", "Corran", "Una", "Fergal", "Innis", "Rhona", "Dunstan"],
+    "adobe": ["Sol", "Amaro", "Inés", "Tula", "Dario", "Rosa", "Cayo", "Luz", "Ramón", "Pilar", "Emi", "Teo"],
+    "timber": ["Sigrun", "Aksel", "Liv", "Joran", "Freya", "Halvard", "Tove", "Birk", "Runa", "Espen", "Ylva", "Oskar"],
+    "coastal": ["Marisol", "Tomas", "Nell", "Gaspard", "Coralie", "Jory", "Ottilie", "Sander", "Wren", "Ezra", "Pim", "Delphine"]
+  },
+  "roles": {
+    "trader": {
+      "title": "Trader",
+      "greet": ["Welcome to {settlement}! Take a look, take your time.", "Fresh from the river? Let's see what you've got.", "Traders come and go, but good fish are always welcome in {settlement}.", "Ah, a traveller. I've a little of everything and a lot of patience."],
+      "idle": ["Prices follow the river: what's rare here is common somewhere else.", "Sell me too much of one thing and I'll run out of room for it. Mix it up!", "Folks upstream pay well for coast shells. Folks at the coast pay well for mountain things."]
+    },
+    "fisher": {
+      "title": "Fisher",
+      "greet": ["Quiet morning. The fish are thinking about it.", "Mind my line!", "You fish? Good. The river needs more patient people."],
+      "idle": ["Rain brings some fish up and sends others down.", "Night fishing's best near the deep bends.", "I once saw something enormous rise at sunset. Gold all over. Nobody believes me.", "Lakes and confluences, that's where the big ones gather."]
+    },
+    "shipwright": {
+      "title": "Shipwright",
+      "greet": ["That's a fine little boat. Old style. Want me to make her finer?", "Wood and patience, that's all a boat is.", "Bring me driftwood and I'll bring you speed."],
+      "idle": ["A reinforced hull shrugs off rocks like a duck shrugs off rain.", "Sails are easy. Knowing when to use them takes a lifetime."]
+    },
+    "elder": {
+      "title": "Elder",
+      "greet": ["Sit a moment. Nobody on the river is in as much of a hurry as they think.", "{settlement} has been here since before the old bridge fell.", "You've come a long way. I can see it in your hands."],
+      "idle": ["The Lamplighters? My grandmother's grandmother saw them. Or said she did.", "There are more tributaries than maps. Some of them don't want to be found.", "The water remembers everyone who crosses it."]
+    },
+    "villager": {
+      "title": "Villager",
+      "greet": ["Lovely day for it.", "Oh! A new face.", "Hello there, river friend.", "Heard any good stories downstream?"],
+      "idle": ["We light lanterns on the dock when someone's still out on the water.", "The fireflies come out in thousands in high summer.", "My brother went downstream ten years ago. He writes every spring.", "If you see a light moving on the water at night, don't follow it. Or do. I did, once."]
+    }
+  },
+  "requests": {
+    "_comment": "Quest flavour text keyed by quest template.",
+    "fish": ["My family's supper depends on it: could you catch me a {fish}?", "I've been craving {fish} all week. The old recipe needs one.", "My grandfather swears the {fish} in these waters is the finest anywhere. Would you prove him right?"],
+    "delivery": ["Could you carry this parcel to {target}? My sister lives there.", "This needs to reach {target} before the season turns. You're heading that way?", "A gift for a friend in {target}. They'll know who it's from."],
+    "lost": ["I dropped my {item} near {landmark} and the current took it. Would you look?", "My {item}! I lost it by {landmark}. It means the world to me."],
+    "explore": ["People say there's a place called {landmark} downstream. Would you go and see if it's real?", "Tell me what {landmark} looks like? I'm too old to row that far now."],
+    "photo": ["I've always wanted a picture of a {species}. Could you take one for me?", "My daughter draws animals. A photograph of a {species} would make her year."],
+    "collect": ["I'm making something special. Could you bring me {count} {item}?", "Short on {item} this season. {count} would really help."]
+  },
+  "thanks": ["You're a treasure. Here, take this.", "Thank you! The river sent you, I'm sure of it.", "Wonderful. Come by any time.", "I won't forget this."]
+}
