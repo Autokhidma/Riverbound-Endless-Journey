@@ -196,7 +196,7 @@ export function buildSettlement(it, ctx) {
   group.add(woodMesh);
   // glowing lantern bulbs
   const bulbGeo = new THREE.SphereGeometry(0.14, 8, 6);
-  const bulbMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(3, 1.8, 0.8) });
+  const bulbMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(2, 1.05, 0.38) });
   for (const L2 of lights) {
     const b = new THREE.Mesh(bulbGeo, bulbMat);
     b.position.set(L2.x - it.x, L2.y - plateau, L2.z - it.z);
@@ -242,7 +242,7 @@ export function buildSettlement(it, ctx) {
   group.position.set(it.x, plateau, it.z);
   group.userData.update = () => {
     const k = G.uNight.value;
-    bulbMat.color.setRGB(0.3 + 3 * k, 0.2 + 1.8 * k, 0.1 + 0.8 * k);
+    bulbMat.color.setRGB(0.3 + 1.7 * k, 0.2 + 0.85 * k, 0.1 + 0.28 * k); // stays amber after tonemapping
   };
   return group;
 }

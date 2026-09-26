@@ -462,6 +462,6 @@ export class UI {
         h('p', {}, 'Riverbound: an endless, procedurally generated river journey.'),
         h('p', {}, 'All 3D models, terrain, water, sky, vegetation, characters, wildlife, textures, sound effects and music are generated procedurally by the game\'s own code. No external art, audio or music assets are used.'),
         h('p', {}, 'Built with three.js (MIT License). Desktop build runs on Electron (MIT License). Fonts: Cormorant Garamond and Nunito (SIL Open Font License 1.1), bundled via Fontsource.'),
-        h('p', { class: 'muted' }, 'See ASSET_LICENSES.md for details.'))), { pause: false });
+        h('p', { class: 'muted' }, 'Full licence texts ship with the game in the licenses folder next to Riverbound.exe.'))), { pause: false });
   }
 }

@@ -37,4 +37,4 @@ The visual style was designed for this game and does not reproduce any reference
 | [@electron/packager](https://github.com/electron/packager) | 20.3.0 | BSD-2-Clause | Packaging | No |
 | [Playwright](https://playwright.dev) | 1.63.0 | Apache-2.0 | Automated tests | No |
 
-The full licence texts for everything that ships with the game are in `public/licenses/`. That folder is copied into every build as `dist/licenses/` and packaged inside the desktop app. The in-game **Credits** screen summarises these notices.
+The full licence texts for everything that ships with the game are in `public/licenses/`. That folder is copied into every build as `dist/licenses/`, and the desktop packages also place it next to the executable (`release/Riverbound-win32-x64/licenses/`). The in-game **Credits** screen summarises these notices.

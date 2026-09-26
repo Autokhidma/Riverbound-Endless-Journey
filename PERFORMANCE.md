@@ -130,6 +130,9 @@ These results were measured automatically in the headless test environment with 
 | Medium | yes | 1.9 | 338 | 360k | 50% |
 | High | no | 0.8 | 806 | 1.10M | 60% |
 | Ultra | no | 0.3 | 1166 | 2.04M | 60% |
+| Cinematic | no | not measurable | — | — | — |
+
+Cinematic (4× MSAA, 4096² shadows, a full-resolution planar reflection, 4.2 km view distance) did not finish its warm-up within 15 minutes on software rendering, so it has no row. It is intended for strong GPUs, screenshots and cinematic cruising.
 
 Real-GPU frame rates have not been measured by the author (see [KNOWN_ISSUES.md](KNOWN_ISSUES.md)). Run `npm run benchmark`, or the in-game benchmark, on your own hardware to get real numbers.
 

@@ -457,7 +457,7 @@ export class BoatModel {
     this.light.intensity = on * 5.5 * flicker * (this.lanternPower ?? 1);
     this.light.distance = this.lanternRange ?? 18;
     this.light.color.setRGB(tint[0], tint[1], tint[2]);
-    this.glassMat.emissiveIntensity = on * 2.2 * flicker;
+    this.glassMat.emissiveIntensity = on * 1.5 * flicker;
     this.glassMat.emissive.setRGB(tint[0], tint[1], tint[2]);
     this.flame.visible = on > 0.05;
     this.flame.scale.set(1, 1.6 + Math.sin(this.time * 23) * 0.2, 1);

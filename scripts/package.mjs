@@ -44,6 +44,9 @@ const [outDir] = await packager({
 });
 console.log(`> packaged to ${outDir}`);
 
+// Third-party licence texts next to the executable (OFL requires shipping them with the fonts).
+fs.cpSync(path.join(ROOT, 'dist', 'licenses'), path.join(outDir, 'licenses'), { recursive: true });
+
 const exe = path.join(outDir, platform === 'win32' ? 'Riverbound.exe' : 'Riverbound');
 if (!fs.existsSync(exe)) throw new Error(`executable not found: ${exe}`);
 const size = (dir) => fs.readdirSync(dir, { withFileTypes: true }).reduce((a, e) => a + (e.isDirectory() ? size(path.join(dir, e.name)) : fs.statSync(path.join(dir, e.name)).size), 0);
