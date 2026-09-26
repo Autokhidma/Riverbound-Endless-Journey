@@ -27,6 +27,8 @@ All keyboard bindings can be changed in **Settings → Controls** (two keys per 
 | Performance overlay | F3 | — |
 | Fullscreen (desktop build) | F11 or Alt+Enter | — |
 
+**Steering assist** is on by default (*Settings → Controls*): turning is quick and direct, rowing speed is steady and the boat drifts less sideways. Turn it off for the full rowing simulation. The same page has *Invert horizontal look* and *Invert vertical look*.
+
 ## Fishing
 
 1. Press **F** to ready the rod.

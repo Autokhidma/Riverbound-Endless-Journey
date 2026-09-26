@@ -83,6 +83,7 @@ export class PlayerBoat {
     p.waveScale = game.water ? game.water.material.uniforms.uWaveScale.value : 1;
     p.wind.x = game.weather?.windX ?? 0;
     p.wind.z = game.weather?.windZ ?? 0;
+    p.assist = game.settings.get('controls.steeringAssist') !== false;
     p.setInput(control);
     p.update(dt);
     for (const e of p.drainEvents()) {

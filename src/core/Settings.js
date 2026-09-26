@@ -56,7 +56,9 @@ export const DEFAULT_SETTINGS = {
     mouseSensitivity: 1.0,
     gamepadSensitivity: 1.0,
     invertY: false,
+    invertX: false,
     autoRecenter: true,
+    steeringAssist: true,
     pointerLock: true,
   },
   accessibility: {

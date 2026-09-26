@@ -88,7 +88,7 @@ export class CameraRig {
         break;
       }
       case 'close': {
-        this.close.yaw = clamp(this.close.yaw - ctx.look.x * 0.6, -1.2, 1.2);
+        this.close.yaw = clamp(this.close.yaw + ctx.look.x * 0.6, -1.2, 1.2);
         this.close.pitch = clamp(this.close.pitch - ctx.look.y * 0.4, -0.2, 0.5);
         const h = ctx.heading + Math.PI + this.close.yaw;
         const d = 3.1;
@@ -106,7 +106,7 @@ export class CameraRig {
         fov = this.cine.fov ?? 48;
         if (ctx.look.active) {
           // player nudges the shot
-          this.cine.yawNudge = (this.cine.yawNudge ?? 0) - ctx.look.x;
+          this.cine.yawNudge = (this.cine.yawNudge ?? 0) + ctx.look.x;
         }
         break;
       }
@@ -132,12 +132,13 @@ export class CameraRig {
       case 'third':
       default: {
         const O = this.orbit;
-        if (ctx.look.active) { O.yaw -= ctx.look.x; O.pitch = clamp(O.pitch + ctx.look.y, -0.25, 1.35); O.idle = 0; }
+        if (ctx.look.active) { O.yaw += ctx.look.x; O.pitch = clamp(O.pitch + ctx.look.y, -0.25, 1.35); O.idle = 0; }
         else O.idle += dt;
         if (ctx.zoom) O.targetDist = clamp(O.targetDist * (1 + ctx.zoom * 0.12), 3.5, ctx.onFoot ? 12 : 38);
         O.dist = dampValue(O.dist, O.targetDist, 6, dt);
-        if (this.settings.get('controls.autoRecenter') && O.idle > 2.5 && ctx.speed > 1.0) {
-          O.yaw = dampAngle(O.yaw, 0, 0.6, dt);
+        const assist = this.settings.get('controls.steeringAssist') !== false;
+        if (this.settings.get('controls.autoRecenter') && O.idle > (assist ? 1.2 : 2.5) && ctx.speed > (assist ? 0.5 : 1.0)) {
+          O.yaw = dampAngle(O.yaw, 0, assist ? 1.2 : 0.6, dt);
           O.pitch = dampValue(O.pitch, 0.28, 0.4, dt);
         }
         const target = _v2.copy(ctx.target);

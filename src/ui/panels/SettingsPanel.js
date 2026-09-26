@@ -108,6 +108,8 @@ export class SettingsPanel extends Panel {
       return [
         this.slider('Mouse sensitivity', 'controls.mouseSensitivity', 0.2, 3, 0.05, (v) => v.toFixed(2)),
         this.slider('Gamepad sensitivity', 'controls.gamepadSensitivity', 0.2, 3, 0.05, (v) => v.toFixed(2)),
+        this.toggle('Steering assist (easier boat handling)', 'controls.steeringAssist', false, 'Direct, quick turning, steady rowing speed and less sideways drift. Turn off for the full simulation.', true),
+        this.toggle('Invert horizontal look', 'controls.invertX'),
         this.toggle('Invert vertical look', 'controls.invertY'),
         this.toggle('Camera drifts back behind the boat', 'controls.autoRecenter'),
         this.toggle('Capture the mouse for free look (click the world; Esc releases)', 'controls.pointerLock', false, 'When off, hold the right mouse button to look around.'),

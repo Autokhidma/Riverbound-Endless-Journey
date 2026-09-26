@@ -42,6 +42,7 @@ export class BoatPhysics {
     this.time = 0;
     this.collision = { hit: false, impulse: 0, grounded: false, point: null };
     this.anchored = false;
+    this.assist = true; // easier handling: direct turning, smooth thrust, less drift
     this.events = [];
     this._w = {}; this._f = { x: 0, z: 0, speed: 0 };
     this.acc = 0;
@@ -109,6 +110,9 @@ export class BoatPhysics {
       const ph = this.stroke;
       const drive = ph < 0.5 ? Math.sin((ph / 0.5) * Math.PI) : 0;
       thrust = P.thrust * drive * 1.75 * input * effort;
+      // Assisted rowing: most of the thrust is steady so the boat doesn't surge
+      // and stall with every stroke (the stroke animation still plays).
+      if (this.assist) thrust = thrust * 0.3 + P.thrust * 0.8 * input * effort;
       if (this.strokeActive && this._lastPh !== undefined && this._lastPh < 0.05 && ph >= 0.05 && Math.abs(input) > 0.05) this.events.push({ type: 'oarDip' });
       this._lastPh = ph;
     } else {
@@ -132,7 +136,7 @@ export class BoatPhysics {
     const v = relX * rx + relZ * rz; // lateral component
     const shallow = w.depth < this.draft + 0.25 ? Math.min(1, (this.draft + 0.25 - w.depth) / 0.4) : 0;
     const cf = 18 + 55 * shallow + (this.brake ? 260 : 0);
-    const cl = 420 + 300 * shallow;
+    const cl = (this.assist ? 900 : 420) + 300 * shallow; // assist: less sideways drift
     const dragU = -(cf * u + 14 * u * Math.abs(u));
     const dragV = -(cl * v + 160 * v * Math.abs(v));
     let Fx = fx * (thrust + dragU) + rx * dragV;
@@ -146,11 +150,18 @@ export class BoatPhysics {
     Fx += this.wind.x * 22; Fz += this.wind.z * 22;
 
     // ---- steering: differential rowing / rudder
-    const steerTorque = this.anchored ? 0 : this.steer * P.turnTorque * (0.55 + 0.45 * Math.min(1, Math.abs(u) / 2.5)) * effort;
-    const yawDamp = -this.yawRate * (650 + 900 * shallow) - this.yawRate * Math.abs(this.yawRate) * 500;
-    // Current shear rotates the boat gently (weather-vaning with the flow).
-    const flowTorque = (flow.x * rx + flow.z * rz) * -40;
-    this.yawRate += ((steerTorque + yawDamp + flowTorque) / this.inertia) * dt;
+    if (this.assist) {
+      // Assisted steering: the turn rate follows the stick/keys directly and
+      // quickly (about 60°/s at full lock), with no overshoot or current drift.
+      const target = this.anchored ? 0 : this.steer * (1.05 - 0.25 * Math.min(1, Math.abs(u) / 5)) * (this.hurry ? 1.15 : 1);
+      this.yawRate += (target - this.yawRate) * Math.min(1, dt * 6);
+    } else {
+      const steerTorque = this.anchored ? 0 : this.steer * P.turnTorque * (0.55 + 0.45 * Math.min(1, Math.abs(u) / 2.5)) * effort;
+      const yawDamp = -this.yawRate * (650 + 900 * shallow) - this.yawRate * Math.abs(this.yawRate) * 500;
+      // Current shear rotates the boat gently (weather-vaning with the flow).
+      const flowTorque = (flow.x * rx + flow.z * rz) * -40;
+      this.yawRate += ((steerTorque + yawDamp + flowTorque) / this.inertia) * dt;
+    }
     this.heading = wrapAngle(this.heading + this.yawRate * dt);
 
     this.vx += (Fx / this.mass) * dt;

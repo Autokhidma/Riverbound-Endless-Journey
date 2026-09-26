@@ -1,0 +1,60 @@
+name: Release (Windows download)
+
+# Push a tag like v1.0.1 (or run manually) to build the Windows Shipping build,
+# smoke-test Riverbound.exe, and publish it as a GitHub Release asset.
+# Stable direct link to the newest version:
+#   https://github.com/<owner>/<repo>/releases/latest/download/Riverbound-Windows-x64.zip
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to create (e.g. v1.0.1)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Unit tests
+        run: npm test
+      - name: Build and package the Shipping build
+        run: node scripts/package.mjs win32 x64
+      - name: Smoke-test Riverbound.exe
+        run: node tests/e2e/electron-smoke.mjs release/Riverbound-win32-x64/Riverbound.exe
+        env:
+          RB_SOFTWARE_GL: '1'
+          RB_SMOKE_TIMEOUT: '300'
+      - name: Publish the release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+        run: |
+          cp release/Riverbound-win32-x64.zip Riverbound-Windows-x64.zip
+          cat > notes.md <<'NOTES'
+          ## Riverbound for Windows
+
+          1. Download **Riverbound-Windows-x64.zip** below.
+          2. Right-click it → **Extract All…** (the game will not run from inside the zip).
+          3. Open the extracted `Riverbound-win32-x64` folder and run **Riverbound.exe**.
+          4. If Windows shows "Windows protected your PC", click **More info → Run anyway** (the game is not code-signed).
+
+          Windows 10/11, 64-bit. Saves and settings live in `%APPDATA%\riverbound`, photos in `Pictures\Riverbound`.
+          NOTES
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" Riverbound-Windows-x64.zip --clobber
+          else
+            gh release create "$TAG" Riverbound-Windows-x64.zip --title "Riverbound $TAG" --notes-file notes.md --target "$GITHUB_SHA" --latest
+          fi

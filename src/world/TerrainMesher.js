@@ -100,7 +100,13 @@ export function buildTerrainNode(world, { x0, z0, size, res }) {
       const interior = i >= 1 && j >= 1 && i <= N && j <= N;
       if (interior) {
         const smp = world.sample(x, z, tmpSample);
-        H[j * B + i] = smp.height;
+        let hgt = smp.height;
+        // Coarse tiles cannot resolve a narrow channel: vertices on both banks
+        // would bridge over the river and hide the water until a finer tile
+        // loads. Keep every vertex within about a cell of the water just under
+        // the surface so the river always shows through at every LOD.
+        if (d > 3 && smp.edge < d * 0.75 && hgt > smp.water - 0.35) hgt = smp.water - 0.35;
+        H[j * B + i] = hgt;
         const v = (j - 1) * N + (i - 1);
         fA[v] = smp.a; fB[v] = smp.b; fBt[v] = smp.bt; fWater[v] = smp.water; fEdge[v] = smp.edge;
         fCliff[v] = smp.cliff; fCold[v] = smp.cold; fSnow[v] = smp.snowLine || 0; fCoast[v] = smp.coast || 0;

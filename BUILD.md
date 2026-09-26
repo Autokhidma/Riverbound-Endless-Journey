@@ -99,6 +99,18 @@ The E2E suites run the Shipping build in Chromium with software WebGL (SwiftShad
 | `tests/e2e/drive.mjs` | Cruises down the river. Checks streaming, the boat staying on the water, biome transitions, origin shifts and a bounded geometry count |
 | `tests/e2e/electron-smoke.mjs` | Runs the packaged executable with `--smoke-test` |
 
+## Publishing a download (GitHub Release)
+
+`.github/workflows/release.yml` runs when a tag like `v1.0.1` is pushed, or manually from the Actions tab. It builds and smoke-tests the Windows Shipping build on `windows-latest` and attaches `Riverbound-Windows-x64.zip` to a GitHub Release. The newest release is always at:
+
+`https://github.com/Autokhidma/Riverbound-Endless-Journey/releases/latest/download/Riverbound-Windows-x64.zip`
+
+While the repository is private, only people with access to it can use that link.
+
+```bash
+git tag v1.0.2 && git push origin v1.0.2
+```
+
 ## Continuous integration
 
 `.github/workflows/build.yml` has two jobs.

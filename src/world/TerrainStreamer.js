@@ -190,11 +190,13 @@ export class TerrainStreamer {
   }
 
   evict() {
-    const ready = [...this.nodes.values()].filter((n) => n.state === 'ready' && !this.visible.has(n));
+    // Never evict nodes walked this frame: parents are the fallback that
+    // covers the ground while their children are still loading.
+    const ready = [...this.nodes.values()].filter((n) => n.state === 'ready' && !this.visible.has(n) && n.lastUsed < this.frame);
     const excess = ready.length + this.visible.size - this.cacheLimit;
     if (excess > 0) {
       ready.sort((a, b) => a.lastUsed - b.lastUsed);
-      for (let i = 0; i < excess; i++) this.disposeNode(ready[i]);
+      for (let i = 0; i < Math.min(excess, ready.length); i++) this.disposeNode(ready[i]);
     }
     // Forget empty bookkeeping nodes that have not been used for a while.
     if (this.frame % 120 === 0) {

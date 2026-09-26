@@ -271,7 +271,9 @@ export class Game {
     const ground = this.world.heightAt(camAbs.x, camAbs.z);
     this.terrain.update(camAbs, ground);
     const p = this.boat.physics;
-    this.water.updateStreaming(camAbs, p.s);
+    // Stream main-river water by the main river's own arc length near the
+    // camera (the boat's s is a tributary's distance while on a side stream).
+    this.water.updateStreaming(camAbs, this.world.main.nearest(camAbs.x, camAbs.z, this._mainNear ??= {}).s);
     this.vegetation.update(camAbs);
     this.checkOrigin();
 

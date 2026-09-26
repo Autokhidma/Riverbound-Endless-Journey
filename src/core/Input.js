@@ -135,10 +135,11 @@ export class Input {
     const sens = this.settings.get('controls.mouseSensitivity') ?? 1;
     const padSens = this.settings.get('controls.gamepadSensitivity') ?? 1;
     const inv = this.settings.get('controls.invertY') ? -1 : 1;
-    let x = this.mouse.dx * 0.0025 * sens;
+    const invX = this.settings.get('controls.invertX') ? -1 : 1;
+    let x = this.mouse.dx * 0.0025 * sens * invX;
     let y = this.mouse.dy * 0.0025 * sens * inv;
     if (this.pad) {
-      x += this.padAxis(2) * dt * 2.6 * padSens;
+      x += this.padAxis(2) * dt * 2.6 * padSens * invX;
       y += this.padAxis(3) * dt * 2.0 * padSens * inv;
     }
     return { x, y, active: Math.abs(x) + Math.abs(y) > 1e-5 };

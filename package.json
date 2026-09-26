@@ -1,7 +1,7 @@
 {
   "name": "riverbound",
   "productName": "Riverbound",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Riverbound - an infinite cozy river journey. A 3D exploration game.",
   "main": "electron/main.cjs",
   "type": "module",

@@ -45,6 +45,44 @@ try {
   await G(() => { const g = window.__RB__.game; g.audio.update(0.016, g); });
   check((await G(() => window.__RB__.game.audio.music.state)) === 'play', 'generative music section plays');
 
+  // Controls: D turns right, mouse-right turns the view right (every mode).
+  const ctl = await G(() => {
+    const g = window.__RB__.game;
+    const THREE_V = (x, y, z) => g.camera3.position.clone().set(x, y, z);
+    const out = {};
+    g.cameraRig.setMode('third');
+    g.boat.physics.anchored = false;
+    for (let i = 0; i < 60; i++) g.step(1 / 30, 33, { render: false });
+    // Steering: a world point ahead of the boat must slide left on screen
+    // (the boat turns right), and the heading must increase (turn right).
+    const p = g.boat.physics;
+    const h0 = p.heading;
+    const ahead = { x: p.x + Math.cos(p.heading) * 40, z: p.z + Math.sin(p.heading) * 40, y: p.y };
+    g.input.keys.add('KeyD');
+    for (let i = 0; i < 30; i++) g.step(1 / 30, 33, { render: false });
+    g.input.keys.delete('KeyD');
+    let dh = p.heading - h0; while (dh > Math.PI) dh -= Math.PI * 2; while (dh < -Math.PI) dh += Math.PI * 2;
+    out.turnRate = dh;
+    out.bowScreenDx = -g.toScene(ahead.x, ahead.y, ahead.z).project(g.camera3).x;
+    // Mouse look, per camera mode: a point straight ahead must move left on screen.
+    out.look = {};
+    for (const mode of ['third', 'first', 'close']) {
+      g.cameraRig.setMode(mode);
+      for (let i = 0; i < 60; i++) g.step(1 / 30, 33, { render: false });
+      const cam = g.camera3;
+      const dir = cam.getWorldDirection(THREE_V(0, 0, 0));
+      const pt = cam.position.clone().addScaledVector(dir, 20);
+      g.input.mouse.locked = true;
+      for (let i = 0; i < 6; i++) { g.input.mouse.dx = 25; g.step(1 / 30, 33, { render: false }); }
+      g.input.mouse.locked = false; g.input.mouse.dx = 0;
+      out.look[mode] = pt.project(cam).x;
+    }
+    g.cameraRig.setMode('third');
+    return out;
+  });
+  check(ctl.turnRate > 0.4 && ctl.bowScreenDx > 0.05, `holding D turns the boat right, quickly (${JSON.stringify({ rate: ctl.turnRate.toFixed(2), bowDx: ctl.bowScreenDx.toFixed(3) })})`);
+  check(Object.values(ctl.look).every((x) => x < -0.02), `moving the mouse right turns the view right in every camera mode (${JSON.stringify(ctl.look)})`);
+
   // Camera modes.
   for (const m of ['third', 'first', 'close', 'cinematic']) {
     await G((m) => window.__RB__.game.cameraRig.setMode(m), m);

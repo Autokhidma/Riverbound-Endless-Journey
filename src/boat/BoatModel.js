@@ -72,22 +72,27 @@ function buildHull(colors) {
       if (side > 0) idx.push(a, c, b, b, c, d); else idx.push(a, b, c, b, d, c);
     }
   }
-  // Transom panel at the stern (u = 0).
-  const tb = pos.length / 3;
+  // Transom panel at the stern (u = 0). Built twice with separate vertices so
+  // both the outer face (seen from behind the boat) and the inner face (seen
+  // from inside the hull) have correct winding and normals.
   const center = sectionPoint(0, 0.5, 1, 0);
-  pos.push((0 - 0.5) * L - 0.001, 0.05, 0);
-  col.push(...colors.paint); uv.push(0.5, 0.5);
-  for (let j = 0; j <= NV; j++) {
-    const p = sectionPoint(0, j / NV, 1, 0);
-    pos.push(p[0] - 0.001, p[1], p[2]); col.push(...colors.paint); uv.push(0, j / NV);
-  }
-  for (let j = 0; j <= NV; j++) {
-    const p = sectionPoint(0, j / NV, -1, 0);
-    pos.push(p[0] - 0.001, p[1], p[2]); col.push(...colors.paint); uv.push(1, j / NV);
-  }
-  for (let j = 0; j < NV; j++) {
-    idx.push(tb, tb + 1 + j + 1, tb + 1 + j);
-    idx.push(tb, tb + NV + 2 + j, tb + NV + 2 + j + 1);
+  for (const outward of [true, false]) {
+    const tb = pos.length / 3;
+    const x = (0 - 0.5) * L + (outward ? -0.002 : 0.012);
+    const inset = outward ? 0 : 0.035;
+    pos.push(x, 0.05, 0);
+    col.push(...(outward ? colors.paint : colors.wood)); uv.push(0.5, 0.5);
+    for (const side of [1, -1]) {
+      for (let j = 0; j <= NV; j++) {
+        const p = sectionPoint(0, j / NV, side, inset);
+        pos.push(x, p[1], p[2]); col.push(...(outward ? colors.paint : colors.wood)); uv.push(side > 0 ? 0 : 1, j / NV);
+      }
+    }
+    for (let j = 0; j < NV; j++) {
+      const a1 = tb + 1 + j, b1 = tb + 2 + j, a2 = tb + NV + 2 + j, b2 = tb + NV + 3 + j;
+      if (outward) idx.push(tb, a1, b1, tb, b2, a2); // normal -X
+      else idx.push(tb, b1, a1, tb, a2, b2); // normal +X
+    }
   }
   void center;
   const g = new THREE.BufferGeometry();
