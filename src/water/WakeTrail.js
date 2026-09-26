@@ -51,14 +51,17 @@ export class WakeTrail {
         void main() {
           float side = vData.x;          // -1..1 across the trail
           float age = vData.y;
-          float edge = smoothstep(1.0, 0.55, abs(side));
-          float center = smoothstep(0.0, 0.5, abs(side)) * 0.6 + 0.4;
-          float f = texture2D(tFoam, vWorld.xz / 4.0 + vec2(age * 0.3, 0.0)).r;
-          float f2 = texture2D(tFoam, vWorld.xz / 8.0 - vec2(0.0, age * 0.2)).g;
-          float a = smoothstep(0.2 + age * 0.5, 0.75, f * 0.8 + f2 * 0.4) * edge * center * vData.z * (1.0 - age);
+          float as = abs(side);
+          // Two diverging Kelvin arms at the edges + a short turbulent centre line.
+          float arms = smoothstep(0.62, 0.9, as) * smoothstep(1.0, 0.9, as);
+          float centre = (1.0 - smoothstep(0.0, 0.28, as)) * (1.0 - smoothstep(0.0, 0.35, age));
+          float f = texture2D(tFoam, vWorld.xz / 2.0 + vec2(age * 0.3, 0.0)).r;
+          float f2 = texture2D(tFoam, vWorld.xz / 4.0 - vec2(0.0, age * 0.2)).g;
+          float pattern = smoothstep(0.3 + age * 0.4, 0.8, f * 0.8 + f2 * 0.45);
+          float a = (arms * 0.9 + centre) * pattern * vData.z * (1.0 - age) * (1.0 - age);
           float dl = length(uLanternPos - vWorld);
           vec3 col = uAmbientWater * 1.7 + uSunColor * max(uSunDir.y, 0.0) * 0.5 + uLanternColor / (1.0 + dl * dl * 0.09) * 0.6;
-          gl_FragColor = vec4(col, a * 0.85);
+          gl_FragColor = vec4(col, a * 0.6);
         }`,
       transparent: true,
       depthWrite: false,
@@ -99,7 +102,7 @@ export class WakeTrail {
       const p = pts[n - 1 - i]; // newest first
       const px = i === 0 ? x : p.x, pz = i === 0 ? z : p.z;
       const a = p.age / LIFE;
-      const width = 0.7 + p.age * 1.1;
+      const width = 0.75 + p.age * 0.55;
       const perpX = -p.dirZ, perpZ = p.dirX;
       for (let sgn = -1; sgn <= 1; sgn += 2) {
         const vi = i * 2 + (sgn > 0 ? 1 : 0);

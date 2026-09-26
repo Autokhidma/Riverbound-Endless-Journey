@@ -135,10 +135,10 @@ vec3 reflStars(vec3 dir) {
   vec2 g = uv * 70.0;
   vec2 cell = floor(g);
   float h = rbHash12(cell + (a.x > a.y ? 3.0 : 9.0));
-  if (h < 0.55) return vec3(0.0);
+  if (h < 0.9) return vec3(0.0);
   vec2 ctr = cell + 0.5 + (vec2(rbHash12(cell + 1.3), rbHash12(cell + 5.9)) - 0.5) * 0.6;
   float d = length(g - ctr);
-  return vec3(0.9, 0.95, 1.0) * exp(-d * d * 18.0) * pow(h, 8.0) * 3.0;
+  return vec3(0.9, 0.95, 1.0) * exp(-d * d * 30.0) * pow((h - 0.9) * 10.0, 4.0) * 1.2;
 }
 #endif
 
@@ -208,18 +208,18 @@ void main() {
   vec3 Ll = uLanternPos - vWorld;
   float dl = length(Ll);
   Ll /= max(dl, 1e-3);
-  float lanternAtt = 1.0 / (1.0 + dl * dl * 0.09);
+  float lanternAtt = 0.6 / (1.0 + dl * dl * 0.12);
   float nhl = max(dot(N, normalize(Ll + V)), 0.0);
-  spec += uLanternColor * lanternAtt * (pow(nhl, 220.0) * 14.0 + pow(nhl, 30.0) * 0.4);
+  spec += uLanternColor * lanternAtt * (pow(nhl, 500.0) * 6.0 + pow(nhl, 70.0) * 0.12);
   vec3 plDiffuse = vec3(0.0);
   for (int i = 0; i < ${MAX_POINT_LIGHTS}; i++) {
     vec3 L = uPL[i].xyz - vWorld;
     float dd = length(L);
     L /= max(dd, 1e-3);
-    float att = uPL[i].w / (1.0 + dd * dd * 0.02);
+    float att = uPL[i].w * 0.12 / (1.0 + dd * dd * 0.04);
     float nhp = max(dot(N, normalize(L + V)), 0.0);
-    spec += uPLC[i] * att * (pow(nhp, 180.0) * 10.0 + pow(nhp, 25.0) * 0.25);
-    plDiffuse += uPLC[i] * att * 0.02;
+    spec += uPLC[i] * att * (pow(nhp, 600.0) * 8.0 + pow(nhp, 90.0) * 0.12);
+    plDiffuse += uPLC[i] * att * 0.03;
   }
 
   // ---- body colour (absorption by depth)
@@ -228,7 +228,7 @@ void main() {
   vec3 body = mix(vWaterA.rgb, vWaterB, thick);
   body = mix(body, vec3(0.28, 0.24, 0.18), uMurk * 0.35);
   float ambL = dot(uAmbientWater, vec3(0.2126, 0.7152, 0.0722));
-  vec3 light = mix(uAmbientWater, vec3(ambL), 0.45) * 0.9 + uSunColor * max(uSunDir.y, 0.0) * 0.16 + uLanternColor * lanternAtt * 0.35 + plDiffuse;
+  vec3 light = mix(uAmbientWater, vec3(ambL), 0.45) * 0.9 + uSunColor * max(uSunDir.y, 0.0) * 0.16 + uLanternColor * lanternAtt * 0.2 + plDiffuse;
   body *= light;
   // light passing through wave crests towards the viewer
   float sss = pow(max(dot(V, -uSunDir), 0.0), 4.0) * max(g.x + g.y, 0.0) * 2.0;

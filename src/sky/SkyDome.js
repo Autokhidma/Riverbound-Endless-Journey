@@ -73,8 +73,8 @@ vec3 starLayer(vec3 c, float cells, float density, float seed) {
   vec2 center = cell + 0.2 + 0.6 * h.xy;
   float d = length(g - center);
   float px = max(fwidth(g.x), fwidth(g.y));
-  float sigma = max(px * 0.75, 0.035);
-  float b = pow(fract(h.z * 91.7), 6.0) * 3.0 + 0.15;
+  float sigma = max(px * 0.55, 0.02);
+  float b = pow(fract(h.z * 91.7), 9.0) * 4.0 + 0.03;
   float star = exp(-d * d / (2.0 * sigma * sigma)) * b * (0.035 / sigma);
   float temp = fract(h.x * 17.3 + h.y * 3.1);
   vec3 col = mix(vec3(0.65, 0.78, 1.0), vec3(1.0, 0.85, 0.65), temp);
@@ -98,9 +98,9 @@ void main() {
     float lat = dot(c, gpole);
     float band = exp(-lat * lat / (0.23 * 0.23));
     float core = pow(max(dot(c, gcenter), 0.0), 3.0);
-    stars += starLayer(c, 90.0, 0.55, 1.0) * 1.3;
+    stars += starLayer(c, 64.0, 0.09, 1.0) * 1.2;
 #if STAR_LAYERS > 1
-    stars += starLayer(c, 260.0, 0.35 + band * 0.55, 2.0) * 0.55;
+    stars += starLayer(c, 200.0, 0.03 + band * 0.22, 2.0) * 0.35;
 #endif
 #if MILKY_WAY
     float mwN = fbm3(c * 3.5 + vec3(3.0), MW_OCTAVES);

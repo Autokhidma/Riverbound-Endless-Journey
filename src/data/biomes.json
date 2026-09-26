@@ -1,346 +1,2939 @@
 {
-  "_comment": "Data-driven biome definitions. Colours are sRGB hex. Densities are instances per 100 m^2. Heights are metres relative to local water level.",
-  "biomes": [
+ "_comment": "Data-driven biome definitions. Colours are sRGB hex. Densities are instances per 100 m^2. Heights are metres relative to local water level.",
+ "biomes": [
+  {
+   "id": "spring",
+   "name": "Blossom Vale",
+   "regionWords": [
+    "Blossom",
+    "Petal",
+    "Meadow",
+    "Willow",
+    "Clover",
+    "Primrose"
+   ],
+   "climate": {
+    "temp": 0.55,
+    "moist": 0.55,
+    "elev": 0.3
+   },
+   "neighbors": [
+    "autumn",
+    "crystal",
+    "swamp",
+    "monsoon",
+    "coast"
+   ],
+   "river": {
+    "width": 38,
+    "widthVar": 0.25,
+    "depth": 3.2,
+    "flow": 0.9,
+    "meanderAmp": 0.75,
+    "meanderScale": 16,
+    "rapidsChance": 0.1,
+    "lakeChance": 0.35,
+    "islandChance": 0.4
+   },
+   "terrain": {
+    "bankHeight": 1.2,
+    "bankSlope": 0.09,
+    "valleyWidth": 220,
+    "hillAmp": 22,
+    "mountainAmp": 140,
+    "mountainStart": 700,
+    "cliffiness": 0.0,
+    "terraces": 0,
+    "plateau": 0
+   },
+   "colors": {
+    "grass": "#6d9a3c",
+    "grass2": "#8fb24a",
+    "floor": "#557a32",
+    "sand": "#b8a57a",
+    "mud": "#6a5a3e",
+    "rock": "#8a8a82",
+    "rock2": "#a19c90",
+    "snow": "#f2f4f7",
+    "far": "#6f8f63"
+   },
+   "water": {
+    "shallow": "#5aa39a",
+    "deep": "#1f4f57",
+    "clarity": 0.35,
+    "waveAmp": 0.06,
+    "foam": 0.5
+   },
+   "atmosphere": {
+    "fog": 0.00032,
+    "fogTint": "#c9d7e6",
+    "haze": 0.35,
+    "mist": 0.3,
+    "skyTint": "#9fc3ff",
+    "sunset": 1.0,
+    "stars": 0.9
+   },
+   "vegetation": [
     {
-      "id": "spring", "name": "Blossom Vale", "regionWords": ["Blossom", "Petal", "Meadow", "Willow", "Clover", "Primrose"],
-      "climate": { "temp": 0.55, "moist": 0.55, "elev": 0.3 },
-      "neighbors": ["autumn", "crystal", "swamp", "monsoon", "coast"],
-      "river": { "width": 38, "widthVar": 0.25, "depth": 3.2, "flow": 0.9, "meanderAmp": 0.75, "meanderScale": 16, "rapidsChance": 0.1, "lakeChance": 0.35, "islandChance": 0.4 },
-      "terrain": { "bankHeight": 1.2, "bankSlope": 0.09, "valleyWidth": 220, "hillAmp": 22, "mountainAmp": 140, "mountainStart": 700, "cliffiness": 0.0, "terraces": 0, "plateau": 0 },
-      "colors": { "grass": "#6d9a3c", "grass2": "#8fb24a", "floor": "#557a32", "sand": "#b8a57a", "mud": "#6a5a3e", "rock": "#8a8a82", "rock2": "#a19c90", "snow": "#f2f4f7", "far": "#6f8f63" },
-      "water": { "shallow": "#5aa39a", "deep": "#1f4f57", "clarity": 0.35, "waveAmp": 0.06, "foam": 0.5 },
-      "atmosphere": { "fog": 0.00032, "fogTint": "#c9d7e6", "haze": 0.35, "mist": 0.3, "skyTint": "#9fc3ff", "sunset": 1.0, "stars": 0.9 },
-      "vegetation": [
-        { "id": "tree_cherry", "zone": "land", "density": 0.35, "cluster": 0.012, "clusterMin": 0.1, "scale": [0.8, 1.3], "maxSlope": 0.5 },
-        { "id": "tree_willow", "zone": "bank", "density": 0.18, "cluster": 0.02, "clusterMin": 0.0, "scale": [0.9, 1.3], "maxSlope": 0.4 },
-        { "id": "tree_broadleaf", "zone": "land", "density": 0.3, "cluster": 0.008, "clusterMin": 0.25, "scale": [0.8, 1.2], "maxSlope": 0.6 },
-        { "id": "bush_flower", "zone": "land", "density": 0.6, "cluster": 0.03, "clusterMin": -0.2, "scale": [0.7, 1.2], "maxSlope": 0.7 },
-        { "id": "flowers", "zone": "land", "density": 3.5, "cluster": 0.05, "clusterMin": -0.1, "scale": [0.7, 1.3], "maxSlope": 0.6, "small": true },
-        { "id": "grass", "zone": "land", "density": 5.0, "cluster": 0.04, "clusterMin": -0.4, "scale": [0.8, 1.4], "maxSlope": 0.7, "small": true },
-        { "id": "reeds", "zone": "shore", "density": 2.0, "cluster": 0.06, "clusterMin": 0.0, "scale": [0.8, 1.3], "maxSlope": 0.5, "small": true },
-        { "id": "lilypad", "zone": "water", "density": 1.2, "cluster": 0.05, "clusterMin": 0.25, "scale": [0.8, 1.5], "small": true },
-        { "id": "rock_boulder", "zone": "any", "density": 0.05, "cluster": 0.02, "clusterMin": 0.2, "scale": [0.6, 1.6], "maxSlope": 2 },
-        { "id": "rock_small", "zone": "shore", "density": 0.4, "cluster": 0.04, "clusterMin": 0.0, "scale": [0.5, 1.2], "maxSlope": 2, "small": true }
-      ],
-      "floaters": "petals",
-      "weather": { "clear": 5, "cloudy": 3, "lightRain": 2, "heavyRain": 0.5, "mist": 2, "fog": 0.5, "storm": 0.2, "haze": 1 },
-      "wildlife": { "birds": 1.0, "herons": 0.4, "butterflies": 1.0, "fireflies": 0.8, "frogs": 0.5, "deer": 0.4, "fish": 0.8 },
-      "ambience": { "birds": 0.9, "insects": 0.5, "frogs": 0.4, "wind": 0.4, "cicadas": 0.1 },
-      "music": { "root": 62, "scale": "major_pent", "mood": "gentle" },
-      "settlement": { "style": "cottage", "chance": 0.75, "names": ["Willowmere", "Fernwick", "Petalbrook", "Clover Landing", "Honeyford", "Lark Hollow"] },
-      "landmarks": { "common": ["ancientTree", "ruins", "rockPillars", "cabin", "mill"], "rare": ["naturalArch", "floatingIsland", "bridge"], "unique": ["giantBlossom"] }
+     "id": "tree_cherry",
+     "zone": "land",
+     "density": 0.35,
+     "cluster": 0.012,
+     "clusterMin": 0.1,
+     "scale": [
+      0.8,
+      1.3
+     ],
+     "maxSlope": 0.5
     },
     {
-      "id": "jungle", "name": "Verdant Jungle", "regionWords": ["Emerald", "Canopy", "Orchid", "Vine", "Jade", "Monkeypuzzle"],
-      "climate": { "temp": 0.95, "moist": 0.95, "elev": 0.3 },
-      "neighbors": ["swamp", "monsoon", "coast", "canyon"],
-      "river": { "width": 34, "widthVar": 0.3, "depth": 3.8, "flow": 1.1, "meanderAmp": 0.9, "meanderScale": 13, "rapidsChance": 0.25, "lakeChance": 0.15, "islandChance": 0.35 },
-      "terrain": { "bankHeight": 1.6, "bankSlope": 0.22, "valleyWidth": 160, "hillAmp": 45, "mountainAmp": 220, "mountainStart": 450, "cliffiness": 0.35, "terraces": 0, "plateau": 0 },
-      "colors": { "grass": "#3f7a2c", "grass2": "#5a9234", "floor": "#2e5a22", "sand": "#8e7b55", "mud": "#4e3d28", "rock": "#5f6457", "rock2": "#6f7a5e", "snow": "#f2f4f7", "far": "#3f6b44" },
-      "water": { "shallow": "#4d8f6b", "deep": "#17403a", "clarity": 0.55, "waveAmp": 0.05, "foam": 0.6 },
-      "atmosphere": { "fog": 0.0006, "fogTint": "#bfd8c8", "haze": 0.7, "mist": 0.8, "skyTint": "#a8d4e8", "sunset": 1.1, "stars": 1.0 },
-      "vegetation": [
-        { "id": "tree_jungle", "zone": "land", "density": 0.55, "cluster": 0.01, "clusterMin": -0.3, "scale": [0.8, 1.4], "maxSlope": 0.9 },
-        { "id": "tree_palm", "zone": "bank", "density": 0.25, "cluster": 0.02, "clusterMin": -0.1, "scale": [0.8, 1.2], "maxSlope": 0.6 },
-        { "id": "tree_broadleaf", "zone": "land", "density": 0.3, "cluster": 0.01, "clusterMin": -0.2, "scale": [1.0, 1.5], "maxSlope": 0.9 },
-        { "id": "fern", "zone": "land", "density": 2.5, "cluster": 0.04, "clusterMin": -0.5, "scale": [0.8, 1.6], "maxSlope": 0.9, "small": true },
-        { "id": "bush", "zone": "land", "density": 0.9, "cluster": 0.03, "clusterMin": -0.3, "scale": [0.8, 1.5], "maxSlope": 0.9 },
-        { "id": "glow_plant", "zone": "bank", "density": 0.5, "cluster": 0.05, "clusterMin": 0.2, "scale": [0.7, 1.3], "maxSlope": 0.8, "small": true },
-        { "id": "mushroom_glow", "zone": "land", "density": 0.5, "cluster": 0.06, "clusterMin": 0.3, "scale": [0.6, 1.4], "maxSlope": 0.8, "small": true },
-        { "id": "reeds", "zone": "shore", "density": 1.2, "cluster": 0.05, "clusterMin": 0.1, "scale": [0.9, 1.4], "maxSlope": 0.5, "small": true },
-        { "id": "lilypad", "zone": "water", "density": 0.8, "cluster": 0.05, "clusterMin": 0.35, "scale": [0.9, 1.8], "small": true },
-        { "id": "rock_boulder", "zone": "any", "density": 0.08, "cluster": 0.02, "clusterMin": 0.1, "scale": [0.6, 2.0], "maxSlope": 3 }
-      ],
-      "floaters": "leaves_green",
-      "weather": { "clear": 3, "cloudy": 3, "lightRain": 3, "heavyRain": 2, "mist": 3, "fog": 1, "storm": 1, "haze": 2 },
-      "wildlife": { "birds": 1.3, "herons": 0.5, "butterflies": 1.2, "fireflies": 1.4, "frogs": 1.2, "deer": 0.2, "fish": 1.0 },
-      "ambience": { "birds": 1.0, "insects": 1.0, "frogs": 0.9, "wind": 0.2, "cicadas": 0.9 },
-      "music": { "root": 57, "scale": "dorian", "mood": "lush" },
-      "settlement": { "style": "stilt", "chance": 0.6, "names": ["Tamaru", "Orchid Landing", "Kelapa", "Mosswater", "Vinehold", "Sunfall Stilts"] },
-      "landmarks": { "common": ["waterfall", "ancientTree", "ruins", "cave"], "rare": ["giantWaterfall", "glowGrove", "naturalArch"], "unique": ["templeOfRoots"] }
+     "id": "tree_willow",
+     "zone": "bank",
+     "density": 0.18,
+     "cluster": 0.02,
+     "clusterMin": 0.0,
+     "scale": [
+      0.9,
+      1.3
+     ],
+     "maxSlope": 0.4
     },
     {
-      "id": "autumn", "name": "Amber Valley", "regionWords": ["Amber", "Maple", "Harvest", "Russet", "Copper", "Hearth"],
-      "climate": { "temp": 0.45, "moist": 0.5, "elev": 0.4 },
-      "neighbors": ["spring", "autumnMountain", "northern", "swamp", "misty", "canyon"],
-      "river": { "width": 44, "widthVar": 0.2, "depth": 3.0, "flow": 0.7, "meanderAmp": 0.8, "meanderScale": 15, "rapidsChance": 0.1, "lakeChance": 0.25, "islandChance": 0.35 },
-      "terrain": { "bankHeight": 1.1, "bankSlope": 0.1, "valleyWidth": 260, "hillAmp": 30, "mountainAmp": 260, "mountainStart": 650, "cliffiness": 0.1, "terraces": 0, "plateau": 0 },
-      "colors": { "grass": "#9a8a3a", "grass2": "#b39a45", "floor": "#8a5a2c", "sand": "#b89e72", "mud": "#6b5236", "rock": "#8b857a", "rock2": "#9c9384", "snow": "#f2f4f7", "far": "#a0704a" },
-      "water": { "shallow": "#5e8f8a", "deep": "#1e3f4a", "clarity": 0.4, "waveAmp": 0.04, "foam": 0.4 },
-      "atmosphere": { "fog": 0.00035, "fogTint": "#e0d2bf", "haze": 0.45, "mist": 0.45, "skyTint": "#a9c6f0", "sunset": 1.35, "stars": 1.0 },
-      "vegetation": [
-        { "id": "tree_maple", "zone": "land", "density": 0.55, "cluster": 0.01, "clusterMin": -0.2, "scale": [0.8, 1.3], "maxSlope": 0.7 },
-        { "id": "tree_birch", "zone": "land", "density": 0.18, "cluster": 0.015, "clusterMin": 0.1, "scale": [0.9, 1.2], "maxSlope": 0.7 },
-        { "id": "tree_pine", "zone": "land", "density": 0.12, "cluster": 0.01, "clusterMin": 0.3, "scale": [0.9, 1.3], "maxSlope": 0.9 },
-        { "id": "bush", "zone": "land", "density": 0.5, "cluster": 0.03, "clusterMin": -0.2, "scale": [0.7, 1.2], "maxSlope": 0.8, "tint": "#a3582a" },
-        { "id": "grass", "zone": "land", "density": 4.0, "cluster": 0.04, "clusterMin": -0.4, "scale": [0.8, 1.3], "maxSlope": 0.7, "small": true, "tint": "#b39a45" },
-        { "id": "reeds", "zone": "shore", "density": 1.4, "cluster": 0.05, "clusterMin": 0.05, "scale": [0.8, 1.2], "maxSlope": 0.5, "small": true },
-        { "id": "rock_boulder", "zone": "any", "density": 0.06, "cluster": 0.02, "clusterMin": 0.15, "scale": [0.6, 1.8], "maxSlope": 3 },
-        { "id": "rock_small", "zone": "shore", "density": 0.4, "cluster": 0.04, "clusterMin": 0.0, "scale": [0.5, 1.2], "maxSlope": 2, "small": true }
-      ],
-      "floaters": "leaves_autumn",
-      "weather": { "clear": 5, "cloudy": 3, "lightRain": 2, "heavyRain": 0.6, "mist": 2.5, "fog": 1, "storm": 0.3, "haze": 1.5 },
-      "wildlife": { "birds": 1.0, "herons": 0.5, "butterflies": 0.3, "fireflies": 0.4, "frogs": 0.4, "deer": 1.0, "fish": 0.9 },
-      "ambience": { "birds": 0.7, "insects": 0.4, "frogs": 0.3, "wind": 0.6, "cicadas": 0.0 },
-      "music": { "root": 60, "scale": "major_pent", "mood": "nostalgic" },
-      "settlement": { "style": "cottage", "chance": 0.8, "names": ["Hearthford", "Copperbend", "Maplewick", "Russet Mill", "Emberlee", "Acorn Quay"] },
-      "landmarks": { "common": ["ancientTree", "mill", "cabin", "ruins", "rockPillars"], "rare": ["bridge", "naturalArch", "watchtower"], "unique": ["goldenGrove"] }
+     "id": "tree_broadleaf",
+     "zone": "land",
+     "density": 0.3,
+     "cluster": 0.008,
+     "clusterMin": 0.25,
+     "scale": [
+      0.8,
+      1.2
+     ],
+     "maxSlope": 0.6
     },
     {
-      "id": "misty", "name": "Misty Highlands", "regionWords": ["Cloud", "Mist", "Grey", "Echo", "Cairn", "Veil"],
-      "climate": { "temp": 0.3, "moist": 0.75, "elev": 0.85 },
-      "neighbors": ["autumnMountain", "snow", "crystal", "northern", "autumn", "monsoon"],
-      "river": { "width": 24, "widthVar": 0.2, "depth": 4.0, "flow": 1.5, "meanderAmp": 0.7, "meanderScale": 14, "rapidsChance": 0.45, "lakeChance": 0.15, "islandChance": 0.15 },
-      "terrain": { "bankHeight": 2.0, "bankSlope": 0.5, "valleyWidth": 90, "hillAmp": 60, "mountainAmp": 620, "mountainStart": 180, "cliffiness": 0.8, "terraces": 0, "plateau": 0 },
-      "colors": { "grass": "#5c7a4a", "grass2": "#6f8a55", "floor": "#4c6440", "sand": "#8f8a7c", "mud": "#5a5446", "rock": "#6f7378", "rock2": "#858a8f", "snow": "#eef2f6", "far": "#6a7a80" },
-      "water": { "shallow": "#5a8e96", "deep": "#1c3a48", "clarity": 0.5, "waveAmp": 0.07, "foam": 0.8 },
-      "atmosphere": { "fog": 0.0009, "fogTint": "#c8d0d8", "haze": 0.9, "mist": 1.0, "skyTint": "#b0c4dc", "sunset": 0.9, "stars": 0.8 },
-      "vegetation": [
-        { "id": "tree_pine", "zone": "land", "density": 0.45, "cluster": 0.012, "clusterMin": -0.2, "scale": [0.8, 1.4], "maxSlope": 1.1 },
-        { "id": "tree_broadleaf", "zone": "land", "density": 0.12, "cluster": 0.012, "clusterMin": 0.2, "scale": [0.7, 1.1], "maxSlope": 0.8, "tint": "#557a44" },
-        { "id": "fern", "zone": "land", "density": 1.2, "cluster": 0.04, "clusterMin": -0.2, "scale": [0.7, 1.2], "maxSlope": 1.0, "small": true },
-        { "id": "grass", "zone": "land", "density": 3.0, "cluster": 0.04, "clusterMin": -0.3, "scale": [0.7, 1.2], "maxSlope": 0.9, "small": true, "tint": "#7a8f5a" },
-        { "id": "rock_boulder", "zone": "any", "density": 0.18, "cluster": 0.02, "clusterMin": -0.1, "scale": [0.8, 2.5], "maxSlope": 3 },
-        { "id": "rock_small", "zone": "shore", "density": 0.8, "cluster": 0.04, "clusterMin": -0.2, "scale": [0.5, 1.4], "maxSlope": 3, "small": true }
-      ],
-      "floaters": null,
-      "weather": { "clear": 2, "cloudy": 3, "lightRain": 3, "heavyRain": 1, "mist": 4, "fog": 3, "storm": 0.6, "haze": 1, "snow": 0.4 },
-      "wildlife": { "birds": 0.6, "herons": 0.2, "butterflies": 0.1, "fireflies": 0.2, "frogs": 0.2, "deer": 0.7, "fish": 0.9 },
-      "ambience": { "birds": 0.4, "insects": 0.2, "frogs": 0.1, "wind": 1.0, "cicadas": 0.0 },
-      "music": { "root": 55, "scale": "aeolian", "mood": "vast" },
-      "settlement": { "style": "stone", "chance": 0.5, "names": ["Cairnhold", "Greyfell", "Mistmoor", "Echo Stair", "Highcombe", "Veilwater"] },
-      "landmarks": { "common": ["waterfall", "rockPillars", "shrine", "cave"], "rare": ["giantWaterfall", "naturalArch", "bridge"], "unique": ["skyStair"] }
+     "id": "bush_flower",
+     "zone": "land",
+     "density": 0.6,
+     "cluster": 0.03,
+     "clusterMin": -0.2,
+     "scale": [
+      0.7,
+      1.2
+     ],
+     "maxSlope": 0.7
     },
     {
-      "id": "crystal", "name": "Crystal Lakes", "regionWords": ["Glass", "Azure", "Clearwater", "Opal", "Mirror", "Silver"],
-      "climate": { "temp": 0.35, "moist": 0.5, "elev": 0.7 },
-      "neighbors": ["spring", "snow", "misty", "northern", "autumnMountain"],
-      "river": { "width": 40, "widthVar": 0.25, "depth": 5.0, "flow": 0.6, "meanderAmp": 0.7, "meanderScale": 15, "rapidsChance": 0.15, "lakeChance": 0.95, "islandChance": 0.6 },
-      "terrain": { "bankHeight": 1.2, "bankSlope": 0.2, "valleyWidth": 200, "hillAmp": 40, "mountainAmp": 420, "mountainStart": 380, "cliffiness": 0.3, "terraces": 0, "plateau": 0 },
-      "colors": { "grass": "#6f9a58", "grass2": "#86ad66", "floor": "#577a44", "sand": "#d8d3c2", "mud": "#9c9684", "rock": "#bdbab0", "rock2": "#d4d1c7", "snow": "#f4f7fa", "far": "#7f98a0" },
-      "water": { "shallow": "#46d0c6", "deep": "#0f6a8a", "clarity": 0.12, "waveAmp": 0.03, "foam": 0.3 },
-      "atmosphere": { "fog": 0.00022, "fogTint": "#cfe2f0", "haze": 0.25, "mist": 0.35, "skyTint": "#8fc0ff", "sunset": 1.0, "stars": 1.2 },
-      "vegetation": [
-        { "id": "tree_pine", "zone": "land", "density": 0.3, "cluster": 0.012, "clusterMin": -0.1, "scale": [0.8, 1.3], "maxSlope": 1.0 },
-        { "id": "tree_birch", "zone": "land", "density": 0.15, "cluster": 0.015, "clusterMin": 0.2, "scale": [0.8, 1.2], "maxSlope": 0.7 },
-        { "id": "crystal", "zone": "any", "density": 0.06, "cluster": 0.03, "clusterMin": 0.35, "scale": [0.6, 1.6], "maxSlope": 2 },
-        { "id": "grass", "zone": "land", "density": 3.0, "cluster": 0.04, "clusterMin": -0.3, "scale": [0.7, 1.2], "maxSlope": 0.8, "small": true },
-        { "id": "flowers", "zone": "land", "density": 1.0, "cluster": 0.05, "clusterMin": 0.1, "scale": [0.7, 1.1], "maxSlope": 0.6, "small": true },
-        { "id": "rock_boulder", "zone": "any", "density": 0.14, "cluster": 0.02, "clusterMin": -0.1, "scale": [0.8, 2.2], "maxSlope": 3, "tint": "#d4d1c7" },
-        { "id": "rock_flat", "zone": "shore", "density": 0.6, "cluster": 0.03, "clusterMin": -0.1, "scale": [0.6, 1.5], "maxSlope": 2, "small": true, "tint": "#d4d1c7" }
-      ],
-      "floaters": null,
-      "weather": { "clear": 6, "cloudy": 2, "lightRain": 1, "heavyRain": 0.3, "mist": 2, "fog": 0.5, "storm": 0.2, "haze": 0.5 },
-      "wildlife": { "birds": 0.7, "herons": 0.6, "butterflies": 0.5, "fireflies": 0.3, "frogs": 0.3, "deer": 0.6, "fish": 1.4 },
-      "ambience": { "birds": 0.6, "insects": 0.3, "frogs": 0.2, "wind": 0.6, "cicadas": 0.0 },
-      "music": { "root": 64, "scale": "lydian", "mood": "clear" },
-      "settlement": { "style": "timber", "chance": 0.5, "names": ["Glasswater", "Opal Rest", "Azure Point", "Mirrormere", "Silverstone", "Clearhaven"] },
-      "landmarks": { "common": ["crystalCluster", "rockPillars", "cabin", "shrine"], "rare": ["floatingIsland", "naturalArch", "hotSpring"], "unique": ["mirrorLake"] }
+     "id": "flowers",
+     "zone": "land",
+     "density": 8.75,
+     "cluster": 0.05,
+     "clusterMin": -0.1,
+     "scale": [
+      0.7,
+      1.3
+     ],
+     "maxSlope": 0.6,
+     "small": true
     },
     {
-      "id": "canyon", "name": "Red Canyon", "regionWords": ["Crimson", "Rust", "Ochre", "Sun", "Ember", "Sandstone"],
-      "climate": { "temp": 0.8, "moist": 0.15, "elev": 0.5 },
-      "neighbors": ["coast", "jungle", "monsoon", "autumn"],
-      "river": { "width": 22, "widthVar": 0.2, "depth": 3.5, "flow": 1.2, "meanderAmp": 1.0, "meanderScale": 11, "rapidsChance": 0.3, "lakeChance": 0.1, "islandChance": 0.1 },
-      "terrain": { "bankHeight": 1.0, "bankSlope": 0.35, "valleyWidth": 40, "hillAmp": 25, "mountainAmp": 60, "mountainStart": 120, "cliffiness": 1.0, "terraces": 1, "plateau": 95 },
-      "colors": { "grass": "#9a8a4e", "grass2": "#a89458", "floor": "#b0754a", "sand": "#d49a61", "mud": "#8f5a3a", "rock": "#b0512e", "rock2": "#c9713f", "snow": "#f2f4f7", "far": "#b0603a" },
-      "water": { "shallow": "#6aa38a", "deep": "#1f4a4a", "clarity": 0.45, "waveAmp": 0.05, "foam": 0.6 },
-      "atmosphere": { "fog": 0.00028, "fogTint": "#e8c9a8", "haze": 0.5, "mist": 0.1, "skyTint": "#9dbbe8", "sunset": 1.5, "stars": 1.3 },
-      "vegetation": [
-        { "id": "shrub_dry", "zone": "land", "density": 0.35, "cluster": 0.03, "clusterMin": -0.2, "scale": [0.7, 1.4], "maxSlope": 0.8 },
-        { "id": "cactus", "zone": "land", "density": 0.12, "cluster": 0.03, "clusterMin": 0.0, "scale": [0.7, 1.3], "maxSlope": 0.6 },
-        { "id": "tree_palm", "zone": "shore", "density": 0.08, "cluster": 0.02, "clusterMin": 0.2, "scale": [0.8, 1.1], "maxSlope": 0.5 },
-        { "id": "reeds", "zone": "shore", "density": 1.0, "cluster": 0.05, "clusterMin": 0.1, "scale": [0.8, 1.2], "maxSlope": 0.5, "small": true },
-        { "id": "rock_boulder", "zone": "any", "density": 0.2, "cluster": 0.02, "clusterMin": -0.2, "scale": [0.8, 2.6], "maxSlope": 3, "tint": "#b0603a" },
-        { "id": "rock_small", "zone": "shore", "density": 0.6, "cluster": 0.04, "clusterMin": -0.2, "scale": [0.5, 1.3], "maxSlope": 3, "small": true, "tint": "#b8704a" }
-      ],
-      "floaters": null,
-      "weather": { "clear": 8, "cloudy": 2, "lightRain": 0.5, "heavyRain": 0.2, "mist": 0.3, "fog": 0.1, "storm": 0.4, "haze": 3 },
-      "wildlife": { "birds": 0.6, "herons": 0.3, "butterflies": 0.3, "fireflies": 0.1, "frogs": 0.1, "deer": 0.2, "fish": 0.7 },
-      "ambience": { "birds": 0.3, "insects": 0.4, "frogs": 0.05, "wind": 0.9, "cicadas": 0.5 },
-      "music": { "root": 58, "scale": "phrygian_pent", "mood": "ancient" },
-      "settlement": { "style": "adobe", "chance": 0.45, "names": ["Ochre Wells", "Sunhollow", "Redstep", "Kiln Rock", "Sandreed", "Dustwater"] },
-      "landmarks": { "common": ["rockPillars", "cave", "ruins", "balancedRocks"], "rare": ["naturalArch", "seaStacks", "giantWaterfall"], "unique": ["paintedWall"] }
+     "id": "grass",
+     "zone": "land",
+     "density": 16.0,
+     "cluster": 0.04,
+     "clusterMin": -0.4,
+     "scale": [
+      0.8,
+      1.4
+     ],
+     "maxSlope": 0.7,
+     "small": true
     },
     {
-      "id": "monsoon", "name": "Monsoon Bamboo Forest", "regionWords": ["Rain", "Bamboo", "Lotus", "Drum", "Cloudburst", "Green"],
-      "climate": { "temp": 0.8, "moist": 0.95, "elev": 0.45 },
-      "neighbors": ["jungle", "swamp", "spring", "misty", "canyon"],
-      "river": { "width": 28, "widthVar": 0.3, "depth": 2.4, "flow": 1.0, "meanderAmp": 0.85, "meanderScale": 13, "rapidsChance": 0.2, "lakeChance": 0.2, "islandChance": 0.45 },
-      "terrain": { "bankHeight": 1.0, "bankSlope": 0.18, "valleyWidth": 140, "hillAmp": 55, "mountainAmp": 260, "mountainStart": 400, "cliffiness": 0.4, "terraces": 0.5, "plateau": 0 },
-      "colors": { "grass": "#6f9a36", "grass2": "#86ad3e", "floor": "#4f7a2c", "sand": "#a09067", "mud": "#5b4a30", "rock": "#6a6e5c", "rock2": "#7d8468", "snow": "#f2f4f7", "far": "#4f7a4a" },
-      "water": { "shallow": "#679e7a", "deep": "#1e4540", "clarity": 0.6, "waveAmp": 0.05, "foam": 0.6 },
-      "atmosphere": { "fog": 0.0007, "fogTint": "#c6d6c2", "haze": 0.8, "mist": 0.9, "skyTint": "#aac8d8", "sunset": 1.0, "stars": 0.8 },
-      "vegetation": [
-        { "id": "bamboo", "zone": "land", "density": 0.9, "cluster": 0.012, "clusterMin": -0.3, "scale": [0.8, 1.3], "maxSlope": 0.9 },
-        { "id": "tree_broadleaf", "zone": "land", "density": 0.15, "cluster": 0.01, "clusterMin": 0.2, "scale": [0.9, 1.3], "maxSlope": 0.8, "tint": "#4f8a34" },
-        { "id": "fern", "zone": "land", "density": 2.0, "cluster": 0.04, "clusterMin": -0.3, "scale": [1.0, 1.8], "maxSlope": 0.9, "small": true },
-        { "id": "bush", "zone": "land", "density": 0.7, "cluster": 0.03, "clusterMin": -0.2, "scale": [0.8, 1.5], "maxSlope": 0.8 },
-        { "id": "reeds", "zone": "shore", "density": 1.6, "cluster": 0.05, "clusterMin": 0.0, "scale": [0.9, 1.4], "maxSlope": 0.5, "small": true },
-        { "id": "lilypad", "zone": "water", "density": 1.5, "cluster": 0.05, "clusterMin": 0.2, "scale": [1.0, 2.2], "small": true },
-        { "id": "rock_boulder", "zone": "any", "density": 0.07, "cluster": 0.02, "clusterMin": 0.1, "scale": [0.6, 1.8], "maxSlope": 3 }
-      ],
-      "floaters": "leaves_green",
-      "weather": { "clear": 1.5, "cloudy": 3, "lightRain": 4, "heavyRain": 4, "mist": 3, "fog": 1, "storm": 1.5, "haze": 1 },
-      "wildlife": { "birds": 1.0, "herons": 0.7, "butterflies": 0.8, "fireflies": 1.0, "frogs": 1.4, "deer": 0.2, "fish": 1.0 },
-      "ambience": { "birds": 0.8, "insects": 0.8, "frogs": 1.0, "wind": 0.4, "cicadas": 0.6 },
-      "music": { "root": 59, "scale": "minor_pent", "mood": "rain" },
-      "settlement": { "style": "stilt", "chance": 0.6, "names": ["Lotus Stilts", "Raindrum", "Bamboo Quay", "Greenpool", "Cloudburst Landing", "Pondmere"] },
-      "landmarks": { "common": ["waterfall", "shrine", "ruins", "cave"], "rare": ["glowGrove", "giantWaterfall", "bridge"], "unique": ["rainTemple"] }
+     "id": "reeds",
+     "zone": "shore",
+     "density": 5.2,
+     "cluster": 0.06,
+     "clusterMin": 0.0,
+     "scale": [
+      0.8,
+      1.3
+     ],
+     "maxSlope": 0.5,
+     "small": true
     },
     {
-      "id": "swamp", "name": "Mirewood Wetlands", "regionWords": ["Mire", "Fen", "Bog", "Hollow", "Moss", "Murk"],
-      "climate": { "temp": 0.65, "moist": 1.0, "elev": 0.1 },
-      "neighbors": ["jungle", "spring", "autumn", "coast", "monsoon", "northern"],
-      "river": { "width": 60, "widthVar": 0.35, "depth": 2.0, "flow": 0.35, "meanderAmp": 1.0, "meanderScale": 17, "rapidsChance": 0.0, "lakeChance": 0.5, "islandChance": 0.85 },
-      "terrain": { "bankHeight": 0.4, "bankSlope": 0.04, "valleyWidth": 500, "hillAmp": 6, "mountainAmp": 80, "mountainStart": 1200, "cliffiness": 0.0, "terraces": 0, "plateau": 0 },
-      "colors": { "grass": "#56663a", "grass2": "#6a7a42", "floor": "#3e4a2a", "sand": "#6e6348", "mud": "#3f3424", "rock": "#5a5a4e", "rock2": "#6a6a5a", "snow": "#f2f4f7", "far": "#4a5a40" },
-      "water": { "shallow": "#4a5e3a", "deep": "#1a241a", "clarity": 0.9, "waveAmp": 0.02, "foam": 0.2 },
-      "atmosphere": { "fog": 0.0011, "fogTint": "#b8c2a6", "haze": 0.9, "mist": 1.0, "skyTint": "#b4c4b8", "sunset": 0.9, "stars": 0.8 },
-      "vegetation": [
-        { "id": "tree_cypress", "zone": "any", "density": 0.3, "cluster": 0.012, "clusterMin": -0.2, "scale": [0.8, 1.5], "maxSlope": 0.6, "maxDepth": 1.2 },
-        { "id": "tree_dead", "zone": "any", "density": 0.08, "cluster": 0.02, "clusterMin": 0.2, "scale": [0.8, 1.3], "maxSlope": 0.6, "maxDepth": 0.8 },
-        { "id": "tree_willow", "zone": "bank", "density": 0.12, "cluster": 0.02, "clusterMin": 0.1, "scale": [0.9, 1.3], "maxSlope": 0.4, "tint": "#5f7a3a" },
-        { "id": "reeds", "zone": "shore", "density": 4.0, "cluster": 0.04, "clusterMin": -0.3, "scale": [1.0, 1.6], "maxSlope": 0.6, "small": true },
-        { "id": "reeds", "zone": "water", "density": 1.5, "cluster": 0.04, "clusterMin": 0.1, "scale": [1.0, 1.6], "small": true },
-        { "id": "lilypad", "zone": "water", "density": 3.0, "cluster": 0.04, "clusterMin": -0.1, "scale": [0.8, 2.0], "small": true },
-        { "id": "glow_plant", "zone": "shore", "density": 0.6, "cluster": 0.05, "clusterMin": 0.1, "scale": [0.7, 1.3], "maxSlope": 0.8, "small": true },
-        { "id": "mushroom_glow", "zone": "land", "density": 0.8, "cluster": 0.05, "clusterMin": 0.1, "scale": [0.6, 1.5], "maxSlope": 0.8, "small": true },
-        { "id": "grass", "zone": "land", "density": 3.0, "cluster": 0.04, "clusterMin": -0.3, "scale": [0.8, 1.4], "maxSlope": 0.7, "small": true, "tint": "#6a7a42" }
-      ],
-      "floaters": "leaves_green",
-      "weather": { "clear": 2, "cloudy": 3, "lightRain": 2, "heavyRain": 1, "mist": 4, "fog": 4, "storm": 0.5, "haze": 1.5 },
-      "wildlife": { "birds": 0.7, "herons": 1.5, "butterflies": 0.4, "fireflies": 2.0, "frogs": 2.0, "deer": 0.2, "fish": 1.0 },
-      "ambience": { "birds": 0.5, "insects": 0.9, "frogs": 1.4, "wind": 0.2, "cicadas": 0.3 },
-      "music": { "root": 53, "scale": "dorian", "mood": "mysterious" },
-      "settlement": { "style": "stilt", "chance": 0.5, "names": ["Mirewatch", "Fenlight", "Bogmoss", "Hollowstilts", "Murkmere", "Lantern Fen"] },
-      "landmarks": { "common": ["ancientTree", "ruins", "wreck", "cabin"], "rare": ["glowGrove", "floatingIsland"], "unique": ["drownedBell"] }
+     "id": "lilypad",
+     "zone": "water",
+     "density": 1.92,
+     "cluster": 0.05,
+     "clusterMin": 0.25,
+     "scale": [
+      0.8,
+      1.5
+     ],
+     "small": true
     },
     {
-      "id": "autumnMountain", "name": "Emberpeak Gorge", "regionWords": ["Ember", "Flame", "Scarlet", "Ridge", "Crown", "Gold"],
-      "climate": { "temp": 0.4, "moist": 0.55, "elev": 0.75 },
-      "neighbors": ["autumn", "misty", "northern", "crystal"],
-      "river": { "width": 32, "widthVar": 0.2, "depth": 4.5, "flow": 1.2, "meanderAmp": 0.8, "meanderScale": 13, "rapidsChance": 0.35, "lakeChance": 0.2, "islandChance": 0.2 },
-      "terrain": { "bankHeight": 1.6, "bankSlope": 0.4, "valleyWidth": 120, "hillAmp": 50, "mountainAmp": 520, "mountainStart": 220, "cliffiness": 0.6, "terraces": 0, "plateau": 0 },
-      "colors": { "grass": "#8f7a3a", "grass2": "#a3883e", "floor": "#7a4a26", "sand": "#a8957a", "mud": "#5e4832", "rock": "#7a746c", "rock2": "#8f877c", "snow": "#f2f4f7", "far": "#9a5a3a" },
-      "water": { "shallow": "#4f8a8e", "deep": "#17354a", "clarity": 0.4, "waveAmp": 0.06, "foam": 0.7 },
-      "atmosphere": { "fog": 0.0006, "fogTint": "#dccab6", "haze": 0.7, "mist": 0.8, "skyTint": "#a6c0e8", "sunset": 1.45, "stars": 1.0 },
-      "vegetation": [
-        { "id": "tree_maple", "zone": "land", "density": 0.45, "cluster": 0.012, "clusterMin": -0.2, "scale": [0.8, 1.3], "maxSlope": 1.0 },
-        { "id": "tree_pine", "zone": "land", "density": 0.25, "cluster": 0.012, "clusterMin": 0.0, "scale": [0.9, 1.4], "maxSlope": 1.1 },
-        { "id": "tree_birch", "zone": "land", "density": 0.1, "cluster": 0.015, "clusterMin": 0.2, "scale": [0.8, 1.2], "maxSlope": 0.8 },
-        { "id": "bush", "zone": "land", "density": 0.4, "cluster": 0.03, "clusterMin": -0.1, "scale": [0.7, 1.2], "maxSlope": 0.9, "tint": "#b0602a" },
-        { "id": "grass", "zone": "land", "density": 2.5, "cluster": 0.04, "clusterMin": -0.3, "scale": [0.7, 1.2], "maxSlope": 0.8, "small": true, "tint": "#a3883e" },
-        { "id": "rock_boulder", "zone": "any", "density": 0.15, "cluster": 0.02, "clusterMin": 0.0, "scale": [0.8, 2.4], "maxSlope": 3 },
-        { "id": "rock_small", "zone": "shore", "density": 0.6, "cluster": 0.04, "clusterMin": -0.1, "scale": [0.5, 1.3], "maxSlope": 3, "small": true }
-      ],
-      "floaters": "leaves_autumn",
-      "weather": { "clear": 4, "cloudy": 3, "lightRain": 2, "heavyRain": 0.8, "mist": 3, "fog": 2, "storm": 0.4, "haze": 1.5 },
-      "wildlife": { "birds": 0.8, "herons": 0.3, "butterflies": 0.2, "fireflies": 0.3, "frogs": 0.2, "deer": 0.9, "fish": 0.9 },
-      "ambience": { "birds": 0.6, "insects": 0.3, "frogs": 0.1, "wind": 0.8, "cicadas": 0.0 },
-      "music": { "root": 57, "scale": "major_pent", "mood": "epic" },
-      "settlement": { "style": "stone", "chance": 0.5, "names": ["Emberhold", "Scarlet Ford", "Crownwater", "Goldstair", "Flamewood", "Ridgeholm"] },
-      "landmarks": { "common": ["waterfall", "shrine", "rockPillars", "cabin"], "rare": ["giantWaterfall", "bridge", "watchtower"], "unique": ["emberSpire"] }
+     "id": "rock_boulder",
+     "zone": "any",
+     "density": 0.05,
+     "cluster": 0.02,
+     "clusterMin": 0.2,
+     "scale": [
+      0.6,
+      1.6
+     ],
+     "maxSlope": 2
     },
     {
-      "id": "northern", "name": "Northern Pinewood", "regionWords": ["Pine", "Frost", "Wolf", "North", "Birch", "Boreal"],
-      "climate": { "temp": 0.2, "moist": 0.5, "elev": 0.5 },
-      "neighbors": ["snow", "autumn", "autumnMountain", "crystal", "misty", "swamp"],
-      "river": { "width": 34, "widthVar": 0.25, "depth": 3.5, "flow": 0.9, "meanderAmp": 0.8, "meanderScale": 15, "rapidsChance": 0.25, "lakeChance": 0.45, "islandChance": 0.45 },
-      "terrain": { "bankHeight": 1.3, "bankSlope": 0.2, "valleyWidth": 200, "hillAmp": 45, "mountainAmp": 300, "mountainStart": 500, "cliffiness": 0.3, "terraces": 0, "plateau": 0 },
-      "colors": { "grass": "#5d7248", "grass2": "#6f8052", "floor": "#46553a", "sand": "#9a9384", "mud": "#524a3c", "rock": "#6c6f70", "rock2": "#7f8385", "snow": "#eef2f6", "far": "#3f5448" },
-      "water": { "shallow": "#4e7f86", "deep": "#132f3c", "clarity": 0.35, "waveAmp": 0.05, "foam": 0.5 },
-      "atmosphere": { "fog": 0.0003, "fogTint": "#c6d2de", "haze": 0.35, "mist": 0.5, "skyTint": "#8fb4ec", "sunset": 1.1, "stars": 1.5 },
-      "vegetation": [
-        { "id": "tree_pine", "zone": "land", "density": 0.8, "cluster": 0.01, "clusterMin": -0.35, "scale": [0.8, 1.5], "maxSlope": 1.1 },
-        { "id": "tree_birch", "zone": "land", "density": 0.18, "cluster": 0.015, "clusterMin": 0.15, "scale": [0.8, 1.2], "maxSlope": 0.8, "tint": "#d8b440" },
-        { "id": "fern", "zone": "land", "density": 0.8, "cluster": 0.04, "clusterMin": 0.0, "scale": [0.6, 1.1], "maxSlope": 0.9, "small": true, "tint": "#6a7f4a" },
-        { "id": "grass", "zone": "land", "density": 2.0, "cluster": 0.04, "clusterMin": -0.2, "scale": [0.6, 1.1], "maxSlope": 0.8, "small": true, "tint": "#6f8052" },
-        { "id": "reeds", "zone": "shore", "density": 0.8, "cluster": 0.05, "clusterMin": 0.15, "scale": [0.8, 1.2], "maxSlope": 0.5, "small": true },
-        { "id": "rock_boulder", "zone": "any", "density": 0.14, "cluster": 0.02, "clusterMin": 0.0, "scale": [0.8, 2.2], "maxSlope": 3 },
-        { "id": "rock_small", "zone": "shore", "density": 0.7, "cluster": 0.04, "clusterMin": -0.1, "scale": [0.5, 1.3], "maxSlope": 3, "small": true }
-      ],
-      "floaters": null,
-      "weather": { "clear": 5, "cloudy": 3, "lightRain": 1.5, "heavyRain": 0.5, "mist": 2, "fog": 1, "storm": 0.3, "haze": 0.3, "snow": 1 },
-      "wildlife": { "birds": 0.7, "herons": 0.4, "butterflies": 0.1, "fireflies": 0.2, "frogs": 0.2, "deer": 1.2, "fish": 1.0 },
-      "ambience": { "birds": 0.5, "insects": 0.2, "frogs": 0.1, "wind": 0.8, "cicadas": 0.0 },
-      "music": { "root": 55, "scale": "aeolian", "mood": "cold" },
-      "settlement": { "style": "timber", "chance": 0.6, "names": ["Wolfwater", "Pinehaven", "Northmere", "Birchstead", "Frostford", "Borealis Quay"] },
-      "landmarks": { "common": ["cabin", "rockPillars", "shrine", "wreck"], "rare": ["naturalArch", "hotSpring", "watchtower"], "unique": ["auroraStones"] }
-    },
-    {
-      "id": "coast", "name": "Mangrove Coast", "regionWords": ["Coral", "Tide", "Gull", "Salt", "Lagoon", "Driftwood"],
-      "climate": { "temp": 0.85, "moist": 0.7, "elev": 0.0 },
-      "neighbors": ["jungle", "swamp", "canyon", "spring"],
-      "river": { "width": 70, "widthVar": 0.3, "depth": 3.0, "flow": 0.45, "meanderAmp": 0.7, "meanderScale": 16, "rapidsChance": 0.0, "lakeChance": 0.3, "islandChance": 0.7 },
-      "terrain": { "bankHeight": 0.7, "bankSlope": 0.05, "valleyWidth": 400, "hillAmp": 18, "mountainAmp": 90, "mountainStart": 900, "cliffiness": 0.1, "terraces": 0, "plateau": 0, "coast": 1 },
-      "colors": { "grass": "#7a9a44", "grass2": "#8fae4e", "floor": "#5e7a34", "sand": "#e3d3a4", "mud": "#8a7a58", "rock": "#8e8a7e", "rock2": "#a39e90", "snow": "#f2f4f7", "far": "#6a8a6a" },
-      "water": { "shallow": "#4fc0b0", "deep": "#12506e", "clarity": 0.2, "waveAmp": 0.12, "foam": 0.8 },
-      "atmosphere": { "fog": 0.00028, "fogTint": "#d8e4ea", "haze": 0.5, "mist": 0.3, "skyTint": "#8cc0f2", "sunset": 1.3, "stars": 1.1 },
-      "vegetation": [
-        { "id": "tree_mangrove", "zone": "shore", "density": 0.35, "cluster": 0.015, "clusterMin": -0.1, "scale": [0.8, 1.3], "maxSlope": 0.5, "maxDepth": 0.8 },
-        { "id": "tree_palm", "zone": "land", "density": 0.3, "cluster": 0.015, "clusterMin": -0.1, "scale": [0.8, 1.3], "maxSlope": 0.6 },
-        { "id": "bush", "zone": "land", "density": 0.5, "cluster": 0.03, "clusterMin": -0.1, "scale": [0.7, 1.3], "maxSlope": 0.7 },
-        { "id": "grass", "zone": "land", "density": 2.0, "cluster": 0.04, "clusterMin": -0.2, "scale": [0.7, 1.2], "maxSlope": 0.7, "small": true },
-        { "id": "driftwood", "zone": "shore", "density": 0.12, "cluster": 0.04, "clusterMin": 0.0, "scale": [0.8, 1.4], "maxSlope": 0.5, "small": true },
-        { "id": "rock_boulder", "zone": "any", "density": 0.05, "cluster": 0.02, "clusterMin": 0.2, "scale": [0.8, 2.0], "maxSlope": 3 }
-      ],
-      "floaters": null,
-      "weather": { "clear": 6, "cloudy": 3, "lightRain": 2, "heavyRain": 1, "mist": 1, "fog": 0.5, "storm": 0.8, "haze": 1.5 },
-      "wildlife": { "birds": 1.4, "herons": 1.0, "butterflies": 0.5, "fireflies": 0.5, "frogs": 0.3, "deer": 0.1, "fish": 1.3 },
-      "ambience": { "birds": 1.0, "insects": 0.5, "frogs": 0.2, "wind": 0.8, "cicadas": 0.4 },
-      "music": { "root": 62, "scale": "mixolydian", "mood": "bright" },
-      "settlement": { "style": "coastal", "chance": 0.8, "names": ["Gullhaven", "Saltmere", "Coral Quay", "Tidewick", "Lagoon Rest", "Driftwood Bay"] },
-      "landmarks": { "common": ["seaStacks", "wreck", "cabin", "rockPillars"], "rare": ["lighthouse", "naturalArch", "cave"], "unique": ["tidalGate"] }
-    },
-    {
-      "id": "snow", "name": "Frostreach Heights", "regionWords": ["Frost", "Glacier", "White", "Ice", "Winter", "Starlit"],
-      "climate": { "temp": 0.02, "moist": 0.4, "elev": 0.95 },
-      "neighbors": ["misty", "northern", "crystal"],
-      "river": { "width": 26, "widthVar": 0.2, "depth": 4.0, "flow": 1.1, "meanderAmp": 0.7, "meanderScale": 14, "rapidsChance": 0.3, "lakeChance": 0.35, "islandChance": 0.3 },
-      "terrain": { "bankHeight": 1.5, "bankSlope": 0.35, "valleyWidth": 140, "hillAmp": 50, "mountainAmp": 700, "mountainStart": 260, "cliffiness": 0.6, "terraces": 0, "plateau": 0, "snowLine": 6 },
-      "colors": { "grass": "#8a9a90", "grass2": "#a0aca6", "floor": "#6a7a70", "sand": "#b8b8b0", "mud": "#6a6a64", "rock": "#6d7278", "rock2": "#858b92", "snow": "#f4f7fb", "far": "#b8c4d0" },
-      "water": { "shallow": "#6ab0c8", "deep": "#12344e", "clarity": 0.2, "waveAmp": 0.04, "foam": 0.5 },
-      "atmosphere": { "fog": 0.00025, "fogTint": "#dbe6f2", "haze": 0.3, "mist": 0.4, "skyTint": "#7fb0ff", "sunset": 1.2, "stars": 1.6 },
-      "vegetation": [
-        { "id": "tree_pine_snow", "zone": "land", "density": 0.35, "cluster": 0.012, "clusterMin": -0.1, "scale": [0.7, 1.3], "maxSlope": 1.0 },
-        { "id": "tree_pine", "zone": "bank", "density": 0.12, "cluster": 0.012, "clusterMin": 0.2, "scale": [0.8, 1.2], "maxSlope": 0.9 },
-        { "id": "rock_boulder", "zone": "any", "density": 0.18, "cluster": 0.02, "clusterMin": -0.1, "scale": [0.8, 2.5], "maxSlope": 3, "tint": "#dfe6ee" },
-        { "id": "rock_small", "zone": "shore", "density": 0.6, "cluster": 0.04, "clusterMin": -0.1, "scale": [0.5, 1.3], "maxSlope": 3, "small": true, "tint": "#c8d2dc" },
-        { "id": "crystal", "zone": "shore", "density": 0.05, "cluster": 0.03, "clusterMin": 0.3, "scale": [0.5, 1.2], "maxSlope": 2, "tint": "#bfe8ff" }
-      ],
-      "floaters": "ice",
-      "weather": { "clear": 6, "cloudy": 2, "lightRain": 0, "heavyRain": 0, "mist": 1, "fog": 1, "storm": 0.3, "haze": 0.2, "snow": 3 },
-      "wildlife": { "birds": 0.3, "herons": 0.0, "butterflies": 0.0, "fireflies": 0.0, "frogs": 0.0, "deer": 0.6, "fish": 0.8 },
-      "ambience": { "birds": 0.15, "insects": 0.0, "frogs": 0.0, "wind": 1.2, "cicadas": 0.0 },
-      "music": { "root": 64, "scale": "lydian", "mood": "crystalline" },
-      "settlement": { "style": "stone", "chance": 0.4, "names": ["Frosthold", "Whitecairn", "Glacierfoot", "Starlit Rest", "Icewater", "Winterquay"] },
-      "landmarks": { "common": ["icefall", "shrine", "rockPillars", "cabin"], "rare": ["hotSpring", "giantWaterfall", "naturalArch"], "unique": ["frozenGiant"] }
-    },
-    {
-      "id": "starwater", "name": "Starwater", "hidden": true, "regionWords": ["Star", "Lumen", "Dream", "Hidden", "Moonlit", "Glimmer"],
-      "climate": { "temp": 0.5, "moist": 0.8, "elev": 0.6 },
-      "neighbors": [],
-      "river": { "width": 26, "widthVar": 0.2, "depth": 3.0, "flow": 0.4, "meanderAmp": 0.8, "meanderScale": 13, "rapidsChance": 0.0, "lakeChance": 0.5, "islandChance": 0.5 },
-      "terrain": { "bankHeight": 1.2, "bankSlope": 0.3, "valleyWidth": 120, "hillAmp": 40, "mountainAmp": 300, "mountainStart": 260, "cliffiness": 0.5, "terraces": 0, "plateau": 0 },
-      "colors": { "grass": "#3f5a6a", "grass2": "#4a6a7a", "floor": "#2f3f55", "sand": "#8a8ca8", "mud": "#3a3a50", "rock": "#4a4e66", "rock2": "#5a5e7a", "snow": "#e8ecff", "far": "#3a4a6a" },
-      "water": { "shallow": "#3aa0b8", "deep": "#0c1e3a", "clarity": 0.25, "waveAmp": 0.02, "foam": 0.3, "glow": 1.0 },
-      "atmosphere": { "fog": 0.0005, "fogTint": "#9aa8d8", "haze": 0.6, "mist": 0.8, "skyTint": "#8a9ae8", "sunset": 1.2, "stars": 2.0 },
-      "vegetation": [
-        { "id": "tree_broadleaf", "zone": "land", "density": 0.3, "cluster": 0.012, "clusterMin": -0.1, "scale": [0.9, 1.4], "maxSlope": 0.9, "tint": "#3a6a7a" },
-        { "id": "glow_plant", "zone": "any", "density": 1.4, "cluster": 0.04, "clusterMin": -0.3, "scale": [0.8, 1.6], "maxSlope": 1.0, "small": true },
-        { "id": "mushroom_glow", "zone": "land", "density": 1.4, "cluster": 0.04, "clusterMin": -0.2, "scale": [0.8, 2.0], "maxSlope": 1.0, "small": true },
-        { "id": "crystal", "zone": "any", "density": 0.12, "cluster": 0.03, "clusterMin": 0.1, "scale": [0.6, 1.8], "maxSlope": 2, "tint": "#a8b8ff" },
-        { "id": "fern", "zone": "land", "density": 1.5, "cluster": 0.04, "clusterMin": -0.2, "scale": [0.8, 1.4], "maxSlope": 0.9, "small": true, "tint": "#3a7a8a" },
-        { "id": "lilypad", "zone": "water", "density": 1.0, "cluster": 0.05, "clusterMin": 0.2, "scale": [0.9, 1.8], "small": true }
-      ],
-      "floaters": "lumen",
-      "weather": { "clear": 6, "cloudy": 1, "lightRain": 0.5, "heavyRain": 0, "mist": 3, "fog": 0.5, "storm": 0, "haze": 0.5 },
-      "wildlife": { "birds": 0.3, "herons": 0.3, "butterflies": 0.6, "fireflies": 3.0, "frogs": 0.8, "deer": 0.3, "fish": 1.2 },
-      "ambience": { "birds": 0.2, "insects": 0.6, "frogs": 0.6, "wind": 0.3, "cicadas": 0.0 },
-      "music": { "root": 61, "scale": "lydian", "mood": "wonder" },
-      "settlement": { "style": "timber", "chance": 0.0, "names": ["Starwater Camp"] },
-      "landmarks": { "common": ["glowGrove", "crystalCluster"], "rare": ["floatingIsland"], "unique": [] }
+     "id": "rock_small",
+     "zone": "shore",
+     "density": 0.4,
+     "cluster": 0.04,
+     "clusterMin": 0.0,
+     "scale": [
+      0.5,
+      1.2
+     ],
+     "maxSlope": 2,
+     "small": true
     }
-  ]
+   ],
+   "floaters": "petals",
+   "weather": {
+    "clear": 5,
+    "cloudy": 3,
+    "lightRain": 2,
+    "heavyRain": 0.5,
+    "mist": 2,
+    "fog": 0.5,
+    "storm": 0.2,
+    "haze": 1
+   },
+   "wildlife": {
+    "birds": 1.0,
+    "herons": 0.4,
+    "butterflies": 1.0,
+    "fireflies": 0.8,
+    "frogs": 0.5,
+    "deer": 0.4,
+    "fish": 0.8
+   },
+   "ambience": {
+    "birds": 0.9,
+    "insects": 0.5,
+    "frogs": 0.4,
+    "wind": 0.4,
+    "cicadas": 0.1
+   },
+   "music": {
+    "root": 62,
+    "scale": "major_pent",
+    "mood": "gentle"
+   },
+   "settlement": {
+    "style": "cottage",
+    "chance": 0.75,
+    "names": [
+     "Willowmere",
+     "Fernwick",
+     "Petalbrook",
+     "Clover Landing",
+     "Honeyford",
+     "Lark Hollow"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "ancientTree",
+     "ruins",
+     "rockPillars",
+     "cabin",
+     "mill"
+    ],
+    "rare": [
+     "naturalArch",
+     "floatingIsland",
+     "bridge"
+    ],
+    "unique": [
+     "giantBlossom"
+    ]
+   }
+  },
+  {
+   "id": "jungle",
+   "name": "Verdant Jungle",
+   "regionWords": [
+    "Emerald",
+    "Canopy",
+    "Orchid",
+    "Vine",
+    "Jade",
+    "Monkeypuzzle"
+   ],
+   "climate": {
+    "temp": 0.95,
+    "moist": 0.95,
+    "elev": 0.3
+   },
+   "neighbors": [
+    "swamp",
+    "monsoon",
+    "coast",
+    "canyon"
+   ],
+   "river": {
+    "width": 34,
+    "widthVar": 0.3,
+    "depth": 3.8,
+    "flow": 1.1,
+    "meanderAmp": 0.9,
+    "meanderScale": 13,
+    "rapidsChance": 0.25,
+    "lakeChance": 0.15,
+    "islandChance": 0.35
+   },
+   "terrain": {
+    "bankHeight": 1.6,
+    "bankSlope": 0.22,
+    "valleyWidth": 160,
+    "hillAmp": 45,
+    "mountainAmp": 220,
+    "mountainStart": 450,
+    "cliffiness": 0.35,
+    "terraces": 0,
+    "plateau": 0
+   },
+   "colors": {
+    "grass": "#3f7a2c",
+    "grass2": "#5a9234",
+    "floor": "#2e5a22",
+    "sand": "#8e7b55",
+    "mud": "#4e3d28",
+    "rock": "#5f6457",
+    "rock2": "#6f7a5e",
+    "snow": "#f2f4f7",
+    "far": "#3f6b44"
+   },
+   "water": {
+    "shallow": "#4d8f6b",
+    "deep": "#17403a",
+    "clarity": 0.55,
+    "waveAmp": 0.05,
+    "foam": 0.6
+   },
+   "atmosphere": {
+    "fog": 0.0006,
+    "fogTint": "#bfd8c8",
+    "haze": 0.7,
+    "mist": 0.8,
+    "skyTint": "#a8d4e8",
+    "sunset": 1.1,
+    "stars": 1.0
+   },
+   "vegetation": [
+    {
+     "id": "tree_jungle",
+     "zone": "land",
+     "density": 0.55,
+     "cluster": 0.01,
+     "clusterMin": -0.3,
+     "scale": [
+      0.8,
+      1.4
+     ],
+     "maxSlope": 0.9
+    },
+    {
+     "id": "tree_palm",
+     "zone": "bank",
+     "density": 0.25,
+     "cluster": 0.02,
+     "clusterMin": -0.1,
+     "scale": [
+      0.8,
+      1.2
+     ],
+     "maxSlope": 0.6
+    },
+    {
+     "id": "tree_broadleaf",
+     "zone": "land",
+     "density": 0.3,
+     "cluster": 0.01,
+     "clusterMin": -0.2,
+     "scale": [
+      1.0,
+      1.5
+     ],
+     "maxSlope": 0.9
+    },
+    {
+     "id": "fern",
+     "zone": "land",
+     "density": 4.0,
+     "cluster": 0.04,
+     "clusterMin": -0.5,
+     "scale": [
+      0.8,
+      1.6
+     ],
+     "maxSlope": 0.9,
+     "small": true
+    },
+    {
+     "id": "bush",
+     "zone": "land",
+     "density": 1.17,
+     "cluster": 0.03,
+     "clusterMin": -0.3,
+     "scale": [
+      0.8,
+      1.5
+     ],
+     "maxSlope": 0.9
+    },
+    {
+     "id": "glow_plant",
+     "zone": "bank",
+     "density": 0.75,
+     "cluster": 0.05,
+     "clusterMin": 0.2,
+     "scale": [
+      0.7,
+      1.3
+     ],
+     "maxSlope": 0.8,
+     "small": true
+    },
+    {
+     "id": "mushroom_glow",
+     "zone": "land",
+     "density": 0.65,
+     "cluster": 0.06,
+     "clusterMin": 0.3,
+     "scale": [
+      0.6,
+      1.4
+     ],
+     "maxSlope": 0.8,
+     "small": true
+    },
+    {
+     "id": "reeds",
+     "zone": "shore",
+     "density": 3.12,
+     "cluster": 0.05,
+     "clusterMin": 0.1,
+     "scale": [
+      0.9,
+      1.4
+     ],
+     "maxSlope": 0.5,
+     "small": true
+    },
+    {
+     "id": "lilypad",
+     "zone": "water",
+     "density": 1.28,
+     "cluster": 0.05,
+     "clusterMin": 0.35,
+     "scale": [
+      0.9,
+      1.8
+     ],
+     "small": true
+    },
+    {
+     "id": "rock_boulder",
+     "zone": "any",
+     "density": 0.08,
+     "cluster": 0.02,
+     "clusterMin": 0.1,
+     "scale": [
+      0.6,
+      2.0
+     ],
+     "maxSlope": 3
+    }
+   ],
+   "floaters": "leaves_green",
+   "weather": {
+    "clear": 3,
+    "cloudy": 3,
+    "lightRain": 3,
+    "heavyRain": 2,
+    "mist": 3,
+    "fog": 1,
+    "storm": 1,
+    "haze": 2
+   },
+   "wildlife": {
+    "birds": 1.3,
+    "herons": 0.5,
+    "butterflies": 1.2,
+    "fireflies": 1.4,
+    "frogs": 1.2,
+    "deer": 0.2,
+    "fish": 1.0
+   },
+   "ambience": {
+    "birds": 1.0,
+    "insects": 1.0,
+    "frogs": 0.9,
+    "wind": 0.2,
+    "cicadas": 0.9
+   },
+   "music": {
+    "root": 57,
+    "scale": "dorian",
+    "mood": "lush"
+   },
+   "settlement": {
+    "style": "stilt",
+    "chance": 0.6,
+    "names": [
+     "Tamaru",
+     "Orchid Landing",
+     "Kelapa",
+     "Mosswater",
+     "Vinehold",
+     "Sunfall Stilts"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "waterfall",
+     "ancientTree",
+     "ruins",
+     "cave"
+    ],
+    "rare": [
+     "giantWaterfall",
+     "glowGrove",
+     "naturalArch"
+    ],
+    "unique": [
+     "templeOfRoots"
+    ]
+   }
+  },
+  {
+   "id": "autumn",
+   "name": "Amber Valley",
+   "regionWords": [
+    "Amber",
+    "Maple",
+    "Harvest",
+    "Russet",
+    "Copper",
+    "Hearth"
+   ],
+   "climate": {
+    "temp": 0.45,
+    "moist": 0.5,
+    "elev": 0.4
+   },
+   "neighbors": [
+    "spring",
+    "autumnMountain",
+    "northern",
+    "swamp",
+    "misty",
+    "canyon"
+   ],
+   "river": {
+    "width": 44,
+    "widthVar": 0.2,
+    "depth": 3.0,
+    "flow": 0.7,
+    "meanderAmp": 0.8,
+    "meanderScale": 15,
+    "rapidsChance": 0.1,
+    "lakeChance": 0.25,
+    "islandChance": 0.35
+   },
+   "terrain": {
+    "bankHeight": 1.1,
+    "bankSlope": 0.1,
+    "valleyWidth": 260,
+    "hillAmp": 30,
+    "mountainAmp": 260,
+    "mountainStart": 650,
+    "cliffiness": 0.1,
+    "terraces": 0,
+    "plateau": 0
+   },
+   "colors": {
+    "grass": "#9a8a3a",
+    "grass2": "#b39a45",
+    "floor": "#8a5a2c",
+    "sand": "#b89e72",
+    "mud": "#6b5236",
+    "rock": "#8b857a",
+    "rock2": "#9c9384",
+    "snow": "#f2f4f7",
+    "far": "#a0704a"
+   },
+   "water": {
+    "shallow": "#5e8f8a",
+    "deep": "#1e3f4a",
+    "clarity": 0.4,
+    "waveAmp": 0.04,
+    "foam": 0.4
+   },
+   "atmosphere": {
+    "fog": 0.00035,
+    "fogTint": "#e0d2bf",
+    "haze": 0.45,
+    "mist": 0.45,
+    "skyTint": "#a9c6f0",
+    "sunset": 1.35,
+    "stars": 1.0
+   },
+   "vegetation": [
+    {
+     "id": "tree_maple",
+     "zone": "land",
+     "density": 0.55,
+     "cluster": 0.01,
+     "clusterMin": -0.2,
+     "scale": [
+      0.8,
+      1.3
+     ],
+     "maxSlope": 0.7
+    },
+    {
+     "id": "tree_birch",
+     "zone": "land",
+     "density": 0.18,
+     "cluster": 0.015,
+     "clusterMin": 0.1,
+     "scale": [
+      0.9,
+      1.2
+     ],
+     "maxSlope": 0.7
+    },
+    {
+     "id": "tree_pine",
+     "zone": "land",
+     "density": 0.12,
+     "cluster": 0.01,
+     "clusterMin": 0.3,
+     "scale": [
+      0.9,
+      1.3
+     ],
+     "maxSlope": 0.9
+    },
+    {
+     "id": "bush",
+     "zone": "land",
+     "density": 0.65,
+     "cluster": 0.03,
+     "clusterMin": -0.2,
+     "scale": [
+      0.7,
+      1.2
+     ],
+     "maxSlope": 0.8,
+     "tint": "#a3582a"
+    },
+    {
+     "id": "grass",
+     "zone": "land",
+     "density": 12.8,
+     "cluster": 0.04,
+     "clusterMin": -0.4,
+     "scale": [
+      0.8,
+      1.3
+     ],
+     "maxSlope": 0.7,
+     "small": true,
+     "tint": "#b39a45"
+    },
+    {
+     "id": "reeds",
+     "zone": "shore",
+     "density": 3.64,
+     "cluster": 0.05,
+     "clusterMin": 0.05,
+     "scale": [
+      0.8,
+      1.2
+     ],
+     "maxSlope": 0.5,
+     "small": true
+    },
+    {
+     "id": "rock_boulder",
+     "zone": "any",
+     "density": 0.06,
+     "cluster": 0.02,
+     "clusterMin": 0.15,
+     "scale": [
+      0.6,
+      1.8
+     ],
+     "maxSlope": 3
+    },
+    {
+     "id": "rock_small",
+     "zone": "shore",
+     "density": 0.4,
+     "cluster": 0.04,
+     "clusterMin": 0.0,
+     "scale": [
+      0.5,
+      1.2
+     ],
+     "maxSlope": 2,
+     "small": true
+    }
+   ],
+   "floaters": "leaves_autumn",
+   "weather": {
+    "clear": 5,
+    "cloudy": 3,
+    "lightRain": 2,
+    "heavyRain": 0.6,
+    "mist": 2.5,
+    "fog": 1,
+    "storm": 0.3,
+    "haze": 1.5
+   },
+   "wildlife": {
+    "birds": 1.0,
+    "herons": 0.5,
+    "butterflies": 0.3,
+    "fireflies": 0.4,
+    "frogs": 0.4,
+    "deer": 1.0,
+    "fish": 0.9
+   },
+   "ambience": {
+    "birds": 0.7,
+    "insects": 0.4,
+    "frogs": 0.3,
+    "wind": 0.6,
+    "cicadas": 0.0
+   },
+   "music": {
+    "root": 60,
+    "scale": "major_pent",
+    "mood": "nostalgic"
+   },
+   "settlement": {
+    "style": "cottage",
+    "chance": 0.8,
+    "names": [
+     "Hearthford",
+     "Copperbend",
+     "Maplewick",
+     "Russet Mill",
+     "Emberlee",
+     "Acorn Quay"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "ancientTree",
+     "mill",
+     "cabin",
+     "ruins",
+     "rockPillars"
+    ],
+    "rare": [
+     "bridge",
+     "naturalArch",
+     "watchtower"
+    ],
+    "unique": [
+     "goldenGrove"
+    ]
+   }
+  },
+  {
+   "id": "misty",
+   "name": "Misty Highlands",
+   "regionWords": [
+    "Cloud",
+    "Mist",
+    "Grey",
+    "Echo",
+    "Cairn",
+    "Veil"
+   ],
+   "climate": {
+    "temp": 0.3,
+    "moist": 0.75,
+    "elev": 0.85
+   },
+   "neighbors": [
+    "autumnMountain",
+    "snow",
+    "crystal",
+    "northern",
+    "autumn",
+    "monsoon"
+   ],
+   "river": {
+    "width": 24,
+    "widthVar": 0.2,
+    "depth": 4.0,
+    "flow": 1.5,
+    "meanderAmp": 0.7,
+    "meanderScale": 14,
+    "rapidsChance": 0.45,
+    "lakeChance": 0.15,
+    "islandChance": 0.15
+   },
+   "terrain": {
+    "bankHeight": 2.0,
+    "bankSlope": 0.5,
+    "valleyWidth": 90,
+    "hillAmp": 60,
+    "mountainAmp": 620,
+    "mountainStart": 180,
+    "cliffiness": 0.8,
+    "terraces": 0,
+    "plateau": 0
+   },
+   "colors": {
+    "grass": "#5c7a4a",
+    "grass2": "#6f8a55",
+    "floor": "#4c6440",
+    "sand": "#8f8a7c",
+    "mud": "#5a5446",
+    "rock": "#6f7378",
+    "rock2": "#858a8f",
+    "snow": "#eef2f6",
+    "far": "#6a7a80"
+   },
+   "water": {
+    "shallow": "#5a8e96",
+    "deep": "#1c3a48",
+    "clarity": 0.5,
+    "waveAmp": 0.07,
+    "foam": 0.8
+   },
+   "atmosphere": {
+    "fog": 0.0009,
+    "fogTint": "#c8d0d8",
+    "haze": 0.9,
+    "mist": 1.0,
+    "skyTint": "#b0c4dc",
+    "sunset": 0.9,
+    "stars": 0.8
+   },
+   "vegetation": [
+    {
+     "id": "tree_pine",
+     "zone": "land",
+     "density": 0.45,
+     "cluster": 0.012,
+     "clusterMin": -0.2,
+     "scale": [
+      0.8,
+      1.4
+     ],
+     "maxSlope": 1.1
+    },
+    {
+     "id": "tree_broadleaf",
+     "zone": "land",
+     "density": 0.12,
+     "cluster": 0.012,
+     "clusterMin": 0.2,
+     "scale": [
+      0.7,
+      1.1
+     ],
+     "maxSlope": 0.8,
+     "tint": "#557a44"
+    },
+    {
+     "id": "fern",
+     "zone": "land",
+     "density": 1.92,
+     "cluster": 0.04,
+     "clusterMin": -0.2,
+     "scale": [
+      0.7,
+      1.2
+     ],
+     "maxSlope": 1.0,
+     "small": true
+    },
+    {
+     "id": "grass",
+     "zone": "land",
+     "density": 9.6,
+     "cluster": 0.04,
+     "clusterMin": -0.3,
+     "scale": [
+      0.7,
+      1.2
+     ],
+     "maxSlope": 0.9,
+     "small": true,
+     "tint": "#7a8f5a"
+    },
+    {
+     "id": "rock_boulder",
+     "zone": "any",
+     "density": 0.18,
+     "cluster": 0.02,
+     "clusterMin": -0.1,
+     "scale": [
+      0.8,
+      2.5
+     ],
+     "maxSlope": 3
+    },
+    {
+     "id": "rock_small",
+     "zone": "shore",
+     "density": 0.8,
+     "cluster": 0.04,
+     "clusterMin": -0.2,
+     "scale": [
+      0.5,
+      1.4
+     ],
+     "maxSlope": 3,
+     "small": true
+    }
+   ],
+   "floaters": null,
+   "weather": {
+    "clear": 2,
+    "cloudy": 3,
+    "lightRain": 3,
+    "heavyRain": 1,
+    "mist": 4,
+    "fog": 3,
+    "storm": 0.6,
+    "haze": 1,
+    "snow": 0.4
+   },
+   "wildlife": {
+    "birds": 0.6,
+    "herons": 0.2,
+    "butterflies": 0.1,
+    "fireflies": 0.2,
+    "frogs": 0.2,
+    "deer": 0.7,
+    "fish": 0.9
+   },
+   "ambience": {
+    "birds": 0.4,
+    "insects": 0.2,
+    "frogs": 0.1,
+    "wind": 1.0,
+    "cicadas": 0.0
+   },
+   "music": {
+    "root": 55,
+    "scale": "aeolian",
+    "mood": "vast"
+   },
+   "settlement": {
+    "style": "stone",
+    "chance": 0.5,
+    "names": [
+     "Cairnhold",
+     "Greyfell",
+     "Mistmoor",
+     "Echo Stair",
+     "Highcombe",
+     "Veilwater"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "waterfall",
+     "rockPillars",
+     "shrine",
+     "cave"
+    ],
+    "rare": [
+     "giantWaterfall",
+     "naturalArch",
+     "bridge"
+    ],
+    "unique": [
+     "skyStair"
+    ]
+   }
+  },
+  {
+   "id": "crystal",
+   "name": "Crystal Lakes",
+   "regionWords": [
+    "Glass",
+    "Azure",
+    "Clearwater",
+    "Opal",
+    "Mirror",
+    "Silver"
+   ],
+   "climate": {
+    "temp": 0.35,
+    "moist": 0.5,
+    "elev": 0.7
+   },
+   "neighbors": [
+    "spring",
+    "snow",
+    "misty",
+    "northern",
+    "autumnMountain"
+   ],
+   "river": {
+    "width": 40,
+    "widthVar": 0.25,
+    "depth": 5.0,
+    "flow": 0.6,
+    "meanderAmp": 0.7,
+    "meanderScale": 15,
+    "rapidsChance": 0.15,
+    "lakeChance": 0.95,
+    "islandChance": 0.6
+   },
+   "terrain": {
+    "bankHeight": 1.2,
+    "bankSlope": 0.2,
+    "valleyWidth": 200,
+    "hillAmp": 40,
+    "mountainAmp": 420,
+    "mountainStart": 380,
+    "cliffiness": 0.3,
+    "terraces": 0,
+    "plateau": 0
+   },
+   "colors": {
+    "grass": "#6f9a58",
+    "grass2": "#86ad66",
+    "floor": "#577a44",
+    "sand": "#d8d3c2",
+    "mud": "#9c9684",
+    "rock": "#bdbab0",
+    "rock2": "#d4d1c7",
+    "snow": "#f4f7fa",
+    "far": "#7f98a0"
+   },
+   "water": {
+    "shallow": "#46d0c6",
+    "deep": "#0f6a8a",
+    "clarity": 0.12,
+    "waveAmp": 0.03,
+    "foam": 0.3
+   },
+   "atmosphere": {
+    "fog": 0.00022,
+    "fogTint": "#cfe2f0",
+    "haze": 0.25,
+    "mist": 0.35,
+    "skyTint": "#8fc0ff",
+    "sunset": 1.0,
+    "stars": 1.2
+   },
+   "vegetation": [
+    {
+     "id": "tree_pine",
+     "zone": "land",
+     "density": 0.3,
+     "cluster": 0.012,
+     "clusterMin": -0.1,
+     "scale": [
+      0.8,
+      1.3
+     ],
+     "maxSlope": 1.0
+    },
+    {
+     "id": "tree_birch",
+     "zone": "land",
+     "density": 0.15,
+     "cluster": 0.015,
+     "clusterMin": 0.2,
+     "scale": [
+      0.8,
+      1.2
+     ],
+     "maxSlope": 0.7
+    },
+    {
+     "id": "crystal",
+     "zone": "any",
+     "density": 0.06,
+     "cluster": 0.03,
+     "clusterMin": 0.35,
+     "scale": [
+      0.6,
+      1.6
+     ],
+     "maxSlope": 2
+    },
+    {
+     "id": "grass",
+     "zone": "land",
+     "density": 9.6,
+     "cluster": 0.04,
+     "clusterMin": -0.3,
+     "scale": [
+      0.7,
+      1.2
+     ],
+     "maxSlope": 0.8,
+     "small": true
+    },
+    {
+     "id": "flowers",
+     "zone": "land",
+     "density": 2.5,
+     "cluster": 0.05,
+     "clusterMin": 0.1,
+     "scale": [
+      0.7,
+      1.1
+     ],
+     "maxSlope": 0.6,
+     "small": true
+    },
+    {
+     "id": "rock_boulder",
+     "zone": "any",
+     "density": 0.14,
+     "cluster": 0.02,
+     "clusterMin": -0.1,
+     "scale": [
+      0.8,
+      2.2
+     ],
+     "maxSlope": 3,
+     "tint": "#d4d1c7"
+    },
+    {
+     "id": "rock_flat",
+     "zone": "shore",
+     "density": 0.6,
+     "cluster": 0.03,
+     "clusterMin": -0.1,
+     "scale": [
+      0.6,
+      1.5
+     ],
+     "maxSlope": 2,
+     "small": true,
+     "tint": "#d4d1c7"
+    }
+   ],
+   "floaters": null,
+   "weather": {
+    "clear": 6,
+    "cloudy": 2,
+    "lightRain": 1,
+    "heavyRain": 0.3,
+    "mist": 2,
+    "fog": 0.5,
+    "storm": 0.2,
+    "haze": 0.5
+   },
+   "wildlife": {
+    "birds": 0.7,
+    "herons": 0.6,
+    "butterflies": 0.5,
+    "fireflies": 0.3,
+    "frogs": 0.3,
+    "deer": 0.6,
+    "fish": 1.4
+   },
+   "ambience": {
+    "birds": 0.6,
+    "insects": 0.3,
+    "frogs": 0.2,
+    "wind": 0.6,
+    "cicadas": 0.0
+   },
+   "music": {
+    "root": 64,
+    "scale": "lydian",
+    "mood": "clear"
+   },
+   "settlement": {
+    "style": "timber",
+    "chance": 0.5,
+    "names": [
+     "Glasswater",
+     "Opal Rest",
+     "Azure Point",
+     "Mirrormere",
+     "Silverstone",
+     "Clearhaven"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "crystalCluster",
+     "rockPillars",
+     "cabin",
+     "shrine"
+    ],
+    "rare": [
+     "floatingIsland",
+     "naturalArch",
+     "hotSpring"
+    ],
+    "unique": [
+     "mirrorLake"
+    ]
+   }
+  },
+  {
+   "id": "canyon",
+   "name": "Red Canyon",
+   "regionWords": [
+    "Crimson",
+    "Rust",
+    "Ochre",
+    "Sun",
+    "Ember",
+    "Sandstone"
+   ],
+   "climate": {
+    "temp": 0.8,
+    "moist": 0.15,
+    "elev": 0.5
+   },
+   "neighbors": [
+    "coast",
+    "jungle",
+    "monsoon",
+    "autumn"
+   ],
+   "river": {
+    "width": 22,
+    "widthVar": 0.2,
+    "depth": 3.5,
+    "flow": 1.2,
+    "meanderAmp": 1.0,
+    "meanderScale": 11,
+    "rapidsChance": 0.3,
+    "lakeChance": 0.1,
+    "islandChance": 0.1
+   },
+   "terrain": {
+    "bankHeight": 1.0,
+    "bankSlope": 0.35,
+    "valleyWidth": 40,
+    "hillAmp": 25,
+    "mountainAmp": 60,
+    "mountainStart": 120,
+    "cliffiness": 1.0,
+    "terraces": 1,
+    "plateau": 95
+   },
+   "colors": {
+    "grass": "#9a8a4e",
+    "grass2": "#a89458",
+    "floor": "#b0754a",
+    "sand": "#d49a61",
+    "mud": "#8f5a3a",
+    "rock": "#b0512e",
+    "rock2": "#c9713f",
+    "snow": "#f2f4f7",
+    "far": "#b0603a"
+   },
+   "water": {
+    "shallow": "#6aa38a",
+    "deep": "#1f4a4a",
+    "clarity": 0.45,
+    "waveAmp": 0.05,
+    "foam": 0.6
+   },
+   "atmosphere": {
+    "fog": 0.00028,
+    "fogTint": "#e8c9a8",
+    "haze": 0.5,
+    "mist": 0.1,
+    "skyTint": "#9dbbe8",
+    "sunset": 1.5,
+    "stars": 1.3
+   },
+   "vegetation": [
+    {
+     "id": "shrub_dry",
+     "zone": "land",
+     "density": 0.35,
+     "cluster": 0.03,
+     "clusterMin": -0.2,
+     "scale": [
+      0.7,
+      1.4
+     ],
+     "maxSlope": 0.8
+    },
+    {
+     "id": "cactus",
+     "zone": "land",
+     "density": 0.12,
+     "cluster": 0.03,
+     "clusterMin": 0.0,
+     "scale": [
+      0.7,
+      1.3
+     ],
+     "maxSlope": 0.6
+    },
+    {
+     "id": "tree_palm",
+     "zone": "shore",
+     "density": 0.08,
+     "cluster": 0.02,
+     "clusterMin": 0.2,
+     "scale": [
+      0.8,
+      1.1
+     ],
+     "maxSlope": 0.5
+    },
+    {
+     "id": "reeds",
+     "zone": "shore",
+     "density": 2.6,
+     "cluster": 0.05,
+     "clusterMin": 0.1,
+     "scale": [
+      0.8,
+      1.2
+     ],
+     "maxSlope": 0.5,
+     "small": true
+    },
+    {
+     "id": "rock_boulder",
+     "zone": "any",
+     "density": 0.2,
+     "cluster": 0.02,
+     "clusterMin": -0.2,
+     "scale": [
+      0.8,
+      2.6
+     ],
+     "maxSlope": 3,
+     "tint": "#b0603a"
+    },
+    {
+     "id": "rock_small",
+     "zone": "shore",
+     "density": 0.6,
+     "cluster": 0.04,
+     "clusterMin": -0.2,
+     "scale": [
+      0.5,
+      1.3
+     ],
+     "maxSlope": 3,
+     "small": true,
+     "tint": "#b8704a"
+    }
+   ],
+   "floaters": null,
+   "weather": {
+    "clear": 8,
+    "cloudy": 2,
+    "lightRain": 0.5,
+    "heavyRain": 0.2,
+    "mist": 0.3,
+    "fog": 0.1,
+    "storm": 0.4,
+    "haze": 3
+   },
+   "wildlife": {
+    "birds": 0.6,
+    "herons": 0.3,
+    "butterflies": 0.3,
+    "fireflies": 0.1,
+    "frogs": 0.1,
+    "deer": 0.2,
+    "fish": 0.7
+   },
+   "ambience": {
+    "birds": 0.3,
+    "insects": 0.4,
+    "frogs": 0.05,
+    "wind": 0.9,
+    "cicadas": 0.5
+   },
+   "music": {
+    "root": 58,
+    "scale": "phrygian_pent",
+    "mood": "ancient"
+   },
+   "settlement": {
+    "style": "adobe",
+    "chance": 0.45,
+    "names": [
+     "Ochre Wells",
+     "Sunhollow",
+     "Redstep",
+     "Kiln Rock",
+     "Sandreed",
+     "Dustwater"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "rockPillars",
+     "cave",
+     "ruins",
+     "balancedRocks"
+    ],
+    "rare": [
+     "naturalArch",
+     "seaStacks",
+     "giantWaterfall"
+    ],
+    "unique": [
+     "paintedWall"
+    ]
+   }
+  },
+  {
+   "id": "monsoon",
+   "name": "Monsoon Bamboo Forest",
+   "regionWords": [
+    "Rain",
+    "Bamboo",
+    "Lotus",
+    "Drum",
+    "Cloudburst",
+    "Green"
+   ],
+   "climate": {
+    "temp": 0.8,
+    "moist": 0.95,
+    "elev": 0.45
+   },
+   "neighbors": [
+    "jungle",
+    "swamp",
+    "spring",
+    "misty",
+    "canyon"
+   ],
+   "river": {
+    "width": 28,
+    "widthVar": 0.3,
+    "depth": 2.4,
+    "flow": 1.0,
+    "meanderAmp": 0.85,
+    "meanderScale": 13,
+    "rapidsChance": 0.2,
+    "lakeChance": 0.2,
+    "islandChance": 0.45
+   },
+   "terrain": {
+    "bankHeight": 1.0,
+    "bankSlope": 0.18,
+    "valleyWidth": 140,
+    "hillAmp": 55,
+    "mountainAmp": 260,
+    "mountainStart": 400,
+    "cliffiness": 0.4,
+    "terraces": 0.5,
+    "plateau": 0
+   },
+   "colors": {
+    "grass": "#6f9a36",
+    "grass2": "#86ad3e",
+    "floor": "#4f7a2c",
+    "sand": "#a09067",
+    "mud": "#5b4a30",
+    "rock": "#6a6e5c",
+    "rock2": "#7d8468",
+    "snow": "#f2f4f7",
+    "far": "#4f7a4a"
+   },
+   "water": {
+    "shallow": "#679e7a",
+    "deep": "#1e4540",
+    "clarity": 0.6,
+    "waveAmp": 0.05,
+    "foam": 0.6
+   },
+   "atmosphere": {
+    "fog": 0.0007,
+    "fogTint": "#c6d6c2",
+    "haze": 0.8,
+    "mist": 0.9,
+    "skyTint": "#aac8d8",
+    "sunset": 1.0,
+    "stars": 0.8
+   },
+   "vegetation": [
+    {
+     "id": "bamboo",
+     "zone": "land",
+     "density": 0.9,
+     "cluster": 0.012,
+     "clusterMin": -0.3,
+     "scale": [
+      0.8,
+      1.3
+     ],
+     "maxSlope": 0.9
+    },
+    {
+     "id": "tree_broadleaf",
+     "zone": "land",
+     "density": 0.15,
+     "cluster": 0.01,
+     "clusterMin": 0.2,
+     "scale": [
+      0.9,
+      1.3
+     ],
+     "maxSlope": 0.8,
+     "tint": "#4f8a34"
+    },
+    {
+     "id": "fern",
+     "zone": "land",
+     "density": 3.2,
+     "cluster": 0.04,
+     "clusterMin": -0.3,
+     "scale": [
+      1.0,
+      1.8
+     ],
+     "maxSlope": 0.9,
+     "small": true
+    },
+    {
+     "id": "bush",
+     "zone": "land",
+     "density": 0.91,
+     "cluster": 0.03,
+     "clusterMin": -0.2,
+     "scale": [
+      0.8,
+      1.5
+     ],
+     "maxSlope": 0.8
+    },
+    {
+     "id": "reeds",
+     "zone": "shore",
+     "density": 4.16,
+     "cluster": 0.05,
+     "clusterMin": 0.0,
+     "scale": [
+      0.9,
+      1.4
+     ],
+     "maxSlope": 0.5,
+     "small": true
+    },
+    {
+     "id": "lilypad",
+     "zone": "water",
+     "density": 2.4,
+     "cluster": 0.05,
+     "clusterMin": 0.2,
+     "scale": [
+      1.0,
+      2.2
+     ],
+     "small": true
+    },
+    {
+     "id": "rock_boulder",
+     "zone": "any",
+     "density": 0.07,
+     "cluster": 0.02,
+     "clusterMin": 0.1,
+     "scale": [
+      0.6,
+      1.8
+     ],
+     "maxSlope": 3
+    }
+   ],
+   "floaters": "leaves_green",
+   "weather": {
+    "clear": 1.5,
+    "cloudy": 3,
+    "lightRain": 4,
+    "heavyRain": 4,
+    "mist": 3,
+    "fog": 1,
+    "storm": 1.5,
+    "haze": 1
+   },
+   "wildlife": {
+    "birds": 1.0,
+    "herons": 0.7,
+    "butterflies": 0.8,
+    "fireflies": 1.0,
+    "frogs": 1.4,
+    "deer": 0.2,
+    "fish": 1.0
+   },
+   "ambience": {
+    "birds": 0.8,
+    "insects": 0.8,
+    "frogs": 1.0,
+    "wind": 0.4,
+    "cicadas": 0.6
+   },
+   "music": {
+    "root": 59,
+    "scale": "minor_pent",
+    "mood": "rain"
+   },
+   "settlement": {
+    "style": "stilt",
+    "chance": 0.6,
+    "names": [
+     "Lotus Stilts",
+     "Raindrum",
+     "Bamboo Quay",
+     "Greenpool",
+     "Cloudburst Landing",
+     "Pondmere"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "waterfall",
+     "shrine",
+     "ruins",
+     "cave"
+    ],
+    "rare": [
+     "glowGrove",
+     "giantWaterfall",
+     "bridge"
+    ],
+    "unique": [
+     "rainTemple"
+    ]
+   }
+  },
+  {
+   "id": "swamp",
+   "name": "Mirewood Wetlands",
+   "regionWords": [
+    "Mire",
+    "Fen",
+    "Bog",
+    "Hollow",
+    "Moss",
+    "Murk"
+   ],
+   "climate": {
+    "temp": 0.65,
+    "moist": 1.0,
+    "elev": 0.1
+   },
+   "neighbors": [
+    "jungle",
+    "spring",
+    "autumn",
+    "coast",
+    "monsoon",
+    "northern"
+   ],
+   "river": {
+    "width": 60,
+    "widthVar": 0.35,
+    "depth": 2.0,
+    "flow": 0.35,
+    "meanderAmp": 1.0,
+    "meanderScale": 17,
+    "rapidsChance": 0.0,
+    "lakeChance": 0.5,
+    "islandChance": 0.85
+   },
+   "terrain": {
+    "bankHeight": 0.4,
+    "bankSlope": 0.04,
+    "valleyWidth": 500,
+    "hillAmp": 6,
+    "mountainAmp": 80,
+    "mountainStart": 1200,
+    "cliffiness": 0.0,
+    "terraces": 0,
+    "plateau": 0
+   },
+   "colors": {
+    "grass": "#56663a",
+    "grass2": "#6a7a42",
+    "floor": "#3e4a2a",
+    "sand": "#6e6348",
+    "mud": "#3f3424",
+    "rock": "#5a5a4e",
+    "rock2": "#6a6a5a",
+    "snow": "#f2f4f7",
+    "far": "#4a5a40"
+   },
+   "water": {
+    "shallow": "#4a5e3a",
+    "deep": "#1a241a",
+    "clarity": 0.9,
+    "waveAmp": 0.02,
+    "foam": 0.2
+   },
+   "atmosphere": {
+    "fog": 0.0011,
+    "fogTint": "#b8c2a6",
+    "haze": 0.9,
+    "mist": 1.0,
+    "skyTint": "#b4c4b8",
+    "sunset": 0.9,
+    "stars": 0.8
+   },
+   "vegetation": [
+    {
+     "id": "tree_cypress",
+     "zone": "any",
+     "density": 0.3,
+     "cluster": 0.012,
+     "clusterMin": -0.2,
+     "scale": [
+      0.8,
+      1.5
+     ],
+     "maxSlope": 0.6,
+     "maxDepth": 1.2
+    },
+    {
+     "id": "tree_dead",
+     "zone": "any",
+     "density": 0.08,
+     "cluster": 0.02,
+     "clusterMin": 0.2,
+     "scale": [
+      0.8,
+      1.3
+     ],
+     "maxSlope": 0.6,
+     "maxDepth": 0.8
+    },
+    {
+     "id": "tree_willow",
+     "zone": "bank",
+     "density": 0.12,
+     "cluster": 0.02,
+     "clusterMin": 0.1,
+     "scale": [
+      0.9,
+      1.3
+     ],
+     "maxSlope": 0.4,
+     "tint": "#5f7a3a"
+    },
+    {
+     "id": "reeds",
+     "zone": "shore",
+     "density": 10.4,
+     "cluster": 0.04,
+     "clusterMin": -0.3,
+     "scale": [
+      1.0,
+      1.6
+     ],
+     "maxSlope": 0.6,
+     "small": true
+    },
+    {
+     "id": "reeds",
+     "zone": "water",
+     "density": 3.9,
+     "cluster": 0.04,
+     "clusterMin": 0.1,
+     "scale": [
+      1.0,
+      1.6
+     ],
+     "small": true
+    },
+    {
+     "id": "lilypad",
+     "zone": "water",
+     "density": 4.8,
+     "cluster": 0.04,
+     "clusterMin": -0.1,
+     "scale": [
+      0.8,
+      2.0
+     ],
+     "small": true
+    },
+    {
+     "id": "glow_plant",
+     "zone": "shore",
+     "density": 0.9,
+     "cluster": 0.05,
+     "clusterMin": 0.1,
+     "scale": [
+      0.7,
+      1.3
+     ],
+     "maxSlope": 0.8,
+     "small": true
+    },
+    {
+     "id": "mushroom_glow",
+     "zone": "land",
+     "density": 1.04,
+     "cluster": 0.05,
+     "clusterMin": 0.1,
+     "scale": [
+      0.6,
+      1.5
+     ],
+     "maxSlope": 0.8,
+     "small": true
+    },
+    {
+     "id": "grass",
+     "zone": "land",
+     "density": 9.6,
+     "cluster": 0.04,
+     "clusterMin": -0.3,
+     "scale": [
+      0.8,
+      1.4
+     ],
+     "maxSlope": 0.7,
+     "small": true,
+     "tint": "#6a7a42"
+    }
+   ],
+   "floaters": "leaves_green",
+   "weather": {
+    "clear": 2,
+    "cloudy": 3,
+    "lightRain": 2,
+    "heavyRain": 1,
+    "mist": 4,
+    "fog": 4,
+    "storm": 0.5,
+    "haze": 1.5
+   },
+   "wildlife": {
+    "birds": 0.7,
+    "herons": 1.5,
+    "butterflies": 0.4,
+    "fireflies": 2.0,
+    "frogs": 2.0,
+    "deer": 0.2,
+    "fish": 1.0
+   },
+   "ambience": {
+    "birds": 0.5,
+    "insects": 0.9,
+    "frogs": 1.4,
+    "wind": 0.2,
+    "cicadas": 0.3
+   },
+   "music": {
+    "root": 53,
+    "scale": "dorian",
+    "mood": "mysterious"
+   },
+   "settlement": {
+    "style": "stilt",
+    "chance": 0.5,
+    "names": [
+     "Mirewatch",
+     "Fenlight",
+     "Bogmoss",
+     "Hollowstilts",
+     "Murkmere",
+     "Lantern Fen"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "ancientTree",
+     "ruins",
+     "wreck",
+     "cabin"
+    ],
+    "rare": [
+     "glowGrove",
+     "floatingIsland"
+    ],
+    "unique": [
+     "drownedBell"
+    ]
+   }
+  },
+  {
+   "id": "autumnMountain",
+   "name": "Emberpeak Gorge",
+   "regionWords": [
+    "Ember",
+    "Flame",
+    "Scarlet",
+    "Ridge",
+    "Crown",
+    "Gold"
+   ],
+   "climate": {
+    "temp": 0.4,
+    "moist": 0.55,
+    "elev": 0.75
+   },
+   "neighbors": [
+    "autumn",
+    "misty",
+    "northern",
+    "crystal"
+   ],
+   "river": {
+    "width": 32,
+    "widthVar": 0.2,
+    "depth": 4.5,
+    "flow": 1.2,
+    "meanderAmp": 0.8,
+    "meanderScale": 13,
+    "rapidsChance": 0.35,
+    "lakeChance": 0.2,
+    "islandChance": 0.2
+   },
+   "terrain": {
+    "bankHeight": 1.6,
+    "bankSlope": 0.4,
+    "valleyWidth": 120,
+    "hillAmp": 50,
+    "mountainAmp": 520,
+    "mountainStart": 220,
+    "cliffiness": 0.6,
+    "terraces": 0,
+    "plateau": 0
+   },
+   "colors": {
+    "grass": "#8f7a3a",
+    "grass2": "#a3883e",
+    "floor": "#7a4a26",
+    "sand": "#a8957a",
+    "mud": "#5e4832",
+    "rock": "#7a746c",
+    "rock2": "#8f877c",
+    "snow": "#f2f4f7",
+    "far": "#9a5a3a"
+   },
+   "water": {
+    "shallow": "#4f8a8e",
+    "deep": "#17354a",
+    "clarity": 0.4,
+    "waveAmp": 0.06,
+    "foam": 0.7
+   },
+   "atmosphere": {
+    "fog": 0.0006,
+    "fogTint": "#dccab6",
+    "haze": 0.7,
+    "mist": 0.8,
+    "skyTint": "#a6c0e8",
+    "sunset": 1.45,
+    "stars": 1.0
+   },
+   "vegetation": [
+    {
+     "id": "tree_maple",
+     "zone": "land",
+     "density": 0.45,
+     "cluster": 0.012,
+     "clusterMin": -0.2,
+     "scale": [
+      0.8,
+      1.3
+     ],
+     "maxSlope": 1.0
+    },
+    {
+     "id": "tree_pine",
+     "zone": "land",
+     "density": 0.25,
+     "cluster": 0.012,
+     "clusterMin": 0.0,
+     "scale": [
+      0.9,
+      1.4
+     ],
+     "maxSlope": 1.1
+    },
+    {
+     "id": "tree_birch",
+     "zone": "land",
+     "density": 0.1,
+     "cluster": 0.015,
+     "clusterMin": 0.2,
+     "scale": [
+      0.8,
+      1.2
+     ],
+     "maxSlope": 0.8
+    },
+    {
+     "id": "bush",
+     "zone": "land",
+     "density": 0.52,
+     "cluster": 0.03,
+     "clusterMin": -0.1,
+     "scale": [
+      0.7,
+      1.2
+     ],
+     "maxSlope": 0.9,
+     "tint": "#b0602a"
+    },
+    {
+     "id": "grass",
+     "zone": "land",
+     "density": 8.0,
+     "cluster": 0.04,
+     "clusterMin": -0.3,
+     "scale": [
+      0.7,
+      1.2
+     ],
+     "maxSlope": 0.8,
+     "small": true,
+     "tint": "#a3883e"
+    },
+    {
+     "id": "rock_boulder",
+     "zone": "any",
+     "density": 0.15,
+     "cluster": 0.02,
+     "clusterMin": 0.0,
+     "scale": [
+      0.8,
+      2.4
+     ],
+     "maxSlope": 3
+    },
+    {
+     "id": "rock_small",
+     "zone": "shore",
+     "density": 0.6,
+     "cluster": 0.04,
+     "clusterMin": -0.1,
+     "scale": [
+      0.5,
+      1.3
+     ],
+     "maxSlope": 3,
+     "small": true
+    }
+   ],
+   "floaters": "leaves_autumn",
+   "weather": {
+    "clear": 4,
+    "cloudy": 3,
+    "lightRain": 2,
+    "heavyRain": 0.8,
+    "mist": 3,
+    "fog": 2,
+    "storm": 0.4,
+    "haze": 1.5
+   },
+   "wildlife": {
+    "birds": 0.8,
+    "herons": 0.3,
+    "butterflies": 0.2,
+    "fireflies": 0.3,
+    "frogs": 0.2,
+    "deer": 0.9,
+    "fish": 0.9
+   },
+   "ambience": {
+    "birds": 0.6,
+    "insects": 0.3,
+    "frogs": 0.1,
+    "wind": 0.8,
+    "cicadas": 0.0
+   },
+   "music": {
+    "root": 57,
+    "scale": "major_pent",
+    "mood": "epic"
+   },
+   "settlement": {
+    "style": "stone",
+    "chance": 0.5,
+    "names": [
+     "Emberhold",
+     "Scarlet Ford",
+     "Crownwater",
+     "Goldstair",
+     "Flamewood",
+     "Ridgeholm"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "waterfall",
+     "shrine",
+     "rockPillars",
+     "cabin"
+    ],
+    "rare": [
+     "giantWaterfall",
+     "bridge",
+     "watchtower"
+    ],
+    "unique": [
+     "emberSpire"
+    ]
+   }
+  },
+  {
+   "id": "northern",
+   "name": "Northern Pinewood",
+   "regionWords": [
+    "Pine",
+    "Frost",
+    "Wolf",
+    "North",
+    "Birch",
+    "Boreal"
+   ],
+   "climate": {
+    "temp": 0.2,
+    "moist": 0.5,
+    "elev": 0.5
+   },
+   "neighbors": [
+    "snow",
+    "autumn",
+    "autumnMountain",
+    "crystal",
+    "misty",
+    "swamp"
+   ],
+   "river": {
+    "width": 34,
+    "widthVar": 0.25,
+    "depth": 3.5,
+    "flow": 0.9,
+    "meanderAmp": 0.8,
+    "meanderScale": 15,
+    "rapidsChance": 0.25,
+    "lakeChance": 0.45,
+    "islandChance": 0.45
+   },
+   "terrain": {
+    "bankHeight": 1.3,
+    "bankSlope": 0.2,
+    "valleyWidth": 200,
+    "hillAmp": 45,
+    "mountainAmp": 300,
+    "mountainStart": 500,
+    "cliffiness": 0.3,
+    "terraces": 0,
+    "plateau": 0
+   },
+   "colors": {
+    "grass": "#5d7248",
+    "grass2": "#6f8052",
+    "floor": "#46553a",
+    "sand": "#9a9384",
+    "mud": "#524a3c",
+    "rock": "#6c6f70",
+    "rock2": "#7f8385",
+    "snow": "#eef2f6",
+    "far": "#3f5448"
+   },
+   "water": {
+    "shallow": "#4e7f86",
+    "deep": "#132f3c",
+    "clarity": 0.35,
+    "waveAmp": 0.05,
+    "foam": 0.5
+   },
+   "atmosphere": {
+    "fog": 0.0003,
+    "fogTint": "#c6d2de",
+    "haze": 0.35,
+    "mist": 0.5,
+    "skyTint": "#8fb4ec",
+    "sunset": 1.1,
+    "stars": 1.5
+   },
+   "vegetation": [
+    {
+     "id": "tree_pine",
+     "zone": "land",
+     "density": 0.8,
+     "cluster": 0.01,
+     "clusterMin": -0.35,
+     "scale": [
+      0.8,
+      1.5
+     ],
+     "maxSlope": 1.1
+    },
+    {
+     "id": "tree_birch",
+     "zone": "land",
+     "density": 0.18,
+     "cluster": 0.015,
+     "clusterMin": 0.15,
+     "scale": [
+      0.8,
+      1.2
+     ],
+     "maxSlope": 0.8,
+     "tint": "#d8b440"
+    },
+    {
+     "id": "fern",
+     "zone": "land",
+     "density": 1.28,
+     "cluster": 0.04,
+     "clusterMin": 0.0,
+     "scale": [
+      0.6,
+      1.1
+     ],
+     "maxSlope": 0.9,
+     "small": true,
+     "tint": "#6a7f4a"
+    },
+    {
+     "id": "grass",
+     "zone": "land",
+     "density": 6.4,
+     "cluster": 0.04,
+     "clusterMin": -0.2,
+     "scale": [
+      0.6,
+      1.1
+     ],
+     "maxSlope": 0.8,
+     "small": true,
+     "tint": "#6f8052"
+    },
+    {
+     "id": "reeds",
+     "zone": "shore",
+     "density": 2.08,
+     "cluster": 0.05,
+     "clusterMin": 0.15,
+     "scale": [
+      0.8,
+      1.2
+     ],
+     "maxSlope": 0.5,
+     "small": true
+    },
+    {
+     "id": "rock_boulder",
+     "zone": "any",
+     "density": 0.14,
+     "cluster": 0.02,
+     "clusterMin": 0.0,
+     "scale": [
+      0.8,
+      2.2
+     ],
+     "maxSlope": 3
+    },
+    {
+     "id": "rock_small",
+     "zone": "shore",
+     "density": 0.7,
+     "cluster": 0.04,
+     "clusterMin": -0.1,
+     "scale": [
+      0.5,
+      1.3
+     ],
+     "maxSlope": 3,
+     "small": true
+    }
+   ],
+   "floaters": null,
+   "weather": {
+    "clear": 5,
+    "cloudy": 3,
+    "lightRain": 1.5,
+    "heavyRain": 0.5,
+    "mist": 2,
+    "fog": 1,
+    "storm": 0.3,
+    "haze": 0.3,
+    "snow": 1
+   },
+   "wildlife": {
+    "birds": 0.7,
+    "herons": 0.4,
+    "butterflies": 0.1,
+    "fireflies": 0.2,
+    "frogs": 0.2,
+    "deer": 1.2,
+    "fish": 1.0
+   },
+   "ambience": {
+    "birds": 0.5,
+    "insects": 0.2,
+    "frogs": 0.1,
+    "wind": 0.8,
+    "cicadas": 0.0
+   },
+   "music": {
+    "root": 55,
+    "scale": "aeolian",
+    "mood": "cold"
+   },
+   "settlement": {
+    "style": "timber",
+    "chance": 0.6,
+    "names": [
+     "Wolfwater",
+     "Pinehaven",
+     "Northmere",
+     "Birchstead",
+     "Frostford",
+     "Borealis Quay"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "cabin",
+     "rockPillars",
+     "shrine",
+     "wreck"
+    ],
+    "rare": [
+     "naturalArch",
+     "hotSpring",
+     "watchtower"
+    ],
+    "unique": [
+     "auroraStones"
+    ]
+   }
+  },
+  {
+   "id": "coast",
+   "name": "Mangrove Coast",
+   "regionWords": [
+    "Coral",
+    "Tide",
+    "Gull",
+    "Salt",
+    "Lagoon",
+    "Driftwood"
+   ],
+   "climate": {
+    "temp": 0.85,
+    "moist": 0.7,
+    "elev": 0.0
+   },
+   "neighbors": [
+    "jungle",
+    "swamp",
+    "canyon",
+    "spring"
+   ],
+   "river": {
+    "width": 70,
+    "widthVar": 0.3,
+    "depth": 3.0,
+    "flow": 0.45,
+    "meanderAmp": 0.7,
+    "meanderScale": 16,
+    "rapidsChance": 0.0,
+    "lakeChance": 0.3,
+    "islandChance": 0.7
+   },
+   "terrain": {
+    "bankHeight": 0.7,
+    "bankSlope": 0.05,
+    "valleyWidth": 400,
+    "hillAmp": 18,
+    "mountainAmp": 90,
+    "mountainStart": 900,
+    "cliffiness": 0.1,
+    "terraces": 0,
+    "plateau": 0,
+    "coast": 1
+   },
+   "colors": {
+    "grass": "#7a9a44",
+    "grass2": "#8fae4e",
+    "floor": "#5e7a34",
+    "sand": "#e3d3a4",
+    "mud": "#8a7a58",
+    "rock": "#8e8a7e",
+    "rock2": "#a39e90",
+    "snow": "#f2f4f7",
+    "far": "#6a8a6a"
+   },
+   "water": {
+    "shallow": "#4fc0b0",
+    "deep": "#12506e",
+    "clarity": 0.2,
+    "waveAmp": 0.12,
+    "foam": 0.8
+   },
+   "atmosphere": {
+    "fog": 0.00028,
+    "fogTint": "#d8e4ea",
+    "haze": 0.5,
+    "mist": 0.3,
+    "skyTint": "#8cc0f2",
+    "sunset": 1.3,
+    "stars": 1.1
+   },
+   "vegetation": [
+    {
+     "id": "tree_mangrove",
+     "zone": "shore",
+     "density": 0.35,
+     "cluster": 0.015,
+     "clusterMin": -0.1,
+     "scale": [
+      0.8,
+      1.3
+     ],
+     "maxSlope": 0.5,
+     "maxDepth": 0.8
+    },
+    {
+     "id": "tree_palm",
+     "zone": "land",
+     "density": 0.3,
+     "cluster": 0.015,
+     "clusterMin": -0.1,
+     "scale": [
+      0.8,
+      1.3
+     ],
+     "maxSlope": 0.6
+    },
+    {
+     "id": "bush",
+     "zone": "land",
+     "density": 0.65,
+     "cluster": 0.03,
+     "clusterMin": -0.1,
+     "scale": [
+      0.7,
+      1.3
+     ],
+     "maxSlope": 0.7
+    },
+    {
+     "id": "grass",
+     "zone": "land",
+     "density": 6.4,
+     "cluster": 0.04,
+     "clusterMin": -0.2,
+     "scale": [
+      0.7,
+      1.2
+     ],
+     "maxSlope": 0.7,
+     "small": true
+    },
+    {
+     "id": "driftwood",
+     "zone": "shore",
+     "density": 0.12,
+     "cluster": 0.04,
+     "clusterMin": 0.0,
+     "scale": [
+      0.8,
+      1.4
+     ],
+     "maxSlope": 0.5,
+     "small": true
+    },
+    {
+     "id": "rock_boulder",
+     "zone": "any",
+     "density": 0.05,
+     "cluster": 0.02,
+     "clusterMin": 0.2,
+     "scale": [
+      0.8,
+      2.0
+     ],
+     "maxSlope": 3
+    }
+   ],
+   "floaters": null,
+   "weather": {
+    "clear": 6,
+    "cloudy": 3,
+    "lightRain": 2,
+    "heavyRain": 1,
+    "mist": 1,
+    "fog": 0.5,
+    "storm": 0.8,
+    "haze": 1.5
+   },
+   "wildlife": {
+    "birds": 1.4,
+    "herons": 1.0,
+    "butterflies": 0.5,
+    "fireflies": 0.5,
+    "frogs": 0.3,
+    "deer": 0.1,
+    "fish": 1.3
+   },
+   "ambience": {
+    "birds": 1.0,
+    "insects": 0.5,
+    "frogs": 0.2,
+    "wind": 0.8,
+    "cicadas": 0.4
+   },
+   "music": {
+    "root": 62,
+    "scale": "mixolydian",
+    "mood": "bright"
+   },
+   "settlement": {
+    "style": "coastal",
+    "chance": 0.8,
+    "names": [
+     "Gullhaven",
+     "Saltmere",
+     "Coral Quay",
+     "Tidewick",
+     "Lagoon Rest",
+     "Driftwood Bay"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "seaStacks",
+     "wreck",
+     "cabin",
+     "rockPillars"
+    ],
+    "rare": [
+     "lighthouse",
+     "naturalArch",
+     "cave"
+    ],
+    "unique": [
+     "tidalGate"
+    ]
+   }
+  },
+  {
+   "id": "snow",
+   "name": "Frostreach Heights",
+   "regionWords": [
+    "Frost",
+    "Glacier",
+    "White",
+    "Ice",
+    "Winter",
+    "Starlit"
+   ],
+   "climate": {
+    "temp": 0.02,
+    "moist": 0.4,
+    "elev": 0.95
+   },
+   "neighbors": [
+    "misty",
+    "northern",
+    "crystal"
+   ],
+   "river": {
+    "width": 26,
+    "widthVar": 0.2,
+    "depth": 4.0,
+    "flow": 1.1,
+    "meanderAmp": 0.7,
+    "meanderScale": 14,
+    "rapidsChance": 0.3,
+    "lakeChance": 0.35,
+    "islandChance": 0.3
+   },
+   "terrain": {
+    "bankHeight": 1.5,
+    "bankSlope": 0.35,
+    "valleyWidth": 140,
+    "hillAmp": 50,
+    "mountainAmp": 700,
+    "mountainStart": 260,
+    "cliffiness": 0.6,
+    "terraces": 0,
+    "plateau": 0,
+    "snowLine": 6
+   },
+   "colors": {
+    "grass": "#8a9a90",
+    "grass2": "#a0aca6",
+    "floor": "#6a7a70",
+    "sand": "#b8b8b0",
+    "mud": "#6a6a64",
+    "rock": "#6d7278",
+    "rock2": "#858b92",
+    "snow": "#f4f7fb",
+    "far": "#b8c4d0"
+   },
+   "water": {
+    "shallow": "#6ab0c8",
+    "deep": "#12344e",
+    "clarity": 0.2,
+    "waveAmp": 0.04,
+    "foam": 0.5
+   },
+   "atmosphere": {
+    "fog": 0.00025,
+    "fogTint": "#dbe6f2",
+    "haze": 0.3,
+    "mist": 0.4,
+    "skyTint": "#7fb0ff",
+    "sunset": 1.2,
+    "stars": 1.6
+   },
+   "vegetation": [
+    {
+     "id": "tree_pine_snow",
+     "zone": "land",
+     "density": 0.35,
+     "cluster": 0.012,
+     "clusterMin": -0.1,
+     "scale": [
+      0.7,
+      1.3
+     ],
+     "maxSlope": 1.0
+    },
+    {
+     "id": "tree_pine",
+     "zone": "bank",
+     "density": 0.12,
+     "cluster": 0.012,
+     "clusterMin": 0.2,
+     "scale": [
+      0.8,
+      1.2
+     ],
+     "maxSlope": 0.9
+    },
+    {
+     "id": "rock_boulder",
+     "zone": "any",
+     "density": 0.18,
+     "cluster": 0.02,
+     "clusterMin": -0.1,
+     "scale": [
+      0.8,
+      2.5
+     ],
+     "maxSlope": 3,
+     "tint": "#dfe6ee"
+    },
+    {
+     "id": "rock_small",
+     "zone": "shore",
+     "density": 0.6,
+     "cluster": 0.04,
+     "clusterMin": -0.1,
+     "scale": [
+      0.5,
+      1.3
+     ],
+     "maxSlope": 3,
+     "small": true,
+     "tint": "#c8d2dc"
+    },
+    {
+     "id": "crystal",
+     "zone": "shore",
+     "density": 0.05,
+     "cluster": 0.03,
+     "clusterMin": 0.3,
+     "scale": [
+      0.5,
+      1.2
+     ],
+     "maxSlope": 2,
+     "tint": "#bfe8ff"
+    }
+   ],
+   "floaters": "ice",
+   "weather": {
+    "clear": 6,
+    "cloudy": 2,
+    "lightRain": 0,
+    "heavyRain": 0,
+    "mist": 1,
+    "fog": 1,
+    "storm": 0.3,
+    "haze": 0.2,
+    "snow": 3
+   },
+   "wildlife": {
+    "birds": 0.3,
+    "herons": 0.0,
+    "butterflies": 0.0,
+    "fireflies": 0.0,
+    "frogs": 0.0,
+    "deer": 0.6,
+    "fish": 0.8
+   },
+   "ambience": {
+    "birds": 0.15,
+    "insects": 0.0,
+    "frogs": 0.0,
+    "wind": 1.2,
+    "cicadas": 0.0
+   },
+   "music": {
+    "root": 64,
+    "scale": "lydian",
+    "mood": "crystalline"
+   },
+   "settlement": {
+    "style": "stone",
+    "chance": 0.4,
+    "names": [
+     "Frosthold",
+     "Whitecairn",
+     "Glacierfoot",
+     "Starlit Rest",
+     "Icewater",
+     "Winterquay"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "icefall",
+     "shrine",
+     "rockPillars",
+     "cabin"
+    ],
+    "rare": [
+     "hotSpring",
+     "giantWaterfall",
+     "naturalArch"
+    ],
+    "unique": [
+     "frozenGiant"
+    ]
+   }
+  },
+  {
+   "id": "starwater",
+   "name": "Starwater",
+   "hidden": true,
+   "regionWords": [
+    "Star",
+    "Lumen",
+    "Dream",
+    "Hidden",
+    "Moonlit",
+    "Glimmer"
+   ],
+   "climate": {
+    "temp": 0.5,
+    "moist": 0.8,
+    "elev": 0.6
+   },
+   "neighbors": [],
+   "river": {
+    "width": 26,
+    "widthVar": 0.2,
+    "depth": 3.0,
+    "flow": 0.4,
+    "meanderAmp": 0.8,
+    "meanderScale": 13,
+    "rapidsChance": 0.0,
+    "lakeChance": 0.5,
+    "islandChance": 0.5
+   },
+   "terrain": {
+    "bankHeight": 1.2,
+    "bankSlope": 0.3,
+    "valleyWidth": 120,
+    "hillAmp": 40,
+    "mountainAmp": 300,
+    "mountainStart": 260,
+    "cliffiness": 0.5,
+    "terraces": 0,
+    "plateau": 0
+   },
+   "colors": {
+    "grass": "#3f5a6a",
+    "grass2": "#4a6a7a",
+    "floor": "#2f3f55",
+    "sand": "#8a8ca8",
+    "mud": "#3a3a50",
+    "rock": "#4a4e66",
+    "rock2": "#5a5e7a",
+    "snow": "#e8ecff",
+    "far": "#3a4a6a"
+   },
+   "water": {
+    "shallow": "#3aa0b8",
+    "deep": "#0c1e3a",
+    "clarity": 0.25,
+    "waveAmp": 0.02,
+    "foam": 0.3,
+    "glow": 1.0
+   },
+   "atmosphere": {
+    "fog": 0.0005,
+    "fogTint": "#9aa8d8",
+    "haze": 0.6,
+    "mist": 0.8,
+    "skyTint": "#8a9ae8",
+    "sunset": 1.2,
+    "stars": 2.0
+   },
+   "vegetation": [
+    {
+     "id": "tree_broadleaf",
+     "zone": "land",
+     "density": 0.3,
+     "cluster": 0.012,
+     "clusterMin": -0.1,
+     "scale": [
+      0.9,
+      1.4
+     ],
+     "maxSlope": 0.9,
+     "tint": "#3a6a7a"
+    },
+    {
+     "id": "glow_plant",
+     "zone": "any",
+     "density": 2.1,
+     "cluster": 0.04,
+     "clusterMin": -0.3,
+     "scale": [
+      0.8,
+      1.6
+     ],
+     "maxSlope": 1.0,
+     "small": true
+    },
+    {
+     "id": "mushroom_glow",
+     "zone": "land",
+     "density": 1.82,
+     "cluster": 0.04,
+     "clusterMin": -0.2,
+     "scale": [
+      0.8,
+      2.0
+     ],
+     "maxSlope": 1.0,
+     "small": true
+    },
+    {
+     "id": "crystal",
+     "zone": "any",
+     "density": 0.12,
+     "cluster": 0.03,
+     "clusterMin": 0.1,
+     "scale": [
+      0.6,
+      1.8
+     ],
+     "maxSlope": 2,
+     "tint": "#a8b8ff"
+    },
+    {
+     "id": "fern",
+     "zone": "land",
+     "density": 2.4,
+     "cluster": 0.04,
+     "clusterMin": -0.2,
+     "scale": [
+      0.8,
+      1.4
+     ],
+     "maxSlope": 0.9,
+     "small": true,
+     "tint": "#3a7a8a"
+    },
+    {
+     "id": "lilypad",
+     "zone": "water",
+     "density": 1.6,
+     "cluster": 0.05,
+     "clusterMin": 0.2,
+     "scale": [
+      0.9,
+      1.8
+     ],
+     "small": true
+    }
+   ],
+   "floaters": "lumen",
+   "weather": {
+    "clear": 6,
+    "cloudy": 1,
+    "lightRain": 0.5,
+    "heavyRain": 0,
+    "mist": 3,
+    "fog": 0.5,
+    "storm": 0,
+    "haze": 0.5
+   },
+   "wildlife": {
+    "birds": 0.3,
+    "herons": 0.3,
+    "butterflies": 0.6,
+    "fireflies": 3.0,
+    "frogs": 0.8,
+    "deer": 0.3,
+    "fish": 1.2
+   },
+   "ambience": {
+    "birds": 0.2,
+    "insects": 0.6,
+    "frogs": 0.6,
+    "wind": 0.3,
+    "cicadas": 0.0
+   },
+   "music": {
+    "root": 61,
+    "scale": "lydian",
+    "mood": "wonder"
+   },
+   "settlement": {
+    "style": "timber",
+    "chance": 0.0,
+    "names": [
+     "Starwater Camp"
+    ]
+   },
+   "landmarks": {
+    "common": [
+     "glowGrove",
+     "crystalCluster"
+    ],
+    "rare": [
+     "floatingIsland"
+    ],
+    "unique": []
+   }
+  }
+ ]
 }

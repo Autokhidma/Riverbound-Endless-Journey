@@ -35,7 +35,8 @@ export function terrainShade(world, smp, x, z, ny, out) {
   }
   // Shore: sand or mud near the water line.
   const wetCoast = smp.coast;
-  const shoreW = (1 - smoothstep(0.4, 1.6 + wetCoast * 1.2, above)) * (1 - smoothstep(10, 26, smp.edge));
+  const beachy = saturate(0.35 + n.noise(x / 90, z / 90) * 0.9 + wetCoast);
+  const shoreW = (1 - smoothstep(0.25 + beachy * 0.5, 0.6 + beachy * 1.4 + wetCoast * 1.2, above)) * (1 - smoothstep(6 + beachy * 8, 14 + beachy * 14, smp.edge));
   let sand = 0;
   if (shoreW > 0 || above < 0) {
     const muddy = (A.id === 'swamp' || A.id === 'jungle' || A.id === 'monsoon') ? 1 - t : 0;

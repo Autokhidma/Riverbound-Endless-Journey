@@ -113,7 +113,7 @@ export function buildScatter(world, { x0, z0, size, small, density = 1, smallDen
             if (v.id === 'lilypad') y = smp.water + 0.015;
             break;
           case 'shore':
-            if (above < -0.25 || above > 1.3 || smp.edge > 16) continue;
+            if (above < -0.25 || above > (v.id === 'reeds' ? 0.55 : 1.3) || smp.edge > 16) continue;
             break;
           case 'bank':
             if (above < 0.35 || above > 7 || smp.edge > 45 || smp.edge < 1) continue;

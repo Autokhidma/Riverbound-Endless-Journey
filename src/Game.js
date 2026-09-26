@@ -13,6 +13,7 @@ import { WorldGen } from './world/WorldGen.js';
 import { WorkerPool } from './world/WorkerPool.js';
 import { TerrainStreamer } from './world/TerrainStreamer.js';
 import { WaterSystem } from './water/WaterSystem.js';
+import { VegetationStreamer } from './world/VegetationStreamer.js';
 import { SkyDome } from './sky/SkyDome.js';
 import { TimeOfDay } from './sky/TimeOfDay.js';
 import { evaluatePalette } from './sky/SkyPalette.js';
@@ -20,6 +21,7 @@ import { PlayerBoat } from './boat/PlayerBoat.js';
 import { CharacterModel } from './character/CharacterModel.js';
 import { CharacterAnimator } from './character/CharacterAnimator.js';
 import { CameraRig, CAMERA_LABELS } from './camera/CameraRig.js';
+import { RiverPilot } from './boat/RiverPilot.js';
 import { BIOMES } from './world/biomes.js';
 
 const ORIGIN_STEP = 2048;
@@ -63,6 +65,7 @@ export class Game {
     this.cameraRig = new CameraRig(this.camera3, this.settings);
     this.camera = this.cameraRig;
     this.pipeline.prePasses.push((r, cam, scene) => this.water?.prePass(r, cam, scene, this.planeY ?? 0));
+    this.pilot = new RiverPilot(this);
     await this.loadWorld(seed);
     window.addEventListener('resize', () => this.pipeline.resize());
     return this;
@@ -76,6 +79,7 @@ export class Game {
     this.pool = new WorkerPool(this.world.seed, { count: Math.max(1, Math.min(3, cores - 1)), useWorkers: this.hooks.useWorkers !== false });
     this.terrain = new TerrainStreamer(this.worldRoot, this.pool, this.terrainMaterial, this.quality);
     this.water = new WaterSystem({ world: this.world, pool: this.pool, root: this.worldRoot, pipeline: this.pipeline, quality: this.quality });
+    this.vegetation = new VegetationStreamer(this.worldRoot, this.pool, this.quality);
     this.boat = new PlayerBoat(this);
     this.characterModel = new CharacterModel();
     this.character = { model: this.characterModel, anim: new CharacterAnimator(this.characterModel) };
@@ -94,6 +98,7 @@ export class Game {
     this.pool?.dispose();
     this.terrain?.dispose();
     this.water?.dispose();
+    this.vegetation?.dispose();
     if (this.boat) this.worldRoot.remove(this.boat.model.group);
     for (const s of this.systems) s.onWorldDispose?.(this);
   }
@@ -112,6 +117,7 @@ export class Game {
     this.sky.setQuality(q);
     this.terrain.setQuality(q);
     this.water.setQuality(q);
+    this.vegetation.setQuality(q);
     for (const s of this.systems) s.setQuality?.(q);
     this.pipeline.updateEnvironment(this.sky.envScene, true);
   }
@@ -180,11 +186,11 @@ export class Game {
   }
 
   /** One frame: update + render. Public so tests can step deterministically. */
-  step(dt, frameMs = dt * 1000) {
+  step(dt, frameMs = dt * 1000, { render = true } = {}) {
     const t0 = performance.now();
     this.update(dt);
     const t1 = performance.now();
-    this.render(frameMs);
+    if (render) this.render(frameMs);
     const t2 = performance.now();
     this.cpu.update = this.cpu.update * 0.9 + (t1 - t0) * 0.1;
     this.cpu.render = this.cpu.render * 0.9 + (t2 - t1) * 0.1;
@@ -207,6 +213,10 @@ export class Game {
         const mode = this.cameraRig.cycle();
         this.events.emit('toast', { text: CAMERA_LABELS[mode], kind: 'camera' });
       }
+      if (input.pressed('cruise') && !this.onFoot) {
+        const on = this.pilot.toggle();
+        this.events.emit('toast', { text: on ? 'Cruising - the river carries you' : 'Cruise off', kind: 'camera' });
+      }
       if (input.pressed('lantern')) {
         this.boat.lanternOn = !this.boat.lanternOn;
         this.events.emit('lantern', { on: this.boat.lanternOn });
@@ -222,6 +232,7 @@ export class Game {
       const mv = input.move();
       control = { throttle: mv.throttle, steer: mv.steer, hurry: input.down('hurry'), brake: input.down('brake') };
     }
+    if (!this.onFoot) control = this.pilot.control(control);
     if (this.autopilot) control = this.autopilot(control, this);
     this.boat.update(simDt, control);
     for (const s of this.systems) if (s.update) s.update(simDt, this);
@@ -233,6 +244,7 @@ export class Game {
     this.terrain.update(camAbs, ground);
     const p = this.boat.physics;
     this.water.updateStreaming(camAbs, p.s);
+    this.vegetation.update(camAbs);
     this.checkOrigin();
 
     // Visual sync.
@@ -351,8 +363,8 @@ export class Game {
     const post = this.pipeline.post;
     const pp = post.params;
     if (!this.photoGrade) {
-      pp.exposure = lerp(1.0, 1.75, night) * (1 + (w.cloud > 0.6 ? 0.15 : 0));
-      pp.saturation = lerp(1.08, 0.95, night) * (1 - w.storm * 0.2);
+      pp.exposure = lerp(1.0, 1.55, night) * (1 + (w.cloud > 0.6 ? 0.15 : 0));
+      pp.saturation = lerp(1.08, 0.72, night) * (1 - w.storm * 0.2);
       pp.contrast = 1.05;
       pp.temperature = lerp(0, -0.25, night) + (pal.sunward[0] > pal.sunward[2] * 1.5 && this.time.sunElevation < 12 ? 0.08 : 0);
       pp.vignette = 0.32;
@@ -385,7 +397,7 @@ export class Game {
     const mem = performance.memory ? { usedMB: performance.memory.usedJSHeapSize / 1048576, totalMB: performance.memory.totalJSHeapSize / 1048576 } : null;
     return {
       fps: 1000 / Math.max(1, avg), frameMs: avg, p99Ms: p99, cpuUpdateMs: this.cpu.update, cpuRenderMs: this.cpu.render,
-      render: this.pipeline.stats(), terrain: { ...this.terrain.stats }, water: { ...this.water.stats }, workers: { ...this.pool.stats },
+      render: this.pipeline.stats(), terrain: { ...this.terrain.stats }, water: { ...this.water.stats }, vegetation: { ...this.vegetation.stats }, workers: { ...this.pool.stats },
       memory: mem, biome: this.currentBiome?.name, region: this.world.regionAtS(this.boat.physics.s).name, s: this.boat.physics.s,
       quality: this.quality.preset, laptop: !!this.quality.laptopMode,
     };
