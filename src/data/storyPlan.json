@@ -1,0 +1,56 @@
+{
+  "_comment": "World anchors for the main story. The region sequencer guarantees that, for every seed, each anchor lands in a region of one of the listed biomes within the region index range, in order. Feature placement then generates the listed story features into that region.",
+  "anchors": [
+    {
+      "id": "home", "chapter": "prologue", "regions": [0, 0], "biomes": ["spring"],
+      "features": [
+        { "type": "settlement", "key": "home", "name": "Willowmere", "role": "home", "shipwright": true },
+        { "type": "headwaterFalls", "key": "homeFalls", "name": "The Headwater Falls" }
+      ]
+    },
+    {
+      "id": "ch1", "chapter": "ch1", "regions": [1, 1], "biomes": ["autumn", "spring", "swamp", "monsoon", "crystal"],
+      "features": [
+        { "type": "settlement", "key": "firstTown", "role": "firstTown", "shipwright": true },
+        { "type": "lampstone", "key": "lamp1", "name": "The Reedlight Stone", "lamp": 1 }
+      ]
+    },
+    {
+      "id": "ch2", "chapter": "ch2", "regions": [2, 4], "biomes": ["jungle", "monsoon"],
+      "features": [
+        { "type": "settlement", "key": "wildTown", "role": "wildTown" },
+        { "type": "lampstone", "key": "lamp2", "name": "The Falling Lamp", "lamp": 2, "withWaterfall": true }
+      ]
+    },
+    {
+      "id": "ch3", "chapter": "ch3", "regions": [4, 6], "biomes": ["canyon", "swamp"],
+      "features": [
+        { "type": "ruinedVillage", "key": "oldSettlement", "name": "Hollowmere, the Old Settlement" },
+        { "type": "settlement", "key": "archiveTown", "role": "archiveTown", "shipwright": true },
+        { "type": "lampstone", "key": "lamp3", "name": "The Drowned Lamp", "lamp": 3 }
+      ]
+    },
+    {
+      "id": "ch4", "chapter": "ch4", "regions": [6, 9], "biomes": ["misty", "snow", "autumnMountain", "northern"],
+      "features": [
+        { "type": "settlement", "key": "highTown", "role": "highTown" },
+        { "type": "lampstone", "key": "lamp4", "name": "The Mountain Lamp", "lamp": 4, "shrine": true }
+      ]
+    },
+    {
+      "id": "ch5", "chapter": "ch5", "regions": [8, 11], "biomes": ["crystal", "northern", "misty"],
+      "features": [
+        { "type": "hiddenRiver", "key": "hiddenRiver", "name": "The Hidden River" },
+        { "type": "lampstone", "key": "lamp5", "name": "The Star Lamp", "lamp": 5, "onTributary": "hiddenRiver" },
+        { "type": "camp", "key": "grandmaCamp", "name": "Oona's Camp", "onTributary": "hiddenRiver" }
+      ]
+    },
+    {
+      "id": "ch6", "chapter": "ch6", "regions": [10, 14], "biomes": ["coast"],
+      "features": [
+        { "type": "settlement", "key": "coastTown", "role": "coastTown", "shipwright": true },
+        { "type": "lighthouse", "key": "lighthouse", "name": "The Last Lamp", "lamp": 6 }
+      ]
+    }
+  ]
+}
