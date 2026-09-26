@@ -281,7 +281,8 @@ export class DebugTools {
     b.t += ft / 1000;
     if (b.t < b.warmup) return;
     b.frames.push(ft);
-    if (b.frames.length % 30 === 0) {
+    if (b.frames.length % 30 === 0 || b.t - (b.lastSample ?? 0) > 1) {
+      b.lastSample = b.t;
       const s = g.stats();
       b.samples.push({ t: b.t, drawCalls: s.render.drawCalls, triangles: s.render.triangles, scale: s.render.scale, cpu: s.cpuUpdateMs, biome: s.biome });
     }

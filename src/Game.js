@@ -187,10 +187,25 @@ export class Game {
       if (!this.running) return;
       const dtMs = now - this.last;
       this.last = now;
-      this.step(Math.min(0.1, dtMs / 1000), dtMs);
+      // Schedule first so one bad frame can never freeze the game.
       this.raf = requestAnimationFrame(tick);
+      try {
+        this.step(Math.min(0.1, dtMs / 1000), dtMs);
+      } catch (err) {
+        this.reportError(err);
+      }
     };
     this.raf = requestAnimationFrame(tick);
+  }
+
+  /** Log frame errors once per distinct message (and to the desktop log). */
+  reportError(err) {
+    const key = String(err?.message ?? err);
+    this.errorsSeen ??= new Set();
+    if (this.errorsSeen.has(key)) return;
+    this.errorsSeen.add(key);
+    console.error('[frame]', err);
+    window.riverboundNative?.log?.('error', err?.stack ?? key);
   }
 
   stop() {

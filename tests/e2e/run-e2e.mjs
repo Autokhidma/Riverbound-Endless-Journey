@@ -6,6 +6,7 @@ import { ROOT } from './harness.mjs';
 const suites = [
   ['gameplay.mjs'],
   ['features.mjs'],
+  ['story.mjs', process.env.RB_STORY_SEED ?? 'RIVERBOUND'],
   ['drive.mjs', process.env.RB_DRIVE_SECONDS ?? '120', 'low'],
 ];
 let failed = 0;

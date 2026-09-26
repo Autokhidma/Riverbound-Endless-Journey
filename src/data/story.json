@@ -70,7 +70,7 @@
       "steps": [
         { "id": "c6a", "type": "reach", "feature": "coastTown", "radius": 60, "objective": "Reach the coast" },
         { "id": "c6b", "type": "talk", "settlement": "coastTown", "role": "elder", "objective": "Ask about the old lighthouse" },
-        { "id": "c6c", "type": "reach", "feature": "lighthouse", "radius": 60, "objective": "Find the Last Lamp" },
+        { "id": "c6c", "type": "reach", "feature": "lighthouse", "radius": 140, "objective": "Find the Last Lamp" },
         { "id": "c6d", "type": "light", "feature": "lighthouse", "objective": "Light the Last Lamp", "letter": "letter7" }
       ]
     },

@@ -36,7 +36,19 @@ function findChromium() {
   return undefined;
 }
 
+/** Viewport override for slow CI machines, e.g. RB_E2E_VIEWPORT=960x540. */
+function viewport(width, height) {
+  const v = /^(\d+)x(\d+)$/.exec(process.env.RB_E2E_VIEWPORT ?? '');
+  return v ? { width: Number(v[1]), height: Number(v[2]) } : { width, height };
+}
+
+/** Screenshots of a software-rendered WebGL page can take many seconds on CI. */
+export function screenshot(page, file) {
+  return page.screenshot({ path: file, timeout: Number(process.env.RB_SHOT_TIMEOUT ?? 180000), animations: 'disabled' });
+}
+
 export async function launch({ width = 1280, height = 720, headless = true } = {}) {
+  ({ width, height } = viewport(width, height));
   const executablePath = process.env.RB_CHROME || findChromium();
   const browser = await chromium.launch({
     headless,

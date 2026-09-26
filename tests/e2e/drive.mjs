@@ -4,7 +4,7 @@
 // Usage: node tests/e2e/drive.mjs [seconds] [quality] [outDir]
 import path from 'node:path';
 import fs from 'node:fs';
-import { serveDist, launch, waitReady, errorsFrom, ROOT } from './harness.mjs';
+import { serveDist, launch, waitReady, errorsFrom, screenshot, ROOT } from './harness.mjs';
 
 const simSeconds = Number(process.argv[2] ?? 240);
 const quality = process.argv[3] ?? 'low';
@@ -51,7 +51,7 @@ try {
       lastShot = t;
       await page.evaluate(() => { const g = window.__RB__.game; g.step(1 / 30); g.step(1 / 30); });
       const f = path.join(outDir, `drive_${Math.round(t)}.png`);
-      await page.screenshot({ path: f });
+      await screenshot(page, f);
       report.shots.push(f);
     }
   }

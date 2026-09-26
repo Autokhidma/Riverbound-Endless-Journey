@@ -115,7 +115,7 @@ export class StorySystem {
     if (!this.s.letters.includes(id)) this.s.letters.push(id);
     const L = LETTERS[id];
     if (L) {
-      this.game.session.journal?.addLore(`letter:${id}`, L.text, L.title);
+      this.game.journal?.addLore(`letter:${id}`, L.text, L.title);
       this.game.events.emit('letter', { id, ...L });
     }
   }
@@ -218,7 +218,7 @@ export class StorySystem {
     for (const s of game.content.spawned.values()) {
       const it = s.item;
       if (it.type === 'lampstone' || it.type === 'lighthouse') {
-        out.push({ id: `lamp:${it.id}`, x: it.x, z: it.z, range: it.type === 'lighthouse' ? 22 : 12, verb: this.isLampLit(it.storyKey) ? 'Admire' : 'Light', label: it.name, priority: 2, action: () => this.isLampLit(it.storyKey) ? game.events.emit('toast', { text: 'Its light reaches far across the water.' }) : this.lightLamp(it) });
+        out.push({ id: `lamp:${it.id}`, x: it.x, z: it.z, range: it.type === 'lighthouse' ? (game.onFoot ? 30 : 120) : 12, verb: this.isLampLit(it.storyKey) ? 'Admire' : 'Light', label: it.name, priority: 2, action: () => this.isLampLit(it.storyKey) ? game.events.emit('toast', { text: 'Its light reaches far across the water.' }) : this.lightLamp(it) });
       } else if (it.kind === 'veil') {
         out.push({ id: `veil:${it.id}`, x: it.x, z: it.z, range: 16, verb: 'Approach', label: 'the curtain of vines', priority: 2, action: () => this.openVeil(it) });
       }

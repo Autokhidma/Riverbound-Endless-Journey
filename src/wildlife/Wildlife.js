@@ -356,7 +356,7 @@ export class Wildlife {
   }
 
   updateFrogs(dt, game, p, wl) {
-    const want = Math.round(10 * wl('frogs') * clamp(game.time.nightFactor * 1.5 + (game.time.phase === 'sunset' ? 0.5 : 0), 0, 1));
+    const want = Math.min(this.frogs.instanceMatrix.count, Math.round(10 * wl('frogs') * clamp(game.time.nightFactor * 1.5 + (game.time.phase === 'sunset' ? 0.5 : 0), 0, 1)));
     const world = game.world;
     while (this.frogList.length < want) {
       const s = game.boat.physics.s + (Math.random() - 0.3) * 120;
@@ -466,7 +466,7 @@ export class Wildlife {
     if (!kind) { this.floaters.count = 0; return; }
     const flow = { x: 0, z: 0, speed: 0 };
     let n = 0;
-    const want = Math.round(this.floatList.length * (this.density ?? 1) * (kind === 'ice' ? 0.4 : 0.8));
+    const want = Math.min(this.floatList.length, Math.round(this.floatList.length * (this.density ?? 1) * (kind === 'ice' ? 0.4 : 0.8)));
     for (let i = 0; i < want; i++) {
       const f = this.floatList[i];
       if (!f.alive || Math.hypot(f.x - p.x, f.z - p.z) > 70) {

@@ -4,7 +4,7 @@
 // Usage: node tests/e2e/gameplay.mjs [outDir]
 import path from 'node:path';
 import fs from 'node:fs';
-import { serveDist, launch, waitReady, errorsFrom, ROOT } from './harness.mjs';
+import { serveDist, launch, waitReady, errorsFrom, screenshot, ROOT } from './harness.mjs';
 
 const outDir = process.argv[2] ?? path.join(ROOT, 'tests/e2e/output');
 fs.mkdirSync(outDir, { recursive: true });
@@ -13,7 +13,7 @@ const check = (cond, msg) => { if (!cond) failures.push(msg); console.log(`${con
 
 const { server, url } = await serveDist();
 const { browser, page, logs } = await launch({ width: 1280, height: 720 });
-const shot = (name) => page.screenshot({ path: path.join(outDir, `gp_${name}.png`) });
+const shot = (name) => screenshot(page, path.join(outDir, `gp_${name}.png`));
 const G = (fn, arg) => page.evaluate(fn, arg);
 /** Step the simulation n frames at dt (the rAF loop is paused for determinism). */
 const step = (n = 10, dt = 1 / 30) => G(({ n, dt }) => { const g = window.__RB__.game; for (let i = 0; i < n; i++) g.step(dt, dt * 1000, { render: i === n - 1 }); }, { n, dt });

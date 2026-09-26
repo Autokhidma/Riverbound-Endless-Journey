@@ -21,6 +21,10 @@ function setLoading(text, frac) {
   if (frac !== undefined) loadingFill.style.width = `${Math.round(frac * 100)}%`;
 }
 
+// Forward uncaught errors to the desktop log file.
+window.addEventListener('error', (e) => window.riverboundNative?.log?.('error', e.error?.stack ?? e.message));
+window.addEventListener('unhandledrejection', (e) => window.riverboundNative?.log?.('error', String(e.reason?.stack ?? e.reason)));
+
 async function boot() {
   const storage = new Storage();
   const settings = new Settings(storage);

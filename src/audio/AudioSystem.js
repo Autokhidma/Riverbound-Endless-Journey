@@ -136,6 +136,16 @@ export class AudioSystem {
     const golden = game.time.phase === 'golden' || game.time.phase === 'sunset' || game.time.phase === 'dawn' ? 1 : 0;
     this.music.setContext(musicContext({ biomeMusic: biome?.music, night, storm: w.storm ?? 0, rain, golden }));
     this.music.update(rdt);
+    // Reel ticks while landing a fish (faster when the fish is in the band).
+    if (game.fishing?.state === 'reeling') {
+      this.reelT = (this.reelT ?? 0) - rdt;
+      if (this.reelT <= 0) {
+        const inZone = game.fishing.reel?.fishInZone;
+        this.reelT = inZone ? 0.07 : 0.16;
+        const out = e.voice('effects', { gain: 0.25, reverb: 0 });
+        e.tone(out, { type: 'square', freq: inZone ? 2600 : 1900, attack: 0.001, dur: 0.012, peak: 0.05 });
+      }
+    }
     // Boat creaks when rocking.
     this.timers.creak -= rdt;
     if (!game.onFoot && !inMenu && this.timers.creak <= 0) {
