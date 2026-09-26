@@ -107,9 +107,7 @@ The E2E suites run the Shipping build in Chromium with software WebGL (SwiftShad
 
 While the repository is private, only people with access to it can use that link.
 
-```bash
-git tag v1.0.2 && git push origin v1.0.2
-```
+To publish a new version, bump `version` in `package.json` and either push a tag (`git tag v1.0.2 && git push origin v1.0.2`) or push a commit whose message contains `[release]`.
 
 ## Continuous integration
 
