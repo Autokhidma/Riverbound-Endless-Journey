@@ -68,22 +68,26 @@ try {
     const g = window.__RB__.game;
     const f = g.fishing;
     const before = g.session.inventory.slots.filter((s) => s.kind === 'fish').length;
-    // Aim at open water beside the boat.
     const p = g.boat.physics;
-    g.cameraRig.orbit.yaw = p.heading + Math.PI / 2;
-    f.toggle();
-    const states = [f.state];
-    f.power = 0.5; f.cast();
-    states.push(f.state);
-    for (let i = 0; i < 120 && f.state === 'casting'; i++) g.step(1 / 30, 33, { render: false });
-    states.push(f.state);
-    if (f.state === 'waiting') { f.timer = 0.01; f.nibbles = 0; g.step(1 / 30, 33, { render: false }); }
-    states.push(f.state);
-    if (f.state === 'bite') { f.startReel(); }
-    states.push(f.state);
-    if (f.reel) { f.reel.progress = 0.995; f.reel.fish = f.reel.zone + f.reel.zoneSize / 2; }
-    for (let i = 0; i < 20 && f.state === 'reeling'; i++) g.step(1 / 30, 33, { render: i === 19 });
-    states.push(f.state);
+    const states = [];
+    // Junk (boots, driftwood) is a real outcome, so keep casting until a fish bites.
+    for (let attempt = 0; attempt < 8 && g.session.state.stats.fishCaught === 0; attempt++) {
+      g.cameraRig.orbit.yaw = p.heading + Math.PI / 2 + attempt * 0.3;
+      f.toggle();
+      states.push(f.state);
+      f.power = 0.5; f.cast();
+      states.push(f.state);
+      for (let i = 0; i < 120 && f.state === 'casting'; i++) g.step(1 / 30, 33, { render: false });
+      states.push(f.state);
+      if (f.state === 'waiting') { f.timer = 0.01; f.nibbles = 0; g.step(1 / 30, 33, { render: false }); }
+      states.push(f.state);
+      if (f.state === 'bite') { f.startReel(); }
+      states.push(f.state);
+      if (f.reel) { f.reel.progress = 0.995; f.reel.fish = f.reel.zone + f.reel.zoneSize / 2; }
+      for (let i = 0; i < 20 && f.state === 'reeling'; i++) g.step(1 / 30, 33, { render: i === 19 });
+      states.push(f.state);
+      if (g.session.state.stats.fishCaught === 0) { f.state = 'ready'; f.catchInfo = null; }
+    }
     const after = g.session.inventory.slots.filter((s) => s.kind === 'fish').length;
     return { states, info: f.catchInfo, before, after, caught: g.session.state.stats.fishCaught };
   });
